@@ -8,17 +8,23 @@
 
 /* Begin PBXBuildFile section */
 		641BB6E52B335F6200806636 /* Willy_NillyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641BB6E42B335F6200806636 /* Willy_NillyApp.swift */; };
-		641BB6E72B335F6200806636 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641BB6E62B335F6200806636 /* ContentView.swift */; };
 		641BB6E92B335F6400806636 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 641BB6E82B335F6400806636 /* Assets.xcassets */; };
 		641BB6EC2B335F6400806636 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 641BB6EB2B335F6400806636 /* Preview Assets.xcassets */; };
+		643B9DDF2B510CD300200050 /* PosterModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 643B9DDE2B510CD300200050 /* PosterModel.swift */; };
+		643B9DE12B51138C00200050 /* HorizonScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 643B9DE02B51138C00200050 /* HorizonScrollView.swift */; };
+		643B9DE32B5114EF00200050 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 643B9DE22B5114EF00200050 /* HomeView.swift */; };
+		643B9DE72B51211700200050 /* TabHome.swift in Sources */ = {isa = PBXBuildFile; fileRef = 643B9DE62B51211700200050 /* TabHome.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		641BB6E12B335F6200806636 /* Willy Nilly.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Willy Nilly.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		641BB6E42B335F6200806636 /* Willy_NillyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Willy_NillyApp.swift; sourceTree = "<group>"; };
-		641BB6E62B335F6200806636 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		641BB6E82B335F6400806636 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		641BB6EB2B335F6400806636 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		643B9DDE2B510CD300200050 /* PosterModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PosterModel.swift; sourceTree = "<group>"; };
+		643B9DE02B51138C00200050 /* HorizonScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizonScrollView.swift; sourceTree = "<group>"; };
+		643B9DE22B5114EF00200050 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		643B9DE62B51211700200050 /* TabHome.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabHome.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,8 +57,11 @@
 		641BB6E32B335F6200806636 /* Willy Nilly */ = {
 			isa = PBXGroup;
 			children = (
+				643B9DE22B5114EF00200050 /* HomeView.swift */,
 				641BB6E42B335F6200806636 /* Willy_NillyApp.swift */,
-				641BB6E62B335F6200806636 /* ContentView.swift */,
+				643B9DE62B51211700200050 /* TabHome.swift */,
+				643B9DE02B51138C00200050 /* HorizonScrollView.swift */,
+				643B9DDE2B510CD300200050 /* PosterModel.swift */,
 				641BB6E82B335F6400806636 /* Assets.xcassets */,
 				641BB6EA2B335F6400806636 /* Preview Content */,
 			);
@@ -137,8 +146,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				641BB6E72B335F6200806636 /* ContentView.swift in Sources */,
+				643B9DE12B51138C00200050 /* HorizonScrollView.swift in Sources */,
 				641BB6E52B335F6200806636 /* Willy_NillyApp.swift in Sources */,
+				643B9DE32B5114EF00200050 /* HomeView.swift in Sources */,
+				643B9DE72B51211700200050 /* TabHome.swift in Sources */,
+				643B9DDF2B510CD300200050 /* PosterModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -275,6 +287,7 @@
 				DEVELOPMENT_TEAM = H4X7G96ZKF;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.entertainment";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -304,6 +317,7 @@
 				DEVELOPMENT_TEAM = H4X7G96ZKF;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.entertainment";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

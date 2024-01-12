@@ -1,13 +1,13 @@
 //
-//  ContentView.swift
+//  TabHome.swift
 //  Willy Nilly
 //
-//  Created by Palatip Jantawong on 21/12/2566 BE.
+//  Created by Palatip Jantawong on 12/1/2567 BE.
 //
 
 import SwiftUI
 
-struct ContentView: View {
+struct TabHome: View {
     
     var movies = Movies()
     
@@ -23,5 +23,5 @@ struct ContentView: View {
 }
 
 #Preview {
-    ContentView()
+    TabHome()
 }

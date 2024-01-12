@@ -11,7 +11,7 @@ import SwiftUI
 struct Willy_NillyApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            TabHome()
         }
     }
 }
