@@ -8,11 +8,10 @@
 import Foundation
 import SwiftUI
 
-
 struct HorizonScrollView: View {
     
+    var movies = Movies()
     var titleView: String
-    var posterName: String
     
     var body: some View {
         VStack(alignment: .leading){
@@ -23,8 +22,8 @@ struct HorizonScrollView: View {
                 .padding(.bottom, 25)
             ScrollView(.horizontal) {
                 HStack{
-                    ForEach(0..<10) {_ in
-                        Image(posterName)
+                    ForEach(movies.movie_mostpick, id: \.id) {movie in
+                        Image(movie.posterName)
                             .resizable()
                             .frame(width: 110, height: 162.91)
                             .scaledToFit()
@@ -37,3 +36,6 @@ struct HorizonScrollView: View {
     }
 }
 
+#Preview {
+    HorizonScrollView(movies: Movies(), titleView: "Most Picks")
+}

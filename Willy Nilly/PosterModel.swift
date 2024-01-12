@@ -17,9 +17,19 @@ struct Movie_Detail: Identifiable, Codable{
     var category: [String]
 }
 
+struct Genre: Identifiable, Codable{
+    var id = UUID()
+    var genreName: String
+}
+
+struct Season: Identifiable, Codable{
+    var id = UUID()
+    var seasonName: String
+    var seasonImage: String
+}
 
 struct Movies {
-    var movie: [Movie_Detail] = [
+    var movie_mostpick: [Movie_Detail] = [
         Movie_Detail(titleName: "Call Me By Your Name",
                      posterName: "call_me_by_your_name_poster",
                      movie_lenght: "1.3h", isMovie: true,
@@ -28,5 +38,35 @@ struct Movies {
                       posterName: "the_christmas_chronicles_poster",
                       movie_lenght: "1.3h", isMovie: true,
                       category: ["Romantic", "Drama"])
+    ]
+}
+
+struct Genres {
+    var all_genres: [Genre] = [
+        Genre(genreName: "History"),
+        Genre(genreName: "Drama"),
+        Genre(genreName: "Action"),
+        Genre(genreName: "Adventure"),
+        Genre(genreName: "Animation"),
+        Genre(genreName: "Comedy"),
+        Genre(genreName: "Crime"),
+        Genre(genreName: "Fantasy"),
+        Genre(genreName: "Horror"),
+        Genre(genreName: "Mystery"),
+        Genre(genreName: "Romance"),
+        Genre(genreName: "Sci-Fi"),
+        Genre(genreName: "Thirller"),
+        Genre(genreName: "War")
+    ]
+}
+
+struct Seasons {
+    var seasons: [Season] = [
+        Season(seasonName: "Spring", seasonImage: "summer"),
+        Season(seasonName: "Autumn", seasonImage: ""),
+        Season(seasonName: "Summer", seasonImage: ""),
+        Season(seasonName: "Winter", seasonImage: ""),
+        Season(seasonName: "Christmas", seasonImage: ""),
+        Season(seasonName: "New Year", seasonImage: "")
     ]
 }

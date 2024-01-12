@@ -9,8 +9,6 @@ import SwiftUI
 
 struct TabHome: View {
     
-    var movies = Movies()
-    
     var body: some View {
         TabView{
             HomeView()
@@ -18,6 +16,11 @@ struct TabHome: View {
                 Image(systemName: "house.fill")
                 Text("Home")
             }
+            CategoryView()
+                .tabItem {
+                    Image(systemName: "books.vertical.fill")
+                    Text("Category")
+                }
         }
     }
 }

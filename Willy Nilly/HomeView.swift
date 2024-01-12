@@ -11,10 +11,10 @@ struct HomeView: View {
     var body: some View {
         NavigationStack{
             ScrollView{
-                HorizonScrollView(titleView: "Most Picks", posterName: "call_me_by_your_name_poster")
-                HorizonScrollView(titleView: "Hits Category", posterName: "call_me_by_your_name_poster")
-                HorizonScrollView(titleView: "Recommend", posterName: "call_me_by_your_name_poster")
-                HorizonScrollView(titleView: "Most Picks", posterName: "call_me_by_your_name_poster")
+                HorizonScrollView(titleView: "Most Picks")
+                HorizonScrollView(titleView: "Hits Category")
+                HorizonScrollView(titleView: "Recommend")
+                HorizonScrollView(titleView: "Most Picks")
             }
             .navigationTitle("🍿 Willy Nilly")
             .scrollIndicators(.hidden)
