@@ -32,7 +32,7 @@ struct HorizonScrollView: View {
                     }.padding(.leading,20)
                 }
             }.padding(.top, -20)
-        }.padding(.top, 25)
+        }.padding(.top, 20)
     }
 }
 

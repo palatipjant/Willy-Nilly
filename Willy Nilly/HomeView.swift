@@ -11,12 +11,26 @@ struct HomeView: View {
     var body: some View {
         NavigationStack{
             ScrollView{
+                Image("call_me_by_your_name_poster")
+                    .resizable()
+                    .frame(width: 280, height: 400)
+                    .padding(.top, 40)
                 HorizonScrollView(titleView: "Most Picks")
                 HorizonScrollView(titleView: "Hits Category")
                 HorizonScrollView(titleView: "Recommend")
                 HorizonScrollView(titleView: "Most Picks")
             }
-            .navigationTitle("🍿 Willy Nilly")
+            .navigationBarTitleDisplayMode(.inline)
+                .toolbar {
+                    ToolbarItem(placement: .principal) {
+                        HStack {
+                            Image(systemName: "popcorn.fill")
+                            Text("Willy Nilly")
+                                .font(.title2)
+                                .fontWeight(.bold)
+                        }
+                    }
+                }
             .scrollIndicators(.hidden)
         }
     }

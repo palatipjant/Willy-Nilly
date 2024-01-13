@@ -17,7 +17,7 @@ struct Movie_Detail: Identifiable, Codable{
     var category: [String]
 }
 
-struct Genre: Identifiable, Codable{
+struct Genre: Identifiable, Codable, Hashable{
     var id = UUID()
     var genreName: String
 }
@@ -42,6 +42,9 @@ struct Movies {
 }
 
 struct Genres {
+    var sample_genres: Genre = Genre(genreName: "Drama")
+    
+    
     var all_genres: [Genre] = [
         Genre(genreName: "History"),
         Genre(genreName: "Drama"),
@@ -67,6 +70,7 @@ struct Seasons {
         Season(seasonName: "Summer", seasonImage: ""),
         Season(seasonName: "Winter", seasonImage: ""),
         Season(seasonName: "Christmas", seasonImage: ""),
-        Season(seasonName: "New Year", seasonImage: "")
+        Season(seasonName: "New Year", seasonImage: ""),
+        Season(seasonName: "Chinese New Year", seasonImage: "")
     ]
 }

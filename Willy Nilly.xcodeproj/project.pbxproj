@@ -15,6 +15,8 @@
 		643B9DE32B5114EF00200050 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 643B9DE22B5114EF00200050 /* HomeView.swift */; };
 		643B9DE72B51211700200050 /* TabHome.swift in Sources */ = {isa = PBXBuildFile; fileRef = 643B9DE62B51211700200050 /* TabHome.swift */; };
 		643B9DE92B512DD500200050 /* CategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 643B9DE82B512DD500200050 /* CategoryView.swift */; };
+		64BAFA272B52240100D212A8 /* CategoryListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64BAFA262B52240100D212A8 /* CategoryListView.swift */; };
+		64BAFA2A2B5267DB00D212A8 /* TMDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64BAFA292B5267DB00D212A8 /* TMDB.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +29,8 @@
 		643B9DE22B5114EF00200050 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		643B9DE62B51211700200050 /* TabHome.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabHome.swift; sourceTree = "<group>"; };
 		643B9DE82B512DD500200050 /* CategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryView.swift; sourceTree = "<group>"; };
+		64BAFA262B52240100D212A8 /* CategoryListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryListView.swift; sourceTree = "<group>"; };
+		64BAFA292B5267DB00D212A8 /* TMDB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMDB.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,10 +63,12 @@
 		641BB6E32B335F6200806636 /* Willy Nilly */ = {
 			isa = PBXGroup;
 			children = (
+				64BAFA282B5267C200D212A8 /* api */,
 				643B9DE22B5114EF00200050 /* HomeView.swift */,
 				641BB6E42B335F6200806636 /* Willy_NillyApp.swift */,
 				643B9DE62B51211700200050 /* TabHome.swift */,
 				643B9DE82B512DD500200050 /* CategoryView.swift */,
+				64BAFA262B52240100D212A8 /* CategoryListView.swift */,
 				643B9DE02B51138C00200050 /* HorizonScrollView.swift */,
 				643B9DDE2B510CD300200050 /* PosterModel.swift */,
 				641BB6E82B335F6400806636 /* Assets.xcassets */,
@@ -77,6 +83,14 @@
 				641BB6EB2B335F6400806636 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		64BAFA282B5267C200D212A8 /* api */ = {
+			isa = PBXGroup;
+			children = (
+				64BAFA292B5267DB00D212A8 /* TMDB.swift */,
+			);
+			path = api;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -153,7 +167,9 @@
 				641BB6E52B335F6200806636 /* Willy_NillyApp.swift in Sources */,
 				643B9DE92B512DD500200050 /* CategoryView.swift in Sources */,
 				643B9DE32B5114EF00200050 /* HomeView.swift in Sources */,
+				64BAFA2A2B5267DB00D212A8 /* TMDB.swift in Sources */,
 				643B9DE72B51211700200050 /* TabHome.swift in Sources */,
+				64BAFA272B52240100D212A8 /* CategoryListView.swift in Sources */,
 				643B9DDF2B510CD300200050 /* PosterModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

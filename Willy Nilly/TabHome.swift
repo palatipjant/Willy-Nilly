@@ -18,7 +18,7 @@ struct TabHome: View {
             }
             CategoryView()
                 .tabItem {
-                    Image(systemName: "books.vertical.fill")
+                    Image(systemName: "globe.central.south.asia.fill")
                     Text("Category")
                 }
         }
