@@ -7,11 +7,12 @@
 
 import Foundation
 import SwiftUI
+import Kingfisher
 
 struct HorizonScrollView: View {
     
-    var movies = Movies()
     var titleView: String
+    var movie_api: [NewMovie]
     
     var body: some View {
         VStack(alignment: .leading){
@@ -22,13 +23,18 @@ struct HorizonScrollView: View {
                 .padding(.bottom, 25)
             ScrollView(.horizontal) {
                 HStack{
-                    ForEach(movies.movie_mostpick, id: \.id) {movie in
-                        Image(movie.posterName)
-                            .resizable()
-                            .frame(width: 110, height: 162.91)
-                            .scaledToFit()
-                            .background(Color(.label))
-                            .clipShape(RoundedRectangle(cornerRadius: 12))
+                    ForEach(movie_api, id: \.id) {movie in
+                        if let url = movie.posterURL {
+                            KFImage(url)
+                                .resizable()
+                                .frame(width: 110, height: 162.91)
+                                .scaledToFit()
+                                .background(Color(.label))
+                                .clipShape(RoundedRectangle(cornerRadius: 12))
+                                .onTapGesture {
+                                    //
+                                }
+                        }
                     }.padding(.leading,20)
                 }
             }.padding(.top, -20)
@@ -37,5 +43,5 @@ struct HorizonScrollView: View {
 }
 
 #Preview {
-    HorizonScrollView(movies: Movies(), titleView: "Most Picks")
+    HorizonScrollView(titleView: "Most Picks", movie_api: [NewMovie(id: 753342, title: "dssa", poster_path: "/jE5o7y9K6pZtWNNMEw3IdpHuncR.jpg")])
 }

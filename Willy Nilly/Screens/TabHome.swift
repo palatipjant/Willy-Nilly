@@ -8,51 +8,41 @@
 import SwiftUI
 
 struct TabHome: View {
-    @State private var movies: [Movie] = []
-
+    @State private var NewMovies: [NewMovie] = []
+    
+//    List(movies) { movie in
+//        MovieRow(movie: movie)
+//    }
     var body: some View {
-        NavigationView {
-            List(movies) { movie in
-                MovieRow(movie: movie)
+        TabView{
+            HomeView(NewMovies: NewMovies)
+                .tabItem {
+                Image(systemName: "house.fill")
+                Text("Home")
             }
-            .navigationTitle("New Movies")
+            CategoryView()
+                .tabItem {
+                    Image(systemName: "globe.central.south.asia.fill")
+                    Text("Category")
+                }
         }
         .onAppear {
-            fetchMovies()
+            fetchNewMovies()
         }
     }
 
-    func fetchMovies() {
-        Networking.fetchMovies { result in
+    func fetchNewMovies() {
+        NewNetworking.fetchNewMovies { result in
             switch result {
             case .success(let movies):
-                self.movies = movies
-                for movie in movies {
-                    print("Movie: \(movie.title), Poster Path: \(movie.posterPath ?? "N/A")")
-                }
+                self.NewMovies = movies
             case .failure(let error):
                 print("Error: \(error.localizedDescription)")
             }
         }
     }
+    
 }
-
-    //
-//    var body: some View {
-//        TabView{
-//            HomeView()
-//                .tabItem {
-//                Image(systemName: "house.fill")
-//                Text("Home")
-//            }
-//            CategoryView()
-//                .tabItem {
-//                    Image(systemName: "globe.central.south.asia.fill")
-//                    Text("Category")
-//                }
-//        }
-//    }
-//}
 
 #Preview {
     TabHome()

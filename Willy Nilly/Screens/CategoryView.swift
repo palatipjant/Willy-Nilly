@@ -1,24 +1,24 @@
-//
-//  CategoryView.swift
-//  Willy Nilly
-//
-//  Created by Palatip Jantawong on 12/1/2567 BE.
-//
+////
+////  CategoryView.swift
+////  Willy Nilly
+////
+////  Created by Palatip Jantawong on 12/1/2567 BE.
+////
 
 import SwiftUI
 
 struct CategoryView: View {
     
-    var genres = Genres()
+    @State private var genre: [genres] = []
     
     var body: some View {
         NavigationStack{
             VStack{
                 List {
-                    ForEach((genres.all_genres), id:\.self) {genre in
+                    ForEach((genre), id:\.id) {genre in
                         NavigationLink(destination: CategoryListView(genre: genre)) {
                             HStack{
-                                Text(genre.genreName)
+                                Text(genre.name)
                                     .font(.system(size: 20))
                             }.padding(.vertical,4)
                         }
@@ -38,11 +38,17 @@ struct CategoryView: View {
                     }
                 }
             .scrollIndicators(.hidden)
-                
+            .onAppear{
+                fetchGenres()
+            }
         }
     }
-}
-
-#Preview {
-    CategoryView()
+    func fetchGenres() {
+            // Replace 'YOUR_API_KEY' with your actual API key
+            let apiKey = "e74cd6a7de4a757ad378d3f246d73bc3"
+            
+            APIService.shared.fetchGenres(apiKey: apiKey) { fetchedGenres in
+                genre = fetchedGenres
+            }
+        }
 }

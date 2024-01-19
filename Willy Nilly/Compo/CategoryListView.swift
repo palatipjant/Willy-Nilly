@@ -9,14 +9,12 @@ import SwiftUI
 
 struct CategoryListView: View {
     
-    var genre : Genre
+    var genre: genres
     
     var body: some View {
-        HStack{
-            Text(genre.genreName)
-                .font(.system(size: 25))
-                .padding(.leading, 10)
-        }
+        Text(genre.name)
+            .navigationBarTitle(genre.name)
     }
+    
 }
 

@@ -6,19 +6,18 @@
 //
 
 import SwiftUI
+import Kingfisher
 
 struct HomeView: View {
+    var NewMovies: [NewMovie]
+    
     var body: some View {
         NavigationStack{
             ScrollView{
-                Image("call_me_by_your_name_poster")
-                    .resizable()
-                    .frame(width: 280, height: 400)
-                    .padding(.top, 40)
-                HorizonScrollView(titleView: "Most Picks")
-                HorizonScrollView(titleView: "Hits Category")
-                HorizonScrollView(titleView: "Recommend")
-                HorizonScrollView(titleView: "Most Picks")
+                HorizonScrollView(titleView: "New Release", movie_api: NewMovies)
+                HorizonScrollView(titleView: "Hits Category", movie_api: NewMovies)
+                HorizonScrollView(titleView: "Recommend", movie_api: NewMovies)
+                HorizonScrollView(titleView: "Most Picks", movie_api: NewMovies)
             }
             .navigationBarTitleDisplayMode(.inline)
                 .toolbar {
@@ -32,10 +31,11 @@ struct HomeView: View {
                     }
                 }
             .scrollIndicators(.hidden)
+            
         }
     }
 }
-
-#Preview {
-    HomeView()
-}
+//
+//#Preview {
+//    HomeView(NewMovies: [NewMovie(id: 753342, title: "dssa", poster_path: "/jE5o7y9K6pZtWNNMEw3IdpHuncR.jpg")], PopMovies: [PopMovie(id: 753342, title: "dssa", posterPath: "/jE5o7y9K6pZtWNNMEw3IdpHuncR.jpg", overview: "Fee test api", mediaType: "TV")])
+//}
