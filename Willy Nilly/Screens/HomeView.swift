@@ -14,6 +14,7 @@ struct HomeView: View {
     var body: some View {
         NavigationStack{
             ScrollView{
+                PoppularBanner()
                 HorizonScrollView(titleView: "New Release", movie_api: NewMovies)
                 HorizonScrollView(titleView: "Hits Category", movie_api: NewMovies)
                 HorizonScrollView(titleView: "Recommend", movie_api: NewMovies)
