@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct MovieResponse: Codable {
+struct NewMovieResponse: Codable {
     let results: [NewMovie]
 }
 
@@ -23,8 +23,6 @@ struct NewMovie: Codable, Identifiable {
         return nil
     }
 }
-
-
 
 class NewNetworking {
     static func fetchNewMovies(completion: @escaping (Result<[NewMovie], Error>) -> Void) {
@@ -46,10 +44,88 @@ class NewNetworking {
 //            print("Raw Data: \(String(data: data, encoding: .utf8) ?? "N/A")")
             do {
                 let decoder = JSONDecoder()
-                let movieResponse = try decoder.decode(MovieResponse.self, from: data)
+                let movieResponse = try decoder.decode(NewMovieResponse.self, from: data)
                 completion(.success(movieResponse.results))
             } catch {
                 completion(.failure(error))
+            }
+        }.resume()
+    }
+}
+
+struct GenreListResponse: Codable {
+    let genres: [genres]
+}
+
+struct genres: Codable, Identifiable {
+    let id: Int
+    let name: String
+}
+
+class GenreNetworking {
+    static let shared = GenreNetworking()
+    
+    private init() {}
+
+    func fetchGenres(apiKey: String, completion: @escaping ([genres]) -> Void) {
+        let url = URL(string: "https://api.themoviedb.org/3/genre/movie/list?language=en&api_key=\(apiKey)")!
+
+        URLSession.shared.dataTask(with: url) { data, response, error in
+            guard let data = data, error == nil else {
+                print("Error: \(error?.localizedDescription ?? "Unknown error")")
+                return
+            }
+
+            do {
+                let result = try JSONDecoder().decode(GenreListResponse.self, from: data)
+                DispatchQueue.main.async {
+                    completion(result.genres)
+                }
+            } catch {
+                print("Error decoding JSON: \(error)")
+            }
+        }.resume()
+    }
+}
+
+struct PopMovieResponse: Codable {
+    let results: [PopMovie]
+}
+
+struct PopMovie: Codable, Identifiable {
+    let id: Int
+    let title: String
+    let poster_path: String?
+    
+    var posterURL: URL? {
+        if let poster = poster_path {
+            return URL(string: "https://image.tmdb.org/t/p/w500" + poster)
+        }
+        return nil
+    }
+}
+
+class PopMovieNetworking {
+    static let shared = PopMovieNetworking()
+    
+    private init() {}
+
+    func fetchPopMovie(apiKey: String, completion: @escaping ([genres]) -> Void) {
+        let url = URL(string: "https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc&api_key=\(apiKey)")!
+
+        URLSession.shared.dataTask(with: url) { data, response, error in
+            guard let data = data, error == nil else {
+                print("Error: \(error?.localizedDescription ?? "Unknown error")")
+                return
+            }
+
+            do {
+                let result = try JSONDecoder().decode(GenreListResponse.self, from: data)
+                DispatchQueue.main.async {
+                    completion(result.genres)
+                }
+            } catch {
+                print("Error decoding JSON: \(error)")
             }
         }.resume()
     }

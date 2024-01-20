@@ -44,10 +44,9 @@ struct CategoryView: View {
         }
     }
     func fetchGenres() {
-            // Replace 'YOUR_API_KEY' with your actual API key
             let apiKey = "e74cd6a7de4a757ad378d3f246d73bc3"
             
-            APIService.shared.fetchGenres(apiKey: apiKey) { fetchedGenres in
+            GenreNetworking.shared.fetchGenres(apiKey: apiKey) { fetchedGenres in
                 genre = fetchedGenres
             }
         }
