@@ -41,7 +41,7 @@ class NewNetworking {
                 completion(.failure(NSError(domain: "Invalid Data", code: 0, userInfo: nil)))
                 return
             }
-//            print("Raw Data: \(String(data: data, encoding: .utf8) ?? "N/A")")
+            print("Raw Data: \(String(data: data, encoding: .utf8) ?? "N/A")")
             do {
                 let decoder = JSONDecoder()
                 let movieResponse = try decoder.decode(NewMovieResponse.self, from: data)

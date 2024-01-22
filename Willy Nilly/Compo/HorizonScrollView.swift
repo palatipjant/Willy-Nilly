@@ -24,21 +24,23 @@ struct HorizonScrollView: View {
             ScrollView(.horizontal) {
                 HStack{
                     ForEach(movie_api, id: \.id) {movie in
-                        if let url = movie.posterURL {
-                            KFImage(url)
-                                .resizable()
-                                .frame(width: 110, height: 162.91)
-                                .scaledToFit()
-                                .background(Color(.label))
-                                .clipShape(RoundedRectangle(cornerRadius: 12))
-                                .onTapGesture {
-                                    //
+                            if let url = movie.posterURL {
+                                NavigationLink(destination: OverviewMovie(NewMovie: movie)) {
+                                    KFImage(url)
+                                        .resizable()
+                                        .frame(width: 110, height: 162.91)
+                                        .scaledToFit()
+                                        .background(Color(.label))
+                                        .clipShape(RoundedRectangle(cornerRadius: 12))
                                 }
-                        }
-                    }.padding(.leading,20)
+                            }
+                    }
+                    .padding(.leading,20)
                 }
-            }.padding(.top, -20)
-        }.padding(.top, 20)
+            }
+            .padding(.top, -20)
+        }
+        .padding(.top, 20)
     }
 }
 

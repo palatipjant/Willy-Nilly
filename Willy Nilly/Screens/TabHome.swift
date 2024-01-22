@@ -8,14 +8,14 @@
 import SwiftUI
 
 struct TabHome: View {
-    @State private var NewMovies: [NewMovie] = []
+    
     
 //    List(movies) { movie in
 //        MovieRow(movie: movie)
 //    }
     var body: some View {
         TabView{
-            HomeView(NewMovies: NewMovies)
+            HomeView()
                 .tabItem {
                 Image(systemName: "house.fill")
                 Text("Home")
@@ -26,21 +26,10 @@ struct TabHome: View {
                     Text("Category")
                 }
         }
-        .onAppear {
-            fetchNewMovies()
-        }
+        
     }
 
-    func fetchNewMovies() {
-        NewNetworking.fetchNewMovies { result in
-            switch result {
-            case .success(let movies):
-                self.NewMovies = movies
-            case .failure(let error):
-                print("Error: \(error.localizedDescription)")
-            }
-        }
-    }
+    
     
 }
 
