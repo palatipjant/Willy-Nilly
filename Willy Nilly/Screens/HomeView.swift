@@ -25,9 +25,10 @@ struct HomeView: View {
                     ToolbarItem(placement: .principal) {
                         HStack {
                             Image(systemName: "popcorn.fill")
-                            Text("Willy Nilly")
-                                .font(.title2)
-                                .fontWeight(.bold)
+                                .symbolRenderingMode(.multicolor)
+//                            Text("Willy Nilly")
+//                                .font(.title2)
+//                                .fontWeight(.bold)
                         }
                     }
                 }
