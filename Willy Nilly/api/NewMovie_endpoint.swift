@@ -41,7 +41,7 @@ class NewNetworking {
                 completion(.failure(NSError(domain: "Invalid Data", code: 0, userInfo: nil)))
                 return
             }
-            print("Raw Data: \(String(data: data, encoding: .utf8) ?? "N/A")")
+//            print("Raw Data: \(String(data: data, encoding: .utf8) ?? "N/A")")
             do {
                 let decoder = JSONDecoder()
                 let movieResponse = try decoder.decode(NewMovieResponse.self, from: data)
@@ -107,7 +107,7 @@ struct PopMovie: Codable, Identifiable {
 
 class PopMovieNetworking {
     static func fetchPopMovie(completion: @escaping (Result<[PopMovie], Error>) -> Void) {
-        let url = URL(string: "https://api.themoviedb.org/3/movie/popular?language=en-US&page=1")!
+        let url = URL(string: "https://api.themoviedb.org/3/trending/movie/day?language=en-US")!
 
         var request = URLRequest(url: url)
         request.addValue("Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJlNzRjZDZhN2RlNGE3NTdhZDM3OGQzZjI0NmQ3M2JjMyIsInN1YiI6IjY1ODMxY2NhODU4Njc4NTUyZWY2ODQwMSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.IbiXRbuekxsTNA0DmI5rfLVipO0VZlxMylkzMPkmCuA", forHTTPHeaderField: "Authorization")

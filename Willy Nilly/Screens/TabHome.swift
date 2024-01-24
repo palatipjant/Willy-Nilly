@@ -20,6 +20,11 @@ struct TabHome: View {
                 Image(systemName: "house.fill")
                 Text("Home")
             }
+            SearchView()
+                .tabItem {
+                    Image(systemName: "magnifyingglass.circle.fill")
+                    Text("Search")
+                }
             CategoryView()
                 .tabItem {
                     Image(systemName: "globe.central.south.asia.fill")
