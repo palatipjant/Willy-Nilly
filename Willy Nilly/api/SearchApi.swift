@@ -6,50 +6,16 @@
 //
 
 import SwiftUI
-
-struct Movie: Identifiable {
-    let id: Int
-    let title: String
-}
-
-class MovieViewModel: ObservableObject {
-    @Published var movies: [Movie] = []
-    
-    func searchMovies(query: String) {
-        guard let url = URL(string: "https://api.themoviedb.org/3/search/movie?query=\(query)&include_adult=false&language=en-US&page=1") else {
-            return
-        }
-        
-        var request = URLRequest(url: url)
-        request.addValue("Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJlNzRjZDZhN2RlNGE3NTdhZDM3OGQzZjI0NmQ3M2JjMyIsInN1YiI6IjY1ODMxY2NhODU4Njc4NTUyZWY2ODQwMSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.IbiXRbuekxsTNA0DmI5rfLVipO0VZlxMylkzMPkmCuA", forHTTPHeaderField: "Authorization")
-        
-        URLSession.shared.dataTask(with: request) { data, response, error in
-            guard let data = data, error == nil else {
-                print("Error: \(error?.localizedDescription ?? "Unknown error")")
-                return
-            }
-            
-            do {
-                let result = try JSONDecoder().decode(SearchResponse.self, from: data)
-                DispatchQueue.main.async {
-                    self.movies = result.results
-                    print(self.movies)
-                }
-                
-            } catch {
-                print("Error decoding JSON: \(error.localizedDescription)")
-            }
-        }.resume()
-    }
-}
-
-struct SearchResponse: Codable {
-    let results: [Movie]
-}
+import Kingfisher
 
 struct SearchView: View {
     @ObservedObject var viewModel = MovieViewModel()
-    @State private var searchText = ""
+    @State var searchText = ""
+    let columns: [GridItem] = [
+            GridItem(.flexible()),
+            GridItem(.flexible()),
+            GridItem(.flexible()),
+        ]
     
     var body: some View {
         VStack {
@@ -59,31 +25,26 @@ struct SearchView: View {
                 }
                 .textFieldStyle(.roundedBorder)
                 .padding()
-            
-            List(viewModel.movies, id: \.id) { movie in
-                Text(movie.title)
+//            List(viewModel.movies, id: \.id) { movie in
+//                Text(movie.title)
+//            }
+            ScrollView{
+                LazyVGrid(columns: columns) {
+                    ForEach(viewModel.movies, id: \.id) {movie in
+                        if let url = movie.posterURL {
+                            KFImage(url)
+                                .resizable()
+                                .frame(width: 110, height: 162.91)
+                                .scaledToFill()
+                                .background(Color(.label))
+                                .clipShape(RoundedRectangle(cornerRadius: 10))
+                        }
+                    }.padding(.vertical,10)
+                }
             }
+            .scrollIndicators(.hidden)
         }
     }
 }
 
-extension Movie: Codable {
-    enum CodingKeys: String, CodingKey {
-        case id
-        case title
-    }
 
-    init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.id = try container.decode(Int.self, forKey: .id)
-        self.title = try container.decode(String.self, forKey: .title)
-        // Add more properties as needed
-    }
-
-    func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(id, forKey: .id)
-        try container.encode(title, forKey: .title)
-        // Add more properties as needed
-    }
-}

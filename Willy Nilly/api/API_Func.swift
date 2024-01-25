@@ -1,5 +1,5 @@
 //
-//  NewMovie_endpoint.swift
+//  API_Func.swift
 //  Willy Nilly
 //
 //  Created by Palatip Jantawong on 13/1/2567 BE.
@@ -131,5 +131,79 @@ class PopMovieNetworking {
                 completion(.failure(error))
             }
         }.resume()
+    }
+}
+
+
+
+class MovieViewModel: ObservableObject {
+    @Published var movies: [SearchMovie] = []
+    
+    func searchMovies(query: String) {
+        guard let url = URL(string: "https://api.themoviedb.org/3/search/movie?query=\(query)&include_adult=true&language=en-US&page=1") else {
+            return
+        }
+        
+        var request = URLRequest(url: url)
+        request.addValue("Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJlNzRjZDZhN2RlNGE3NTdhZDM3OGQzZjI0NmQ3M2JjMyIsInN1YiI6IjY1ODMxY2NhODU4Njc4NTUyZWY2ODQwMSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.IbiXRbuekxsTNA0DmI5rfLVipO0VZlxMylkzMPkmCuA", forHTTPHeaderField: "Authorization")
+        
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            guard let data = data, error == nil else {
+                print("Error: \(error?.localizedDescription ?? "Unknown error")")
+                return
+            }
+            
+            do {
+                let result = try JSONDecoder().decode(SearchResponse.self, from: data)
+                DispatchQueue.main.async {
+                    self.movies = result.results
+                    print(self.movies)
+                }
+                
+            } catch {
+                print("Error decoding JSON: \(error.localizedDescription)")
+                print("Failed JSON String: \(String(data: data, encoding: .utf8) ?? "N/A")")
+            }
+        }.resume()
+    }
+}
+
+struct SearchMovie: Identifiable {
+    let id: Int
+    let title: String
+    let poster_path: String?
+    
+    var posterURL: URL? {
+        if let poster = poster_path {
+            return URL(string: "https://image.tmdb.org/t/p/w500" + poster)
+        }
+        return nil
+    }
+}
+
+struct SearchResponse: Codable {
+    let results: [SearchMovie]
+}
+
+extension SearchMovie: Codable {
+    enum CodingKeys: String, CodingKey {
+        case id
+        case title
+        case poster_path
+    }
+
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.id = try container.decode(Int.self, forKey: .id)
+        self.title = try container.decode(String.self, forKey: .title)
+        self.poster_path = try container.decodeIfPresent(String.self, forKey: .poster_path)
+    }
+
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(id, forKey: .id)
+        try container.encode(title, forKey: .title)
+        try container.encode(poster_path, forKey: .poster_path)
+        // Add more properties as needed
     }
 }
