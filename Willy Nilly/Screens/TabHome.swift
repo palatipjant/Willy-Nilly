@@ -8,11 +8,6 @@
 import SwiftUI
 
 struct TabHome: View {
-    
-    
-//    List(movies) { movie in
-//        MovieRow(movie: movie)
-//    }
     var body: some View {
         TabView{
             HomeView()

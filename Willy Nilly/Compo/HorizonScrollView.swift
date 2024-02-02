@@ -45,5 +45,5 @@ struct HorizonScrollView: View {
 }
 
 #Preview {
-    HorizonScrollView(titleView: "Most Picks", movie_api: [NewMovie(id: 753342, title: "dssa", poster_path: "/jE5o7y9K6pZtWNNMEw3IdpHuncR.jpg")])
+    HorizonScrollView(titleView: "Most Picks", movie_api: [NewMovie(id: 753342, title: "dssa", poster_path: "/jE5o7y9K6pZtWNNMEw3IdpHuncR.jpg", overview: "Mock Data Overview")])
 }

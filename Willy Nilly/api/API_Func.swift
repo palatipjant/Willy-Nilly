@@ -22,9 +22,11 @@ struct NewMovie: Codable, Identifiable {
         }
         return nil
     }
+    
+    let overview: String
 }
 
-class NewNetworking {
+class NewMovieNetworking {
     static func fetchNewMovies(completion: @escaping (Result<[NewMovie], Error>) -> Void) {
         let url = URL(string: "https://api.themoviedb.org/3/discover/movie")!
 

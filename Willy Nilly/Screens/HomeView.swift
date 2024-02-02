@@ -16,9 +16,6 @@ struct HomeView: View {
             ScrollView{
                 PoppularBanner()
                 HorizonScrollView(titleView: "New Release", movie_api: NewMovies)
-//                HorizonScrollView(titleView: "Hits Category", movie_api: NewMovies)
-//                HorizonScrollView(titleView: "Recommend", movie_api: NewMovies)
-//                HorizonScrollView(titleView: "Most Picks", movie_api: NewMovies)
             }
             .navigationBarTitleDisplayMode(.inline)
                 .toolbar {
@@ -39,7 +36,7 @@ struct HomeView: View {
         }
     }
     func fetchNewMovies() {
-        NewNetworking.fetchNewMovies { result in
+        NewMovieNetworking.fetchNewMovies { result in
             switch result {
             case .success(let movies):
                 self.NewMovies = movies
