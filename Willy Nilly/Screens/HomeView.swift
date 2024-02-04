@@ -16,6 +16,7 @@ struct HomeView: View {
             ScrollView{
                 PoppularBanner()
                 HorizonScrollView(titleView: "New Release", movie_api: NewMovies)
+                    .offset(y: -120)
             }
             .navigationBarTitleDisplayMode(.inline)
                 .toolbar {
