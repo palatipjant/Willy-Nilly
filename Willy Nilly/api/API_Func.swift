@@ -53,7 +53,9 @@ class NewMovieNetworking {
             }
         }.resume()
     }
+    
 }
+
 
 struct GenreListResponse: Codable {
     let genres: [genres]

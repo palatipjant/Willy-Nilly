@@ -9,7 +9,7 @@ import SwiftUI
 import Kingfisher
 
 struct OverviewMovie: View {
-    var NewMovie: NewMovie
+    var NewMovie: NewMovie1
     var body: some View {
         NavigationStack{
             ScrollView{
@@ -42,5 +42,5 @@ struct OverviewMovie: View {
 }
 
 #Preview {
-    OverviewMovie(NewMovie: NewMovie(id: 321, title: "fee", poster_path: "/vdpE5pjJVql5aD6pnzRqlFmgxXf.jpg", overview: "Test Mock Data Overview"))
+    OverviewMovie(NewMovie: NewMovie1(id: 321, title: "fee", poster_path: "/vdpE5pjJVql5aD6pnzRqlFmgxXf.jpg", overview: "Test Mock Data Overview"))
 }

@@ -12,7 +12,7 @@ import Kingfisher
 struct HorizonScrollView: View {
     
     var titleView: String
-    var movie_api: [NewMovie]
+    var movie_api: [NewMovie1]
     
     var body: some View {
         VStack(alignment: .leading){
@@ -45,5 +45,5 @@ struct HorizonScrollView: View {
 }
 
 #Preview {
-    HorizonScrollView(titleView: "Most Picks", movie_api: [NewMovie(id: 753342, title: "dssa", poster_path: "/jE5o7y9K6pZtWNNMEw3IdpHuncR.jpg", overview: "Mock Data Overview")])
+    HorizonScrollView(titleView: "Most Picks", movie_api: [NewMovie1(id: 753342, title: "dssa", poster_path: "/jE5o7y9K6pZtWNNMEw3IdpHuncR.jpg", overview: "Mock Data Overview")])
 }

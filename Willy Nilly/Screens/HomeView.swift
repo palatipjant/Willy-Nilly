@@ -9,13 +9,13 @@ import SwiftUI
 import Kingfisher
 
 struct HomeView: View {
-    
-    @State private var NewMovies: [NewMovie] = []
+    @StateObject var viewModel = AppetizerListViewMedel()
+    @State private var NewMovies: [NewMovie1] = []
     var body: some View {
         NavigationStack{
             ScrollView{
                 PoppularBanner()
-                HorizonScrollView(titleView: "New Release", movie_api: NewMovies)
+                HorizonScrollView(titleView: "New Release", movie_api: viewModel.appetizers)
                     .offset(y: -120)
             }
             .navigationBarTitleDisplayMode(.inline)
@@ -32,20 +32,21 @@ struct HomeView: View {
                 }
             .scrollIndicators(.hidden)
             
-        }.onAppear {
-            fetchNewMovies()
+        }
+        .task {
+            viewModel.getAppetizers()
         }
     }
-    func fetchNewMovies() {
-        NewMovieNetworking.fetchNewMovies { result in
-            switch result {
-            case .success(let movies):
-                self.NewMovies = movies
-            case .failure(let error):
-                print("Error: \(error.localizedDescription)")
-            }
-        }
-    }
+//    func fetchNewMovies() {
+//        NewMovieNetworking.fetchNewMovies { result in
+//            switch result {
+//            case .success(let movies):
+//                self.NewMovies = movies
+//            case .failure(let error):
+//                print("Error: \(error.localizedDescription)")
+//            }
+//        }
+//    }
 }
 //
 //#Preview {
