@@ -17,11 +17,10 @@ struct OverviewMovie: View {
                     if let url = NewMovie.posterURL {
                         KFImage(url)
                             .resizable()
-                            .frame(width: 230, height: 300)
-                            .scaledToFit()
+                            .frame(maxWidth: .infinity, maxHeight: 1100)
+                            .scaledToFill()
                             .background(Color(.label))
-                            .clipShape(RoundedRectangle(cornerRadius: 12))
-                            .padding(.top)
+                            .ignoresSafeArea()
                     }
                     
                     VStack(alignment: .leading, spacing: 20){

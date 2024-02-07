@@ -25,7 +25,7 @@ struct HorizonScrollView: View {
                 HStack{
                     ForEach(movie_api, id: \.id) {movie in
                         NavigationLink(destination: OverviewMovie(NewMovie: movie)) {
-                            MovieRemoteImage(urlString: "https://image.tmdb.org/t/p/w500\(movie.poster_path ?? "lds")" )
+                            MovieRemoteImage(urlString: "https://image.tmdb.org/t/p/w500\(movie.poster_path ?? "")" )
                                 .frame(width: 110, height: 162.91)
                                 .scaledToFit()
                                 .background(Color(.label))

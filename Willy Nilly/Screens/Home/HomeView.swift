@@ -15,7 +15,7 @@ struct HomeView: View {
     var body: some View {
         NavigationStack{
             ScrollView{
-                PopularBanner(popmovie: viewModel.PopMovie)
+                PopularBanner()
                 LinearGradient(colors: [.clear, .black], startPoint: .top, endPoint: .bottom)
                     .frame(maxWidth: .infinity, minHeight: 150)
                     .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
@@ -48,7 +48,6 @@ struct HomeView: View {
         }
         .task {
             viewModel.getNewMovie()
-            viewModel.getPopMovie()
         }
     }
 }

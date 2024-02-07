@@ -27,7 +27,7 @@ struct RemoteImage: View {
     var image: Image?
     
     var body: some View{
-        image?.resizable() ?? Image("call_me_by_your_name_poster").resizable()
+        image?.resizable() ?? Image("movie_place").resizable()
     }
 }
 
