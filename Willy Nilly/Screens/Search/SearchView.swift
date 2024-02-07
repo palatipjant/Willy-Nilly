@@ -9,8 +9,10 @@ import SwiftUI
 import Kingfisher
 
 struct SearchView: View {
-    @ObservedObject var viewModel = MovieViewModel()
+    
+    @StateObject var viewModel = ViewModel()
     @State var searchText = ""
+    
     let columns: [GridItem] = [
             GridItem(.flexible()),
             GridItem(.flexible()),
@@ -19,18 +21,17 @@ struct SearchView: View {
     
     var body: some View {
         VStack {
-            TextField("Search movies", text: $searchText)
+            TextField("Search", text: $searchText)
                 .onSubmit {
-                    viewModel.searchMovies(query: searchText)
+                    viewModel.SearchMovie.removeAll()
+                    viewModel.getSearch(query: searchText, page: 1)
+                    viewModel.getSearch(query: searchText, page: 2)
                 }
                 .textFieldStyle(.roundedBorder)
                 .padding()
-//            List(viewModel.movies, id: \.id) { movie in
-//                Text(movie.title)
-//            }
             ScrollView{
                 LazyVGrid(columns: columns) {
-                    ForEach(viewModel.movies, id: \.id) {movie in
+                    ForEach(viewModel.SearchMovie, id: \.id) {movie in
                         if let url = movie.posterURL {
                             KFImage(url)
                                 .resizable()

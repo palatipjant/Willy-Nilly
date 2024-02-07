@@ -12,20 +12,18 @@ struct TabHome: View {
         TabView{
             HomeView()
                 .tabItem {
-                Image(systemName: "house.fill")
-                Text("Home")
+                    Label("Home", systemImage: "house.fill")
             }
             SearchView()
                 .tabItem {
-                    Image(systemName: "magnifyingglass.circle.fill")
-                    Text("Search")
+                    Label("Search", systemImage: "magnifyingglass")
                 }
             CategoryView()
                 .tabItem {
-                    Image(systemName: "globe.central.south.asia.fill")
-                    Text("Category")
+                    Label("Category", systemImage: "books.vertical.fill")
                 }
         }
+        .ignoresSafeArea()
         
     }
 

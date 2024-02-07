@@ -9,7 +9,7 @@ import SwiftUI
 import Kingfisher
 
 struct OverviewMovie: View {
-    var NewMovie: NewMovie1
+    var NewMovie: NewMovie
     var body: some View {
         NavigationStack{
             ScrollView{
@@ -31,7 +31,6 @@ struct OverviewMovie: View {
                             .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .topLeading)
                             .padding()
                             .multilineTextAlignment(.leading)
-                        Text("Feefjdskla;")
                     }.frame(maxWidth: .infinity)
                     Spacer()
                 }
@@ -42,5 +41,5 @@ struct OverviewMovie: View {
 }
 
 #Preview {
-    OverviewMovie(NewMovie: NewMovie1(id: 321, title: "fee", poster_path: "/vdpE5pjJVql5aD6pnzRqlFmgxXf.jpg", overview: "Test Mock Data Overview"))
+    OverviewMovie(NewMovie: NewMovie(id: 321, title: "fee", poster_path: "/vdpE5pjJVql5aD6pnzRqlFmgxXf.jpg", overview: "Test Mock Data Overview"))
 }

@@ -9,13 +9,13 @@ import SwiftUI
 
 struct CategoryView: View {
     
-    @State private var genre: [genres] = []
+    @StateObject var viewModel = ViewModel()
     
     var body: some View {
         NavigationStack{
             VStack{
                 List {
-                    ForEach((genre), id:\.id) {genre in
+                    ForEach((viewModel.Genre), id:\.id) {genre in
                         NavigationLink(destination: CategoryListView(genre: genre)) {
                             HStack{
                                 Text(genre.name)
@@ -30,24 +30,15 @@ struct CategoryView: View {
                 .toolbar {
                     ToolbarItem(placement: .principal) {
                         HStack {
-                            Image(systemName: "globe.central.south.asia.fill")
-                            Text("Category")
-                                .font(.title2)
-                                .fontWeight(.bold)
+                            Image(systemName: "books.vertical.fill")
+                                .foregroundStyle(.white)
                         }
                     }
                 }
             .scrollIndicators(.hidden)
-            .onAppear{
-                fetchGenres()
+            .task {
+                viewModel.getGenre()
             }
         }
     }
-    func fetchGenres() {
-            let apiKey = "e74cd6a7de4a757ad378d3f246d73bc3"
-            
-            GenreNetworking.shared.fetchGenres(apiKey: apiKey) { fetchedGenres in
-                genre = fetchedGenres
-            }
-        }
 }

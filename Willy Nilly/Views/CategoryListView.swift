@@ -9,7 +9,7 @@ import SwiftUI
 
 struct CategoryListView: View {
     
-    var genre: genres
+    var genre: Genre
     
     var body: some View {
         Text(genre.name)
