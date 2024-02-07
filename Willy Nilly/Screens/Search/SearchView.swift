@@ -10,7 +10,7 @@ import Kingfisher
 
 struct SearchView: View {
     
-    @StateObject var viewModel = ViewModel()
+    @StateObject var viewModel = apiViewModel()
     @State var searchText = ""
     
     let columns: [GridItem] = [
@@ -20,30 +20,31 @@ struct SearchView: View {
         ]
     
     var body: some View {
-        VStack {
-            TextField("Search", text: $searchText)
-                .onSubmit {
-                    viewModel.SearchMovie.removeAll()
-                    viewModel.getSearch(query: searchText, page: 1)
-                    viewModel.getSearch(query: searchText, page: 2)
-                }
-                .textFieldStyle(.roundedBorder)
-                .padding()
-            ScrollView{
-                LazyVGrid(columns: columns) {
-                    ForEach(viewModel.SearchMovie, id: \.id) {movie in
-                        if let url = movie.posterURL {
-                            KFImage(url)
-                                .resizable()
+        NavigationStack{
+            VStack {
+                TextField("Search", text: $searchText)
+                    .onSubmit {
+                        viewModel.SearchMovie.removeAll()
+                        viewModel.getSearch(query: searchText, page: 1)
+                        viewModel.getSearch(query: searchText, page: 2)
+                    }
+                    .textFieldStyle(.roundedBorder)
+                    .padding()
+                ScrollView{
+                    LazyVGrid(columns: columns) {
+                        ForEach(viewModel.SearchMovie, id: \.id) {movie in
+                            MovieRemoteImage(urlString:
+                                                "https://image.tmdb.org/t/p/w500\(movie.poster_path ?? "/blPAS2HZcOGLTREbUeNIWmz0B6f.jpg")" )
                                 .frame(width: 110, height: 162.91)
                                 .scaledToFill()
                                 .background(Color(.label))
                                 .clipShape(RoundedRectangle(cornerRadius: 10))
-                        }
-                    }.padding(.vertical,10)
+                        }.padding(.vertical,10)
+                    }
                 }
+                .scrollIndicators(.hidden)
             }
-            .scrollIndicators(.hidden)
+            .navigationTitle("Search")
         }
     }
 }

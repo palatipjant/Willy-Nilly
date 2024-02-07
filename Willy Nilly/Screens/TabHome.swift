@@ -12,15 +12,19 @@ struct TabHome: View {
         TabView{
             HomeView()
                 .tabItem {
-                    Label("Home", systemImage: "house.fill")
+                    Label("Home", systemImage: "film")
             }
-            SearchView()
+            Text("Discover")
                 .tabItem {
                     Label("Search", systemImage: "magnifyingglass")
                 }
             CategoryView()
                 .tabItem {
                     Label("Category", systemImage: "books.vertical.fill")
+                }
+            Text("Lists")
+                .tabItem {
+                    Label("Lists", systemImage: "heart.circle")
                 }
         }
         .ignoresSafeArea()

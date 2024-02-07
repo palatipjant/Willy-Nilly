@@ -9,7 +9,7 @@ import SwiftUI
 
 struct CategoryView: View {
     
-    @StateObject var viewModel = ViewModel()
+    @StateObject var viewModel = apiViewModel()
     
     var body: some View {
         NavigationStack{

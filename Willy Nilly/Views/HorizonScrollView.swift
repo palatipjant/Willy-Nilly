@@ -12,7 +12,7 @@ import Kingfisher
 struct HorizonScrollView: View {
     
     var titleView: String
-    var movie_api: [NewMovie]
+    var movie_api: [Movie]
     
     var body: some View {
         VStack(alignment: .leading){
@@ -24,16 +24,13 @@ struct HorizonScrollView: View {
             ScrollView(.horizontal) {
                 HStack{
                     ForEach(movie_api, id: \.id) {movie in
-                            if let url = movie.posterURL {
-                                NavigationLink(destination: OverviewMovie(NewMovie: movie)) {
-                                    KFImage(url)
-                                        .resizable()
-                                        .frame(width: 110, height: 162.91)
-                                        .scaledToFit()
-                                        .background(Color(.label))
-                                        .clipShape(RoundedRectangle(cornerRadius: 12))
-                                }
-                            }
+                        NavigationLink(destination: OverviewMovie(NewMovie: movie)) {
+                            MovieRemoteImage(urlString: "https://image.tmdb.org/t/p/w500\(movie.poster_path ?? "lds")" )
+                                .frame(width: 110, height: 162.91)
+                                .scaledToFit()
+                                .background(Color(.label))
+                                .clipShape(RoundedRectangle(cornerRadius: 12))
+                        }
                     }
                     .padding(.leading,20)
                 }
@@ -45,5 +42,5 @@ struct HorizonScrollView: View {
 }
 
 #Preview {
-    HorizonScrollView(titleView: "Most Picks", movie_api: [NewMovie(id: 753342, title: "dssa", poster_path: "/jE5o7y9K6pZtWNNMEw3IdpHuncR.jpg", overview: "Mock Data Overview")])
+    HorizonScrollView(titleView: "Most Picks", movie_api: [Movie(id: 753342, title: "dssa", poster_path: "/jE5o7y9K6pZtWNNMEw3IdpHuncR.jpg", overview: "Mock Data Overview")])
 }

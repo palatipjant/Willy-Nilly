@@ -7,18 +7,18 @@
 
 import SwiftUI
 
-@MainActor final class ViewModel: ObservableObject {
+@MainActor final class apiViewModel: ObservableObject {
     
     @Published var alertItem: AlertItem?
     @Published var isLoading: Bool = false
     
-    @Published var NewMovie: [NewMovie] = []
+    @Published var NewMovie: [Movie] = []
     
     @Published var Genre: [Genre] = []
     
-    @Published var PopMovie: [PopMovie] = []
+    @Published var PopMovie: [Movie] = []
     
-    @Published var SearchMovie: [SearchMovie] = []
+    @Published var SearchMovie: [Movie] = []
     
     func getNewMovie() {
         isLoading = true
@@ -52,6 +52,7 @@ import SwiftUI
             do{
                 PopMovie = try await NetworkManager.shared.fetchPopMovie()
                 isLoading = false
+                print(PopMovie)
             } catch {
                 alertItem = AlertContext.GeneralError
                 isLoading = false
@@ -64,7 +65,6 @@ import SwiftUI
         Task{
             do{
                 SearchMovie.append(contentsOf: try await NetworkManager.shared.fetchSearch(query: query, page: page))
-//                SearchMovie = try await NetworkManager.shared.fetchSearch(query: query, page: page)
                 isLoading = false
             } catch {
                 alertItem = AlertContext.GeneralError
