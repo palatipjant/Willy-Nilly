@@ -9,15 +9,6 @@ import Foundation
 import SwiftUI
 import Kingfisher
 
-struct TrailingIconLabelStyle: LabelStyle {
-    func makeBody(configuration: Configuration) -> some View {
-        HStack {
-            configuration.title
-            configuration.icon
-        }
-    }
-}
-
 struct HorizonScrollView: View {
     
     var titleView: String
@@ -55,7 +46,24 @@ struct HorizonScrollView: View {
                                         .scaleEffect(phase.isIdentity ? 1 : 0.45)
                                         .blur(radius: phase.isIdentity ? 0 : 5)
                                 }
-                        }
+                                .contextMenu {
+                                    Button {
+                                        //
+                                    } label: {
+                                        Label("Overview", systemImage: "doc.plaintext.fill")
+                                    }
+                                    Button {
+                                        //
+                                    } label: {
+                                        Label("Like", systemImage: "heart.fill")
+                                    }
+                                    Button {
+                                        //
+                                    } label: {
+                                        Label("Mark as seen", systemImage: "eye.fill")
+                                    }
+                                }
+                        }.buttonStyle(FlatLinkStyle())
                     }
                     .padding(.leading,20)
                 }
@@ -69,3 +77,4 @@ struct HorizonScrollView: View {
 #Preview {
     HorizonScrollView(titleView: "Test Horizontal", movie_api: [Movie(id: 866398, title: "The Beekeeper", overview: "One man’s campaign for vengeance takes on national stakes after he is revealed to be a former operative of a powerful and clandestine organization known as Beekeepers.", release_date: "2024-01-10", original_language: "en", genre_ids: [28], poster_path: "/4MCKNAc6AbWjEsM2h9Xc29owo4z.jpg")])
 }
+
