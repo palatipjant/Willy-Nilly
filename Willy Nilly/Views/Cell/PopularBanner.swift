@@ -24,7 +24,6 @@ struct PopularBanner: View {
                         .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
                 }
             }
-            
         }
         .ignoresSafeArea()
         .task {

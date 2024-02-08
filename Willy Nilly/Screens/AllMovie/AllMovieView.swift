@@ -14,7 +14,9 @@ struct AllMovieView: View {
     var body: some View {
         List{
             ForEach(movie) { movie in
-                Text(movie.title)
+                NavigationLink(destination: OverviewMovie(Movie: movie)) {
+                    Text(movie.title)
+                }
             }
         }
         .navigationTitle("All")
