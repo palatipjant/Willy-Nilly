@@ -6,19 +6,14 @@
 //
 
 import SwiftUI
+import CoreData
 
 struct MyListsView: View {
     
-    @State var fee = ""
     var body: some View {
         NavigationStack{
-            Form{
-                Section {
-                    TextField("Fee", text: $fee)
-                } header: {
-                    Text("Create Lists")
-                }
-
+            VStack {
+                //
             }
             .navigationTitle("My Lists")
         }

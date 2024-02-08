@@ -32,7 +32,7 @@ struct HorizonScrollView: View {
                     .padding(.leading, 20)
                     .padding(.bottom, 25)
                 Spacer()
-                NavigationLink(destination: AllMovieView(movie: movie_api)) {
+                NavigationLink(destination: AllMovieView(movie: movie_api, titleView: titleView)) {
                     Label("See All", systemImage: "arrow.right")
                         .labelStyle(TrailingIconLabelStyle())
                         .font(.footnote)

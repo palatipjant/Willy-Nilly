@@ -28,7 +28,7 @@ import SwiftUI
         isLoading = true
         Task{
             do{
-                UpcomingMovie.append(contentsOf: try await NetworkManager.shared.fetchUpcomingMovie())
+                UpcomingMovie = try await NetworkManager.shared.fetchUpcomingMovie()
                 isLoading = false
             } catch{
                 alertItem = AlertContext.GeneralError

@@ -10,13 +10,26 @@ import SwiftUI
 struct AllMovieView: View {
     
     var movie: [Movie]
+    var titleView: String
+    let columns: [GridItem] = [
+        GridItem(.flexible()),
+        GridItem(.flexible()),
+        GridItem(.flexible()),
+    ]
     
     var body: some View {
-        List{
-            ForEach(movie) { movie in
-                NavigationLink(destination: OverviewMovie(Movie: movie)) {
-                    Text(movie.title)
-                }
+        ScrollView{
+            LazyVGrid(columns: columns) {
+                ForEach(movie) {movie in
+                    NavigationLink(destination: OverviewMovie(Movie: movie)) {
+                        MovieRemoteImage(urlString:
+                                            "https://image.tmdb.org/t/p/w500\(movie.poster_path ?? "/blPAS2HZcOGLTREbUeNIWmz0B6f.jpg")" )
+                        .frame(width: 110, height: 162.91)
+                        .scaledToFill()
+                        .background(Color(.label))
+                        .clipShape(RoundedRectangle(cornerRadius: 10))
+                    }
+                }.padding(.vertical,10)
             }
         }
         .navigationTitle("All")
@@ -24,5 +37,5 @@ struct AllMovieView: View {
 }
 
 #Preview {
-    AllMovieView(movie: Mockdata.movielist)
+    AllMovieView(movie: Mockdata.movielist, titleView: "Trending")
 }

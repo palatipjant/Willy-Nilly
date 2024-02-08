@@ -9,6 +9,7 @@ import SwiftUI
 import Kingfisher
 
 struct OverviewMovie: View {
+    
     var Movie: Movie
     
     var body: some View {
@@ -20,7 +21,9 @@ struct OverviewMovie: View {
                         .scaledToFit()
                         .background(Color(.label))
                         .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
-                    
+                        .background(ScrollViewConfigurator {
+                            $0?.bounces = false
+                        })
                     LinearGradient(colors: [.clear, .black], startPoint: .top, endPoint: .bottom)
                         .frame(maxWidth: .infinity, minHeight: 150)
                         .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
@@ -32,16 +35,17 @@ struct OverviewMovie: View {
                             .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .topLeading)
                             .padding()
                             .multilineTextAlignment(.leading)
+                            .onTapGesture {
+                                //
+                            }
                     }.frame(maxWidth: .infinity)
                         .offset(y: -155)
                 }
+                
             }
             .navigationTitle(Movie.title)
+            .toolbarBackground(.hidden, for: .navigationBar)
         }
         .ignoresSafeArea()
     }
 }
-//
-//#Preview {
-//    OverviewMovie(NewMovie: Movie(id: 321, title: "fee", poster_path: "/vdpE5pjJVql5aD6pnzRqlFmgxXf.jpg", overview: "Test Mock Data Overview"))
-//}

@@ -64,25 +64,6 @@ struct HomeView: View {
     HomeView(viewModel: apiViewModel())
 }
 
-struct SearchButtonView: View {
-    var body: some View {
-        HStack {
-            NavigationLink(destination: SearchView()) {
-                HStack{
-                    Capsule()
-                        .fill(.blendMode(.multiply))
-                        .strokeBorder(.white, lineWidth: 2)
-                        .frame(width: 90, height: 35)
-                        .foregroundStyle(.gray)
-                        .overlay {
-                            Text("Search")
-                                .foregroundStyle(.white)
-                        }
-                }
-            }
-        }
-    }
-}
 
 struct ScrollViewConfigurator: UIViewRepresentable {
     let configure: (UIScrollView?) -> ()
