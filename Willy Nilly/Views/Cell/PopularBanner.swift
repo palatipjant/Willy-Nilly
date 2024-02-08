@@ -14,17 +14,18 @@ struct PopularBanner: View {
     
     var body: some View {
         VStack(alignment: .leading){
-            if let url = viewModel.PopMovie.first?.posterURL {
+            if let url = viewModel.TrendingMovie.first?.posterURL {
                 KFImage(url)
                     .resizable()
                     .frame(maxWidth: .infinity, maxHeight: 1100)
                     .scaledToFill()
                     .background(Color(.label))
-                    .ignoresSafeArea()
+                    .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
             }
         }
+        .ignoresSafeArea()
         .task {
-            viewModel.getPopMovie()
+            viewModel.getTrendingMovie()
         }
     }
 }

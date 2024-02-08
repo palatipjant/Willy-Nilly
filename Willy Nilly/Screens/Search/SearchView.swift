@@ -14,10 +14,10 @@ struct SearchView: View {
     @State var searchText = ""
     
     let columns: [GridItem] = [
-            GridItem(.flexible()),
-            GridItem(.flexible()),
-            GridItem(.flexible()),
-        ]
+        GridItem(.flexible()),
+        GridItem(.flexible()),
+        GridItem(.flexible()),
+    ]
     
     var body: some View {
         NavigationStack{
@@ -33,12 +33,14 @@ struct SearchView: View {
                 ScrollView{
                     LazyVGrid(columns: columns) {
                         ForEach(viewModel.SearchMovie, id: \.id) {movie in
-                            MovieRemoteImage(urlString:
-                                                "https://image.tmdb.org/t/p/w500\(movie.poster_path ?? "/blPAS2HZcOGLTREbUeNIWmz0B6f.jpg")" )
+                            NavigationLink(destination: OverviewMovie(Movie: movie)) {
+                                MovieRemoteImage(urlString:
+                                                    "https://image.tmdb.org/t/p/w500\(movie.poster_path ?? "/blPAS2HZcOGLTREbUeNIWmz0B6f.jpg")" )
                                 .frame(width: 110, height: 162.91)
                                 .scaledToFill()
                                 .background(Color(.label))
                                 .clipShape(RoundedRectangle(cornerRadius: 10))
+                            }
                         }.padding(.vertical,10)
                     }
                 }

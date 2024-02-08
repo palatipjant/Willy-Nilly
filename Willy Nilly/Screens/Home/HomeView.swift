@@ -20,11 +20,13 @@ struct HomeView: View {
                     .frame(maxWidth: .infinity, minHeight: 150)
                     .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
                     .offset(y: -155)
-                HorizonScrollView(titleView: "New Release", movie_api: viewModel.NewMovie)
+                HorizonScrollView(titleView: "Trending", movie_api: viewModel.TrendingMovie)
                     .offset(y: -160)
-                HorizonScrollView(titleView: "Upcoming", movie_api: viewModel.NewMovie)
+                HorizonScrollView(titleView: "Upcoming", movie_api: viewModel.UpcomingMovie)
                     .offset(y: -160)
-                HorizonScrollView(titleView: "Top in Thailand", movie_api: viewModel.NewMovie)
+                HorizonScrollView(titleView: "Top Rated", movie_api: viewModel.TopRatedMovie)
+                    .offset(y: -160)
+                HorizonScrollView(titleView: "Now Playing", movie_api: viewModel.NowPlaying)
                     .offset(y: -160)
             }
             .ignoresSafeArea()
@@ -32,26 +34,41 @@ struct HomeView: View {
             .navigationBarTitleDisplayMode(.inline)
                 .toolbar {
                     ToolbarItem(placement: .topBarTrailing) {
-                        HStack {
-                            NavigationLink(destination: SearchView()) {
-                                Image(systemName: "magnifyingglass.circle.fill")
-                                    .resizable()
-                                    .frame(width: 30, height: 30)
-                                    .scaledToFit()
-                                    .foregroundStyle(Color(.white))
-                                    .padding(.trailing)
-                            }
-                        }
+                        SearchButtonView()
                     }
                 }
                 .toolbarBackground(.hidden, for: .navigationBar)
         }
         .task {
             viewModel.getNewMovie()
+            viewModel.getTrendingMovie()
+            viewModel.getTopRated()
+            viewModel.getNowPlaying()
+            viewModel.getGenre()
         }
     }
 }
 
 #Preview {
     HomeView(viewModel: apiViewModel())
+}
+
+struct SearchButtonView: View {
+    var body: some View {
+        HStack {
+            NavigationLink(destination: SearchView()) {
+                HStack{
+                    Capsule()
+                        .fill(.blendMode(.multiply))
+                        .strokeBorder(.white, lineWidth: 2)
+                        .frame(width: 90, height: 35)
+                        .foregroundStyle(.gray)
+                        .overlay {
+                            Text("Search")
+                                .foregroundStyle(.white)
+                        }
+                }
+            }
+        }
+    }
 }

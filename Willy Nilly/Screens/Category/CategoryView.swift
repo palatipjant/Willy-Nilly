@@ -26,18 +26,6 @@ struct CategoryView: View {
                 }
                 .padding(.top, 30)
                 .listStyle(.plain)
-            }.navigationBarTitleDisplayMode(.inline)
-                .toolbar {
-                    ToolbarItem(placement: .principal) {
-                        HStack {
-                            Image(systemName: "books.vertical.fill")
-                                .foregroundStyle(.white)
-                        }
-                    }
-                }
-            .scrollIndicators(.hidden)
-            .task {
-                viewModel.getGenre()
             }
         }
     }

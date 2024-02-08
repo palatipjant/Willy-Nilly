@@ -24,7 +24,7 @@ struct HorizonScrollView: View {
             ScrollView(.horizontal) {
                 HStack{
                     ForEach(movie_api, id: \.id) {movie in
-                        NavigationLink(destination: OverviewMovie(NewMovie: movie)) {
+                        NavigationLink(destination: OverviewMovie(Movie: movie)) {
                             MovieRemoteImage(urlString: "https://image.tmdb.org/t/p/w500\(movie.poster_path ?? "")" )
                                 .frame(width: 110, height: 162.91)
                                 .scaledToFit()
@@ -40,7 +40,7 @@ struct HorizonScrollView: View {
         .padding(.top, 20)
     }
 }
-
-#Preview {
-    HorizonScrollView(titleView: "Most Picks", movie_api: [Movie(id: 753342, title: "dssa", poster_path: "/jE5o7y9K6pZtWNNMEw3IdpHuncR.jpg", overview: "Mock Data Overview")])
-}
+//
+//#Preview {
+//    HorizonScrollView(titleView: "Most Picks", movie_api: [Movie(id: 753342, title: "dssa", poster_path: "/jE5o7y9K6pZtWNNMEw3IdpHuncR.jpg", overview: "Mock Data Overview")])
+//}

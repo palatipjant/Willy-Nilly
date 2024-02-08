@@ -114,11 +114,8 @@
 		642606EE2B58BB3F00DA9DCA /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				64BBA6B22B745D6B00AA0583 /* Cell */,
 				64BBA6AF2B7442E500AA0583 /* Image */,
-				64FD3E662B5E913000078BC3 /* OverviewMovie.swift */,
-				64BAFA262B52240100D212A8 /* CategoryListView.swift */,
-				643B9DE02B51138C00200050 /* HorizonScrollView.swift */,
-				64498C502B5BF7C2007222CB /* PopularBanner.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -139,6 +136,17 @@
 				64BBA6B02B7442F400AA0583 /* RemoteImage.swift */,
 			);
 			path = Image;
+			sourceTree = "<group>";
+		};
+		64BBA6B22B745D6B00AA0583 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				64FD3E662B5E913000078BC3 /* OverviewMovie.swift */,
+				64BAFA262B52240100D212A8 /* CategoryListView.swift */,
+				643B9DE02B51138C00200050 /* HorizonScrollView.swift */,
+				64498C502B5BF7C2007222CB /* PopularBanner.swift */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 		64CD61932B7413DF00C6EB19 /* Home */ = {

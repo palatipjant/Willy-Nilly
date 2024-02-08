@@ -12,19 +12,26 @@ import SwiftUI
     @Published var alertItem: AlertItem?
     @Published var isLoading: Bool = false
     
-    @Published var NewMovie: [Movie] = []
+    @Published var UpcomingMovie: [Movie] = []
     
     @Published var Genre: [Genre] = []
     
-    @Published var PopMovie: [Movie] = []
+    @Published var TrendingMovie: [Movie] = []
+    
+    @Published var TopRatedMovie: [Movie] = []
+    
+    @Published var NowPlaying: [Movie] = []
     
     @Published var SearchMovie: [Movie] = []
+    
+    
+//    @Published var TrendingMovie: [Movie] = []
     
     func getNewMovie() {
         isLoading = true
         Task{
             do{
-                NewMovie = try await NetworkManager.shared.fetchNewMovie()
+                UpcomingMovie = try await NetworkManager.shared.fetchUpcomingMovie()
                 isLoading = false
             } catch{
                 alertItem = AlertContext.GeneralError
@@ -39,6 +46,7 @@ import SwiftUI
             do{
                 Genre = try await NetworkManager.shared.fetchGenres()
                 isLoading = false
+                print(Genre)
             } catch{
                 alertItem = AlertContext.GeneralError
                 isLoading = false
@@ -46,13 +54,12 @@ import SwiftUI
         }
     }
     
-    func getPopMovie() {
+    func getTrendingMovie() {
         isLoading = true
         Task{
             do{
-                PopMovie = try await NetworkManager.shared.fetchPopMovie()
+                TrendingMovie = try await NetworkManager.shared.fetchTrending()
                 isLoading = false
-                print(PopMovie)
             } catch {
                 alertItem = AlertContext.GeneralError
                 isLoading = false
@@ -65,6 +72,32 @@ import SwiftUI
         Task{
             do{
                 SearchMovie.append(contentsOf: try await NetworkManager.shared.fetchSearch(query: query, page: page))
+                isLoading = false
+            } catch {
+                alertItem = AlertContext.GeneralError
+                isLoading = false
+            }
+        }
+    }
+    
+    func getTopRated() {
+        isLoading = true
+        Task{
+            do{
+                TopRatedMovie = try await NetworkManager.shared.fetchTopRated()
+                isLoading = false
+            } catch {
+                alertItem = AlertContext.GeneralError
+                isLoading = false
+            }
+        }
+    }
+    
+    func getNowPlaying() {
+        isLoading = true
+        Task{
+            do{
+                NowPlaying = try await NetworkManager.shared.fetchNowPlaying()
                 isLoading = false
             } catch {
                 alertItem = AlertContext.GeneralError

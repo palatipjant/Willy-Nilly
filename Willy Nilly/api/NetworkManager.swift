@@ -16,9 +16,11 @@ final class NetworkManager {
     
     static let baseURL = "https://api.themoviedb.org/3"
     //  End point
-    private let discoverED = baseURL + "/discover/movie"
+    private let upcomingED = baseURL + "/movie/upcoming?language=en-US&page=1"
     private let genresED = baseURL + "/genre/movie/list?language=en"
-    private let popED = baseURL + "/trending/movie/day?language=en-US"
+    private let trendingED = baseURL + "/trending/movie/day?language=en-US"
+    private let topRatedED = baseURL + "/movie/top_rated?language=en-US&page=1"
+    private let nowPlayingED = baseURL + "/movie/now_playing?language=en-US&page=1"
     
     let authToken = "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJlNzRjZDZhN2RlNGE3NTdhZDM3OGQzZjI0NmQ3M2JjMyIsInN1YiI6IjY1ODMxY2NhODU4Njc4NTUyZWY2ODQwMSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.IbiXRbuekxsTNA0DmI5rfLVipO0VZlxMylkzMPkmCuA"
     
@@ -52,9 +54,9 @@ final class NetworkManager {
         task.resume()
     }
     
-    func fetchNewMovie() async throws -> [Movie] {
+    func fetchUpcomingMovie() async throws -> [Movie] {
         
-        guard let url = URL(string: discoverED) else {
+        guard let url = URL(string: upcomingED) else {
             throw APError.invalidURL
         }
         
@@ -91,8 +93,8 @@ final class NetworkManager {
         }
     }
     
-    func fetchPopMovie() async throws -> [Movie] {
-        guard let url = URL(string: popED) else {
+    func fetchTrending() async throws -> [Movie] {
+        guard let url = URL(string: trendingED) else {
             throw APError.invalidURL
         }
         
@@ -129,4 +131,39 @@ final class NetworkManager {
         }
     }
     
+    func fetchTopRated() async throws -> [Movie] {
+        guard let url = URL(string: topRatedED) else {
+            throw APError.invalidURL
+        }
+        
+        var request = URLRequest(url: url)
+        
+        request.addValue("Bearer \(authToken)", forHTTPHeaderField: "Authorization")
+        
+        do {
+            let (data, _) = try await URLSession.shared.data(for: request)
+            
+            let decoder = JSONDecoder()
+            return try decoder.decode(MovieResponse.self, from: data).results
+        } catch {
+            throw APError.invalidData
+        }
+    }
+    
+    func fetchNowPlaying() async throws -> [Movie] {
+        guard let url = URL(string: nowPlayingED) else {
+            throw APError.invalidURL
+        }
+        
+        var request = URLRequest(url: url)
+        
+        request.addValue("Bearer \(authToken)", forHTTPHeaderField: "Authorization")
+        
+        do{
+            let (data, _) = try await URLSession.shared.data(for: request)
+            
+            let decoder = JSONDecoder()
+            return try decoder.decode(MovieResponse.self, from: data).results
+        }
+    }
 }

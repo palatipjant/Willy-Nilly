@@ -18,7 +18,7 @@ struct TabHome: View {
                 .tabItem {
                     Label("Search", systemImage: "magnifyingglass")
                 }
-            CategoryView()
+            Text("Lists")
                 .tabItem {
                     Label("Category", systemImage: "books.vertical.fill")
                 }

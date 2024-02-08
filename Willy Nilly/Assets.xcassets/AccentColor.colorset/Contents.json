@@ -2,8 +2,13 @@
   "colors" : [
     {
       "color" : {
-        "platform" : "osx",
-        "reference" : "systemRedColor"
+        "color-space" : "display-p3",
+        "components" : {
+          "alpha" : "1.000",
+          "blue" : "0.000",
+          "green" : "0.026",
+          "red" : "0.921"
+        }
       },
       "idiom" : "universal"
     }
