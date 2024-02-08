@@ -32,6 +32,8 @@ struct HomeView: View {
                         .offset(y: -160)
                     HorizonScrollView(titleView: "Now Playing", movie_api: viewModel.NowPlaying)
                         .offset(y: -160)
+                    HorizonScrollView(titleView: "Top in Thailand", movie_api: viewModel.TrendThai)
+                        .offset(y: -160)
                     CategoryView()
                         .offset(y: -130)
                 }
@@ -58,6 +60,7 @@ struct HomeView: View {
             viewModel.getTrendingMovie()
             viewModel.getTopRated()
             viewModel.getNowPlaying()
+            viewModel.getTrendThat()
         }
     }
 }

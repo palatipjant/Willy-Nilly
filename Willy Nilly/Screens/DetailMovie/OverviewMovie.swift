@@ -43,6 +43,7 @@ struct OverviewMovie: View {
                 }
                 
             }
+            .scrollIndicators(.hidden)
             .navigationTitle(Movie.title)
             .toolbarBackground(.hidden, for: .navigationBar)
         }

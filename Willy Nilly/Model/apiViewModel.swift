@@ -24,6 +24,10 @@ import SwiftUI
     
     @Published var SearchMovie: [Movie] = []
     
+    @Published var TrendThai: [Movie] = []
+    
+    @Published var MovieByGenre: [Movie] = []
+    
     func getUpcomingMovie() {
         isLoading = true
         Task{
@@ -94,6 +98,32 @@ import SwiftUI
         Task{
             do{
                 NowPlaying = try await NetworkManager.shared.fetchNowPlaying()
+                isLoading = false
+            } catch {
+                alertItem = AlertContext.GeneralError
+                isLoading = false
+            }
+        }
+    }
+    
+    func getTrendThat() {
+        isLoading = true
+        Task{
+            do{
+                TrendThai = try await NetworkManager.shared.fetchTrendThai()
+                isLoading = false
+            } catch {
+                alertItem = AlertContext.GeneralError
+                isLoading = false
+            }
+        }
+    }
+    
+    func getMovieByGenre(genreID: String) {
+        isLoading = true
+        Task{
+            do{
+                MovieByGenre = try await NetworkManager.shared.fetchMovieByGenre(genreID: genreID)
                 isLoading = false
             } catch {
                 alertItem = AlertContext.GeneralError

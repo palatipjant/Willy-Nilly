@@ -12,7 +12,6 @@ struct CategoryView: View {
     @StateObject var viewModel = apiViewModel()
     let columns: [GridItem] = [
         GridItem(.flexible()),
-        GridItem(.flexible()),
         GridItem(.flexible())
     ]
     
@@ -25,19 +24,14 @@ struct CategoryView: View {
                 .padding(.bottom, 25)
             Spacer()
         }
-        LazyVGrid(columns: columns,spacing: 20){
+        LazyVGrid(columns: columns, spacing: 20) {
             ForEach(viewModel.Genre) { genre in
                 NavigationLink(destination: CategoryListView(genre: genre)) {
-                    Image("bg_genre")
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: 110, height: 80)
-                        .clipShape(RoundedRectangle(cornerRadius: 10))
-                        .shadow(color: .gray, radius: 2)
-                        .overlay {
-                            Text(genre.name)
-                                .foregroundStyle(.black)
-                        }
+                    Text(genre.name)
+                        .font(.title3)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .foregroundStyle(.white)
+                        .padding(.leading,8)
                 }
             }
         }

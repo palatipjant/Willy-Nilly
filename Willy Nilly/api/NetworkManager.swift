@@ -21,6 +21,7 @@ final class NetworkManager {
     private let trendingED = baseURL + "/trending/movie/day?language=en-US"
     private let topRatedED = baseURL + "/movie/top_rated?language=en-US&page=1"
     private let nowPlayingED = baseURL + "/movie/now_playing?language=en-US&page=1"
+    private let trendThatED = baseURL + "/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&primary_release_year=2024&sort_by=popularity.desc&with_original_language=th"
     
     let authToken = "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJlNzRjZDZhN2RlNGE3NTdhZDM3OGQzZjI0NmQ3M2JjMyIsInN1YiI6IjY1ODMxY2NhODU4Njc4NTUyZWY2ODQwMSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.IbiXRbuekxsTNA0DmI5rfLVipO0VZlxMylkzMPkmCuA"
     
@@ -166,4 +167,41 @@ final class NetworkManager {
             return try decoder.decode(MovieResponse.self, from: data).results
         }
     }
+    
+    func fetchTrendThai() async throws -> [Movie] {
+        guard let url = URL(string: trendThatED) else {
+            throw APError.invalidURL
+        }
+        
+        var request = URLRequest(url: url)
+        
+        request.addValue("Bearer \(authToken)", forHTTPHeaderField: "Authorization")
+        
+        do{
+            let (data, _) = try await URLSession.shared.data(for: request)
+            
+            let decoder = JSONDecoder()
+            return try decoder.decode(MovieResponse.self, from: data).results
+        }
+    }
+    
+    func fetchMovieByGenre(genreID: String) async throws -> [Movie] {
+        guard let url = URL(string: "https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc&without_genres=\(genreID)") else {
+            throw APError.invalidURL
+        }
+        
+        var request = URLRequest(url: url)
+        
+        request.addValue("Bearer \(authToken)", forHTTPHeaderField: "Authorization")
+        
+        do {
+            let (data, _) = try await URLSession.shared.data(for: request)
+            
+            let decoder = JSONDecoder()
+            return try decoder.decode(MovieResponse.self, from: data).results
+        } catch {
+            throw APError.invalidData
+        }
+    }
+    
 }
