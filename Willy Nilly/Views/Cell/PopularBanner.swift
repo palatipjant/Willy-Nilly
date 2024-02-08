@@ -15,13 +15,16 @@ struct PopularBanner: View {
     var body: some View {
         VStack(alignment: .leading){
             if let url = viewModel.TrendingMovie.first?.posterURL {
-                KFImage(url)
-                    .resizable()
-                    .frame(maxWidth: .infinity, maxHeight: 1100)
-                    .scaledToFill()
-                    .background(Color(.label))
-                    .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
+                NavigationLink(destination: OverviewMovie(Movie: viewModel.TrendingMovie.first!)) {
+                    KFImage(url)
+                        .resizable()
+                        .frame(maxWidth: .infinity, maxHeight: 1100)
+                        .scaledToFill()
+                        .background(Color(.label))
+                        .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
+                }
             }
+            
         }
         .ignoresSafeArea()
         .task {

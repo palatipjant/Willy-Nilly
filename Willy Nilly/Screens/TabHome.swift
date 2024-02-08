@@ -14,9 +14,9 @@ struct TabHome: View {
                 .tabItem {
                     Label("Home", systemImage: "film")
             }
-            Text("Discover")
+            CategoryView()
                 .tabItem {
-                    Label("Search", systemImage: "magnifyingglass")
+                    Label("Category", systemImage: "books.vertical.fill")
                 }
             Text("Lists")
                 .tabItem {
