@@ -30,7 +30,7 @@ struct CategoryView: View {
                     Text(genre.name)
                         .font(.title3)
                         .frame(maxWidth: .infinity, alignment: .leading)
-                        .foregroundStyle(.white)
+                        .foregroundStyle(Color(.label))
                         .padding(.leading,8)
                 }
             }

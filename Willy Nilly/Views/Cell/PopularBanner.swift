@@ -22,7 +22,7 @@ struct PopularBanner: View {
                         .scaledToFill()
                         .background(Color(.label))
                         .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
-                }
+                }.buttonStyle(FlatLinkStyle())
             }
         }
         .ignoresSafeArea()
