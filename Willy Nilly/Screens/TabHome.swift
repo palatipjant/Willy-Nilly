@@ -16,13 +16,13 @@ struct TabHome: View {
             }
             CategoryView()
                 .tabItem {
-                    Label("Category", systemImage: "books.vertical.fill")
+                    Label("Discover", systemImage: "rectangle.portrait.on.rectangle.portrait.angled.fill")
                 }
-            Text("Lists")
+            Text("Cast")
                 .tabItem {
-                    Label("Category", systemImage: "books.vertical.fill")
+                    Label("Club", systemImage: "person.crop.rectangle.stack.fill")
                 }
-            Text("Lists")
+            MyListsView()
                 .tabItem {
                     Label("Lists", systemImage: "heart.circle")
                 }

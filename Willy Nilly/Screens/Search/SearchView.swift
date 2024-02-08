@@ -10,8 +10,13 @@ import Kingfisher
 
 struct SearchView: View {
     
+    enum FocusedField {
+            case search
+        }
+    
     @StateObject var viewModel = apiViewModel()
     @State var searchText = ""
+    @FocusState var isFocus: FocusedField?
     
     let columns: [GridItem] = [
         GridItem(.flexible()),
@@ -20,7 +25,6 @@ struct SearchView: View {
     ]
     
     var body: some View {
-        NavigationStack{
             VStack {
                 TextField("Search", text: $searchText)
                     .onSubmit {
@@ -28,6 +32,7 @@ struct SearchView: View {
                         viewModel.getSearch(query: searchText, page: 1)
                         viewModel.getSearch(query: searchText, page: 2)
                     }
+                    .focused($isFocus, equals: .search)
                     .textFieldStyle(.roundedBorder)
                     .padding()
                 ScrollView{
@@ -47,7 +52,10 @@ struct SearchView: View {
                 .scrollIndicators(.hidden)
             }
             .navigationTitle("Search")
-        }
+            .onAppear(perform: {
+                isFocus = .search
+            })
+        
     }
 }
 

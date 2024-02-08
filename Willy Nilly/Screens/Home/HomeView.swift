@@ -35,16 +35,22 @@ struct HomeView: View {
                 .toolbar {
                     ToolbarItem(placement: .topBarTrailing) {
                         SearchButtonView()
+                            .opacity(0.7)
+                    }
+                    ToolbarItem(placement: .topBarLeading) {
+                        Text("Home")
+                            .font(.title)
+                            .foregroundStyle(.white)
+                            .bold()
                     }
                 }
                 .toolbarBackground(.hidden, for: .navigationBar)
         }
         .task {
-            viewModel.getNewMovie()
+            viewModel.getUpcomingMovie()
             viewModel.getTrendingMovie()
             viewModel.getTopRated()
             viewModel.getNowPlaying()
-            viewModel.getGenre()
         }
     }
 }

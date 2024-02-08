@@ -28,5 +28,12 @@ struct CategoryView: View {
                 .listStyle(.plain)
             }
         }
+        .task {
+            viewModel.getGenre()
+        }
     }
+}
+
+#Preview {
+    CategoryView()
 }

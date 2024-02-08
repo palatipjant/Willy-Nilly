@@ -9,6 +9,15 @@ import Foundation
 import SwiftUI
 import Kingfisher
 
+struct TrailingIconLabelStyle: LabelStyle {
+    func makeBody(configuration: Configuration) -> some View {
+        HStack {
+            configuration.title
+            configuration.icon
+        }
+    }
+}
+
 struct HorizonScrollView: View {
     
     var titleView: String
@@ -16,11 +25,22 @@ struct HorizonScrollView: View {
     
     var body: some View {
         VStack(alignment: .leading){
-            Text(titleView)
-                .font(.title2)
-                .fontWeight(.semibold)
-                .padding(.leading, 20)
-                .padding(.bottom, 25)
+            HStack{
+                Text(titleView)
+                    .font(.title2)
+                    .fontWeight(.semibold)
+                    .padding(.leading, 20)
+                    .padding(.bottom, 25)
+                Spacer()
+                NavigationLink(destination: AllMovieView(movie: movie_api)) {
+                    Label("See All", systemImage: "arrow.right")
+                        .labelStyle(TrailingIconLabelStyle())
+                        .font(.footnote)
+                        .padding(.trailing, 20)
+                        .padding(.bottom, 25)
+                        .padding(.top, 10)
+                }
+            }
             ScrollView(.horizontal) {
                 HStack{
                     ForEach(movie_api, id: \.id) {movie in
@@ -32,7 +52,7 @@ struct HorizonScrollView: View {
                                 .clipShape(RoundedRectangle(cornerRadius: 12))
                                 .scrollTransition { content, phase in
                                     content
-                                        .scaleEffect(phase.isIdentity ? 1 : 0.65)
+                                        .scaleEffect(phase.isIdentity ? 1 : 0.45)
                                         .blur(radius: phase.isIdentity ? 0 : 5)
                                 }
                         }
@@ -45,7 +65,7 @@ struct HorizonScrollView: View {
         .padding(.top, 20)
     }
 }
-//
-//#Preview {
-//    HorizonScrollView(titleView: "Most Picks", movie_api: [Movie(id: 753342, title: "dssa", poster_path: "/jE5o7y9K6pZtWNNMEw3IdpHuncR.jpg", overview: "Mock Data Overview")])
-//}
+
+#Preview {
+    HorizonScrollView(titleView: "Test Horizontal", movie_api: [Movie(id: 866398, title: "The Beekeeper", overview: "One man’s campaign for vengeance takes on national stakes after he is revealed to be a former operative of a powerful and clandestine organization known as Beekeepers.", release_date: "2024-01-10", original_language: "en", genre_ids: [28], poster_path: "/4MCKNAc6AbWjEsM2h9Xc29owo4z.jpg")])
+}

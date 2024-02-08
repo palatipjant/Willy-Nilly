@@ -24,14 +24,11 @@ import SwiftUI
     
     @Published var SearchMovie: [Movie] = []
     
-    
-//    @Published var TrendingMovie: [Movie] = []
-    
-    func getNewMovie() {
+    func getUpcomingMovie() {
         isLoading = true
         Task{
             do{
-                UpcomingMovie = try await NetworkManager.shared.fetchUpcomingMovie()
+                UpcomingMovie.append(contentsOf: try await NetworkManager.shared.fetchUpcomingMovie())
                 isLoading = false
             } catch{
                 alertItem = AlertContext.GeneralError
@@ -46,7 +43,6 @@ import SwiftUI
             do{
                 Genre = try await NetworkManager.shared.fetchGenres()
                 isLoading = false
-                print(Genre)
             } catch{
                 alertItem = AlertContext.GeneralError
                 isLoading = false
