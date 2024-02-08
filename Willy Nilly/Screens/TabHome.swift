@@ -14,7 +14,7 @@ struct TabHome: View {
                 .tabItem {
                     Label("Home", systemImage: "film")
             }
-            CategoryView()
+            Text("Discover")
                 .tabItem {
                     Label("Discover", systemImage: "rectangle.portrait.on.rectangle.portrait.angled.fill")
                 }

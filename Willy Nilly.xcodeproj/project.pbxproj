@@ -168,7 +168,6 @@
 		64BBA6B22B745D6B00AA0583 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
-				64BAFA262B52240100D212A8 /* CategoryListView.swift */,
 				643B9DE02B51138C00200050 /* HorizonScrollView.swift */,
 				64498C502B5BF7C2007222CB /* PopularBanner.swift */,
 			);
@@ -187,6 +186,7 @@
 			isa = PBXGroup;
 			children = (
 				643B9DE82B512DD500200050 /* CategoryView.swift */,
+				64BAFA262B52240100D212A8 /* CategoryListView.swift */,
 			);
 			path = Category;
 			sourceTree = "<group>";

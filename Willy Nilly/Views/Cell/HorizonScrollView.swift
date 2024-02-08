@@ -49,7 +49,7 @@ struct HorizonScrollView: View {
                                 .frame(width: 110, height: 162.91)
                                 .scaledToFit()
                                 .background(Color(.label))
-                                .clipShape(RoundedRectangle(cornerRadius: 12))
+                                .clipShape(RoundedRectangle(cornerRadius: 10))
                                 .scrollTransition { content, phase in
                                     content
                                         .scaleEffect(phase.isIdentity ? 1 : 0.45)

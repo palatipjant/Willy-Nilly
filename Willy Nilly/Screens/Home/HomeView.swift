@@ -32,6 +32,8 @@ struct HomeView: View {
                         .offset(y: -160)
                     HorizonScrollView(titleView: "Now Playing", movie_api: viewModel.NowPlaying)
                         .offset(y: -160)
+                    CategoryView()
+                        .offset(y: -130)
                 }
                 .ignoresSafeArea()
                 .scrollIndicators(.hidden)
