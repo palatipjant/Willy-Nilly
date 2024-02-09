@@ -114,7 +114,8 @@ final class NetworkManager {
     }
     
     func fetchSearch(query: String, page: Int) async throws -> [Movie] {
-        guard let url = URL(string: "https://api.themoviedb.org/3/search/movie?query=\(query)&include_adult=true&language=en-US&page=\(page)") else {
+        
+        guard let url = URL(string: "https://api.themoviedb.org/3/search/movie?query=\(query)&include_adult=false&language=en-US&page=\(page)") else {
             throw APError.invalidURL
         }
         

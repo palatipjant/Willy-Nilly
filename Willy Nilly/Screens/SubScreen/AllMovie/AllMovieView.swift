@@ -28,11 +28,14 @@ struct AllMovieView: View {
                         .scaledToFill()
                         .background(Color(.label))
                         .clipShape(RoundedRectangle(cornerRadius: 10))
+                        .contextMenu {
+                            ContextMenuMovieCell(movie: movie)
+                        }
                     }
                 }.padding(.vertical,10)
             }
         }
-        .navigationTitle("All")
+        .navigationTitle(titleView)
     }
 }
 

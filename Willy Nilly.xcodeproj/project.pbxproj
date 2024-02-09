@@ -22,6 +22,12 @@
 		64498C512B5BF7C2007222CB /* PopularBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64498C502B5BF7C2007222CB /* PopularBanner.swift */; };
 		6475DE0D2B748BBE00C40737 /* MyListsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6475DE0C2B748BBE00C40737 /* MyListsView.swift */; };
 		6475DE102B74913700C40737 /* AllMovieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6475DE0F2B74913700C40737 /* AllMovieView.swift */; };
+		6476FB242B75ACAA001CB3CF /* ContextMenuMovieCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6476FB232B75ACAA001CB3CF /* ContextMenuMovieCell.swift */; };
+		6476FB272B760162001CB3CF /* LinearPoster.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6476FB262B760162001CB3CF /* LinearPoster.swift */; };
+		6476FB2B2B761966001CB3CF /* DiscoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6476FB2A2B761966001CB3CF /* DiscoverView.swift */; };
+		6476FB2E2B761998001CB3CF /* ClubView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6476FB2D2B761998001CB3CF /* ClubView.swift */; };
+		6476FB312B761A8A001CB3CF /* ConfettiSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 6476FB302B761A8A001CB3CF /* ConfettiSwiftUI */; };
+		6476FB352B76295B001CB3CF /* BannerImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6476FB342B76295B001CB3CF /* BannerImage.swift */; };
 		64BAFA272B52240100D212A8 /* CategoryListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64BAFA262B52240100D212A8 /* CategoryListView.swift */; };
 		64BBA6AE2B7433F000AA0583 /* ListsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64BBA6AD2B7433F000AA0583 /* ListsModel.swift */; };
 		64BBA6B12B7442F400AA0583 /* RemoteImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64BBA6B02B7442F400AA0583 /* RemoteImage.swift */; };
@@ -49,6 +55,11 @@
 		64498C502B5BF7C2007222CB /* PopularBanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularBanner.swift; sourceTree = "<group>"; };
 		6475DE0C2B748BBE00C40737 /* MyListsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyListsView.swift; sourceTree = "<group>"; };
 		6475DE0F2B74913700C40737 /* AllMovieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllMovieView.swift; sourceTree = "<group>"; };
+		6476FB232B75ACAA001CB3CF /* ContextMenuMovieCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextMenuMovieCell.swift; sourceTree = "<group>"; };
+		6476FB262B760162001CB3CF /* LinearPoster.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinearPoster.swift; sourceTree = "<group>"; };
+		6476FB2A2B761966001CB3CF /* DiscoverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverView.swift; sourceTree = "<group>"; };
+		6476FB2D2B761998001CB3CF /* ClubView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClubView.swift; sourceTree = "<group>"; };
+		6476FB342B76295B001CB3CF /* BannerImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerImage.swift; sourceTree = "<group>"; };
 		64BAFA262B52240100D212A8 /* CategoryListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryListView.swift; sourceTree = "<group>"; };
 		64BBA6AD2B7433F000AA0583 /* ListsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListsModel.swift; sourceTree = "<group>"; };
 		64BBA6B02B7442F400AA0583 /* RemoteImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteImage.swift; sourceTree = "<group>"; };
@@ -65,6 +76,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6476FB312B761A8A001CB3CF /* ConfettiSwiftUI in Frameworks */,
 				642606F32B58C2A000DA9DCA /* Kingfisher in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -115,12 +127,8 @@
 			isa = PBXGroup;
 			children = (
 				643B9DE62B51211700200050 /* TabHome.swift */,
-				64E9FE362B74BE7900E516B7 /* DetailMovie */,
-				6475DE0E2B74912000C40737 /* AllMovie */,
-				6475DE092B748B5600C40737 /* MyList */,
-				64CD61952B7413F700C6EB19 /* Search */,
-				64CD61942B7413EE00C6EB19 /* Category */,
-				64CD61932B7413DF00C6EB19 /* Home */,
+				6476FB282B761926001CB3CF /* MainScreen */,
+				6476FB322B762045001CB3CF /* SubScreen */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -128,6 +136,8 @@
 		642606EE2B58BB3F00DA9DCA /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				6476FB332B76292D001CB3CF /* Monifier */,
+				6476FB252B76014B001CB3CF /* Overlay */,
 				64D8B5B42B75126A000B00FF /* makeBody */,
 				64E9FE332B74BE0400E516B7 /* Button */,
 				64BBA6B22B745D6B00AA0583 /* Cell */,
@@ -152,9 +162,64 @@
 			path = AllMovie;
 			sourceTree = "<group>";
 		};
+		6476FB252B76014B001CB3CF /* Overlay */ = {
+			isa = PBXGroup;
+			children = (
+				6476FB262B760162001CB3CF /* LinearPoster.swift */,
+			);
+			path = Overlay;
+			sourceTree = "<group>";
+		};
+		6476FB282B761926001CB3CF /* MainScreen */ = {
+			isa = PBXGroup;
+			children = (
+				6476FB2C2B761975001CB3CF /* Club */,
+				6476FB292B761950001CB3CF /* Discover */,
+				64CD61932B7413DF00C6EB19 /* Home */,
+				6475DE092B748B5600C40737 /* MyList */,
+			);
+			path = MainScreen;
+			sourceTree = "<group>";
+		};
+		6476FB292B761950001CB3CF /* Discover */ = {
+			isa = PBXGroup;
+			children = (
+				6476FB2A2B761966001CB3CF /* DiscoverView.swift */,
+			);
+			path = Discover;
+			sourceTree = "<group>";
+		};
+		6476FB2C2B761975001CB3CF /* Club */ = {
+			isa = PBXGroup;
+			children = (
+				6476FB2D2B761998001CB3CF /* ClubView.swift */,
+			);
+			path = Club;
+			sourceTree = "<group>";
+		};
+		6476FB322B762045001CB3CF /* SubScreen */ = {
+			isa = PBXGroup;
+			children = (
+				64E9FE362B74BE7900E516B7 /* OverviewMovie */,
+				6475DE0E2B74912000C40737 /* AllMovie */,
+				64CD61952B7413F700C6EB19 /* Search */,
+				64CD61942B7413EE00C6EB19 /* Category */,
+			);
+			path = SubScreen;
+			sourceTree = "<group>";
+		};
+		6476FB332B76292D001CB3CF /* Monifier */ = {
+			isa = PBXGroup;
+			children = (
+				6476FB342B76295B001CB3CF /* BannerImage.swift */,
+			);
+			path = Monifier;
+			sourceTree = "<group>";
+		};
 		64BAFA282B5267C200D212A8 /* api */ = {
 			isa = PBXGroup;
 			children = (
+				641B0D652B71DA04009807F5 /* apiViewModel.swift */,
 				641B0D622B71D95C009807F5 /* Alert.swift */,
 				641B0D612B71D95C009807F5 /* APError.swift */,
 				641B0D5F2B71D869009807F5 /* NetworkManager.swift */,
@@ -175,6 +240,7 @@
 			children = (
 				643B9DE02B51138C00200050 /* HorizonScrollView.swift */,
 				64498C502B5BF7C2007222CB /* PopularBanner.swift */,
+				6476FB232B75ACAA001CB3CF /* ContextMenuMovieCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -209,7 +275,6 @@
 			children = (
 				64CD61912B740A9900C6EB19 /* APIModel.swift */,
 				64BBA6AD2B7433F000AA0583 /* ListsModel.swift */,
-				641B0D652B71DA04009807F5 /* apiViewModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -231,12 +296,12 @@
 			path = Button;
 			sourceTree = "<group>";
 		};
-		64E9FE362B74BE7900E516B7 /* DetailMovie */ = {
+		64E9FE362B74BE7900E516B7 /* OverviewMovie */ = {
 			isa = PBXGroup;
 			children = (
 				64FD3E662B5E913000078BC3 /* OverviewMovie.swift */,
 			);
-			path = DetailMovie;
+			path = OverviewMovie;
 			sourceTree = "<group>";
 		};
 		64E9FE372B74CA7000E516B7 /* Core Data */ = {
@@ -264,6 +329,7 @@
 			name = "Willy Nilly";
 			packageProductDependencies = (
 				642606F22B58C2A000DA9DCA /* Kingfisher */,
+				6476FB302B761A8A001CB3CF /* ConfettiSwiftUI */,
 			);
 			productName = "Willy Nilly";
 			productReference = 641BB6E12B335F6200806636 /* Willy Nilly.app */;
@@ -295,6 +361,7 @@
 			mainGroup = 641BB6D82B335F6200806636;
 			packageReferences = (
 				642606F12B58C2A000DA9DCA /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				6476FB2F2B761A8A001CB3CF /* XCRemoteSwiftPackageReference "ConfettiSwiftUI" */,
 			);
 			productRefGroup = 641BB6E22B335F6200806636 /* Products */;
 			projectDirPath = "";
@@ -323,6 +390,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				64D8B5B62B751281000B00FF /* FlatLinkStyle.swift in Sources */,
+				6476FB242B75ACAA001CB3CF /* ContextMenuMovieCell.swift in Sources */,
 				641B0D632B71D95C009807F5 /* APError.swift in Sources */,
 				64E9FE352B74BE2100E516B7 /* SearchButton.swift in Sources */,
 				6475DE102B74913700C40737 /* AllMovieView.swift in Sources */,
@@ -332,9 +400,12 @@
 				643B9DE12B51138C00200050 /* HorizonScrollView.swift in Sources */,
 				641BB6E52B335F6200806636 /* Willy_NillyApp.swift in Sources */,
 				641B0D642B71D95C009807F5 /* Alert.swift in Sources */,
+				6476FB2E2B761998001CB3CF /* ClubView.swift in Sources */,
 				64CD61922B740A9900C6EB19 /* APIModel.swift in Sources */,
 				643B9DE92B512DD500200050 /* CategoryView.swift in Sources */,
 				6475DE0D2B748BBE00C40737 /* MyListsView.swift in Sources */,
+				6476FB352B76295B001CB3CF /* BannerImage.swift in Sources */,
+				6476FB272B760162001CB3CF /* LinearPoster.swift in Sources */,
 				64D8B5B82B7512AD000B00FF /* TrailingIconLabelStyle.swift in Sources */,
 				643B9DE32B5114EF00200050 /* HomeView.swift in Sources */,
 				641B0D662B71DA04009807F5 /* apiViewModel.swift in Sources */,
@@ -343,6 +414,7 @@
 				64F884E52B61340000D8C815 /* SearchView.swift in Sources */,
 				643B9DE72B51211700200050 /* TabHome.swift in Sources */,
 				64BAFA272B52240100D212A8 /* CategoryListView.swift in Sources */,
+				6476FB2B2B761966001CB3CF /* DiscoverView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -560,6 +632,14 @@
 				minimumVersion = 7.10.2;
 			};
 		};
+		6476FB2F2B761A8A001CB3CF /* XCRemoteSwiftPackageReference "ConfettiSwiftUI" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/simibac/ConfettiSwiftUI.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.1.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -567,6 +647,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 642606F12B58C2A000DA9DCA /* XCRemoteSwiftPackageReference "Kingfisher" */;
 			productName = Kingfisher;
+		};
+		6476FB302B761A8A001CB3CF /* ConfettiSwiftUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6476FB2F2B761A8A001CB3CF /* XCRemoteSwiftPackageReference "ConfettiSwiftUI" */;
+			productName = ConfettiSwiftUI;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

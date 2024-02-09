@@ -37,14 +37,17 @@ struct SearchView: View {
                     .padding()
                 ScrollView{
                     LazyVGrid(columns: columns) {
-                        ForEach(viewModel.SearchMovie, id: \.id) {movie in
+                        ForEach(viewModel.SearchMovie) {movie in
                             NavigationLink(destination: OverviewMovie(Movie: movie)) {
                                 MovieRemoteImage(urlString:
-                                                    "https://image.tmdb.org/t/p/w500\(movie.poster_path ?? "/blPAS2HZcOGLTREbUeNIWmz0B6f.jpg")" )
+                                                    "https://image.tmdb.org/t/p/w500\(movie.poster_path ?? "")" )
                                 .frame(width: 110, height: 162.91)
                                 .scaledToFill()
                                 .background(Color(.label))
                                 .clipShape(RoundedRectangle(cornerRadius: 10))
+                                .contextMenu {
+                                    ContextMenuMovieCell(movie: movie)
+                                }
                             }
                         }.padding(.vertical,10)
                     }

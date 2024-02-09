@@ -28,6 +28,9 @@ struct CategoryListView: View {
                             .scaledToFill()
                             .background(Color(.label))
                             .clipShape(RoundedRectangle(cornerRadius: 10))
+                            .contextMenu {
+                                ContextMenuMovieCell(movie: movie)
+                            }
                     }
                 }.padding(.vertical,10)
             }

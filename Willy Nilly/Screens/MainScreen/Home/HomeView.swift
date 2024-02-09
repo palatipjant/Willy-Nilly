@@ -17,25 +17,18 @@ struct HomeView: View {
             GeometryReader{_ in
                 ScrollView{
                     PopularBanner()
+                        .overlay(content: {
+                            LinearPoster()
+                        })
                         .background(ScrollViewConfigurator {
                             $0?.bounces = false
                         })
-                    LinearGradient(colors: [.clear, .black], startPoint: .top, endPoint: .bottom)
-                        .frame(maxWidth: .infinity, minHeight: 150)
-                        .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
-                        .offset(y: -155)
                     HorizonScrollView(titleView: "Trending", movie_api: viewModel.TrendingMovie)
-                        .offset(y: -160)
                     HorizonScrollView(titleView: "Upcoming", movie_api: viewModel.UpcomingMovie)
-                        .offset(y: -160)
                     HorizonScrollView(titleView: "Top Rated", movie_api: viewModel.TopRatedMovie)
-                        .offset(y: -160)
                     HorizonScrollView(titleView: "Now Playing", movie_api: viewModel.NowPlaying)
-                        .offset(y: -160)
                     HorizonScrollView(titleView: "Top in Thailand", movie_api: viewModel.TrendThai)
-                        .offset(y: -160)
                     CategoryView()
-                        .offset(y: -130)
                 }
                 .ignoresSafeArea()
                 .scrollIndicators(.hidden)

@@ -10,22 +10,27 @@ import SwiftUI
 struct TabHome: View {
     var body: some View {
         TabView{
-            HomeView()
-                .tabItem {
-                    Label("Home", systemImage: "film")
-            }
-            Text("Discover")
-                .tabItem {
-                    Label("Discover", systemImage: "rectangle.portrait.on.rectangle.portrait.angled.fill")
-                }
-            Text("Cast")
-                .tabItem {
-                    Label("Club", systemImage: "person.crop.rectangle.stack.fill")
-                }
-            MyListsView()
-                .tabItem {
-                    Label("Lists", systemImage: "heart.circle")
-                }
+            
+            VStack{
+                HomeView()
+                Spacer()
+            }.tabItem { Label("Home", systemImage: "film") }
+            
+            VStack{
+                DiscoverView()
+                Spacer()
+            }.tabItem { Label("Discover", systemImage: "rectangle.portrait.on.rectangle.portrait.angled.fill") }
+
+            VStack{
+                ClubView()
+                Spacer()
+            }.tabItem { Label("Club", systemImage: "person.crop.rectangle.stack.fill") }
+            
+            VStack{
+                MyListsView()
+                Spacer()
+            }.tabItem { Label("Lists", systemImage: "heart.circle") }
+            
         }
         .ignoresSafeArea()
         

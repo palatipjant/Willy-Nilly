@@ -18,10 +18,7 @@ struct PopularBanner: View {
                 NavigationLink(destination: OverviewMovie(Movie: viewModel.TrendingMovie.first!)) {
                     KFImage(url)
                         .resizable()
-                        .frame(maxWidth: .infinity, maxHeight: 1100)
-                        .scaledToFill()
-                        .background(Color(.label))
-                        .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
+                        .bannerImage()
                 }.buttonStyle(FlatLinkStyle())
             }
         }
