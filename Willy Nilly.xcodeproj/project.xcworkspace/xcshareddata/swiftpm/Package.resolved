@@ -17,6 +17,15 @@
         "revision" : "3ec0ab0bca4feb56e8b33e289c9496e89059dd08",
         "version" : "7.10.2"
       }
+    },
+    {
+      "identity" : "onboardingkit",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/JamesSedlacek/OnboardingKit.git",
+      "state" : {
+        "branch" : "main",
+        "revision" : "cd8061979ca70afd07c776d52af54fa853331d0d"
+      }
     }
   ],
   "version" : 2

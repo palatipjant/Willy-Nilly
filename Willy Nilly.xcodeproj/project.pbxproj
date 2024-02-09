@@ -28,6 +28,8 @@
 		6476FB2E2B761998001CB3CF /* ClubView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6476FB2D2B761998001CB3CF /* ClubView.swift */; };
 		6476FB312B761A8A001CB3CF /* ConfettiSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 6476FB302B761A8A001CB3CF /* ConfettiSwiftUI */; };
 		6476FB352B76295B001CB3CF /* BannerImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6476FB342B76295B001CB3CF /* BannerImage.swift */; };
+		6476FB382B763E44001CB3CF /* OnboardingKit in Frameworks */ = {isa = PBXBuildFile; productRef = 6476FB372B763E44001CB3CF /* OnboardingKit */; };
+		6476FB3B2B763E9F001CB3CF /* Onboarding + Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6476FB3A2B763E9F001CB3CF /* Onboarding + Ext.swift */; };
 		64BAFA272B52240100D212A8 /* CategoryListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64BAFA262B52240100D212A8 /* CategoryListView.swift */; };
 		64BBA6AE2B7433F000AA0583 /* ListsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64BBA6AD2B7433F000AA0583 /* ListsModel.swift */; };
 		64BBA6B12B7442F400AA0583 /* RemoteImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64BBA6B02B7442F400AA0583 /* RemoteImage.swift */; };
@@ -60,6 +62,7 @@
 		6476FB2A2B761966001CB3CF /* DiscoverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverView.swift; sourceTree = "<group>"; };
 		6476FB2D2B761998001CB3CF /* ClubView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClubView.swift; sourceTree = "<group>"; };
 		6476FB342B76295B001CB3CF /* BannerImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerImage.swift; sourceTree = "<group>"; };
+		6476FB3A2B763E9F001CB3CF /* Onboarding + Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Onboarding + Ext.swift"; sourceTree = "<group>"; };
 		64BAFA262B52240100D212A8 /* CategoryListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryListView.swift; sourceTree = "<group>"; };
 		64BBA6AD2B7433F000AA0583 /* ListsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListsModel.swift; sourceTree = "<group>"; };
 		64BBA6B02B7442F400AA0583 /* RemoteImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteImage.swift; sourceTree = "<group>"; };
@@ -76,6 +79,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6476FB382B763E44001CB3CF /* OnboardingKit in Frameworks */,
 				6476FB312B761A8A001CB3CF /* ConfettiSwiftUI in Frameworks */,
 				642606F32B58C2A000DA9DCA /* Kingfisher in Frameworks */,
 			);
@@ -136,6 +140,7 @@
 		642606EE2B58BB3F00DA9DCA /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				6476FB392B763E89001CB3CF /* Onboarding */,
 				6476FB332B76292D001CB3CF /* Monifier */,
 				6476FB252B76014B001CB3CF /* Overlay */,
 				64D8B5B42B75126A000B00FF /* makeBody */,
@@ -214,6 +219,14 @@
 				6476FB342B76295B001CB3CF /* BannerImage.swift */,
 			);
 			path = Monifier;
+			sourceTree = "<group>";
+		};
+		6476FB392B763E89001CB3CF /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				6476FB3A2B763E9F001CB3CF /* Onboarding + Ext.swift */,
+			);
+			path = Onboarding;
 			sourceTree = "<group>";
 		};
 		64BAFA282B5267C200D212A8 /* api */ = {
@@ -330,6 +343,7 @@
 			packageProductDependencies = (
 				642606F22B58C2A000DA9DCA /* Kingfisher */,
 				6476FB302B761A8A001CB3CF /* ConfettiSwiftUI */,
+				6476FB372B763E44001CB3CF /* OnboardingKit */,
 			);
 			productName = "Willy Nilly";
 			productReference = 641BB6E12B335F6200806636 /* Willy Nilly.app */;
@@ -362,6 +376,7 @@
 			packageReferences = (
 				642606F12B58C2A000DA9DCA /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				6476FB2F2B761A8A001CB3CF /* XCRemoteSwiftPackageReference "ConfettiSwiftUI" */,
+				6476FB362B763E44001CB3CF /* XCRemoteSwiftPackageReference "OnboardingKit" */,
 			);
 			productRefGroup = 641BB6E22B335F6200806636 /* Products */;
 			projectDirPath = "";
@@ -403,6 +418,7 @@
 				6476FB2E2B761998001CB3CF /* ClubView.swift in Sources */,
 				64CD61922B740A9900C6EB19 /* APIModel.swift in Sources */,
 				643B9DE92B512DD500200050 /* CategoryView.swift in Sources */,
+				6476FB3B2B763E9F001CB3CF /* Onboarding + Ext.swift in Sources */,
 				6475DE0D2B748BBE00C40737 /* MyListsView.swift in Sources */,
 				6476FB352B76295B001CB3CF /* BannerImage.swift in Sources */,
 				6476FB272B760162001CB3CF /* LinearPoster.swift in Sources */,
@@ -551,6 +567,7 @@
 				DEVELOPMENT_TEAM = H4X7G96ZKF;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "Willy Nilly";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.entertainment";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -581,6 +598,7 @@
 				DEVELOPMENT_TEAM = H4X7G96ZKF;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "Willy Nilly";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.entertainment";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -640,6 +658,14 @@
 				minimumVersion = 1.1.0;
 			};
 		};
+		6476FB362B763E44001CB3CF /* XCRemoteSwiftPackageReference "OnboardingKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/JamesSedlacek/OnboardingKit.git";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -652,6 +678,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 6476FB2F2B761A8A001CB3CF /* XCRemoteSwiftPackageReference "ConfettiSwiftUI" */;
 			productName = ConfettiSwiftUI;
+		};
+		6476FB372B763E44001CB3CF /* OnboardingKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6476FB362B763E44001CB3CF /* XCRemoteSwiftPackageReference "OnboardingKit" */;
+			productName = OnboardingKit;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
