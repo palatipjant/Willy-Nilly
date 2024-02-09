@@ -12,11 +12,9 @@ struct LinearPoster: View {
         VStack{
             LinearGradient(colors: [.clear, .black], startPoint: .bottom, endPoint: .top)
                 .frame(maxWidth: .infinity, maxHeight: 140)
-                .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
             Spacer()
             LinearGradient(colors: [.clear, .black], startPoint: .top, endPoint: .bottom)
                 .frame(maxWidth: .infinity, maxHeight: 190)
-                .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
         }
     }
 }

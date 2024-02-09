@@ -119,11 +119,11 @@ import SwiftUI
         }
     }
     
-    func getMovieByGenre(genreID: String) {
+    func getMovieByGenre(genreID: String, page: Int) {
         isLoading = true
         Task{
             do{
-                MovieByGenre = try await NetworkManager.shared.fetchMovieByGenre(genreID: genreID)
+                MovieByGenre = try await NetworkManager.shared.fetchMovieByGenre(genreID: genreID, page: page)
                 isLoading = false
             } catch {
                 alertItem = AlertContext.GeneralError

@@ -10,16 +10,10 @@ import ConfettiSwiftUI
 
 struct DiscoverView: View {
     
-    @State private var confetti = 0
-    
     var body: some View {
-        Button {
-            confetti += 1
-        } label: {
-            Label("Like", systemImage: "heart.fill")
+        ZStack{
+            Color(.yellow)
         }
-        .confettiCannon(counter: $confetti, confettis: [.text("🎬"), .text("🍿"), .text("🍷"), .text("❤️")], confettiSize: 20)
-
     }
 }
 

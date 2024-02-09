@@ -22,7 +22,7 @@ struct PopularBanner: View {
                 }.buttonStyle(FlatLinkStyle())
             }
         }
-        .ignoresSafeArea()
+        .ignoresSafeArea(edges: .top)
         .task {
             viewModel.getTrendingMovie()
         }

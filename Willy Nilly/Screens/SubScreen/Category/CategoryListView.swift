@@ -23,7 +23,7 @@ struct CategoryListView: View {
                 ForEach(viewModel.MovieByGenre) {movie in
                     NavigationLink(destination: OverviewMovie(Movie: movie)) {
                         MovieRemoteImage(urlString:
-                                            "https://image.tmdb.org/t/p/w500\(movie.poster_path ?? "/blPAS2HZcOGLTREbUeNIWmz0B6f.jpg")" )
+                                            "https://image.tmdb.org/t/p/w500\(movie.poster_path ?? "")" )
                             .frame(width: 110, height: 162.91)
                             .scaledToFill()
                             .background(Color(.label))
@@ -32,13 +32,14 @@ struct CategoryListView: View {
                                 ContextMenuMovieCell(movie: movie)
                             }
                     }
+                    .buttonStyle(FlatLinkStyle())
                 }.padding(.vertical,10)
             }
         }
         .scrollIndicators(.hidden)
         .navigationBarTitle(genre.name)
         .task {
-            viewModel.getMovieByGenre(genreID: String(genre.id))
+            viewModel.getMovieByGenre(genreID: String(genre.id), page: 1)
         }
     }
     

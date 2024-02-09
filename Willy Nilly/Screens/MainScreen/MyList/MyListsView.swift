@@ -11,12 +11,9 @@ import CoreData
 struct MyListsView: View {
     
     var body: some View {
-        NavigationStack{
-            VStack {
-                //
-            }
-            .navigationTitle("My Lists")
-        }
+        ZStack{
+            Color(.systemBackground)
+        }.ignoresSafeArea()
     }
 }
 

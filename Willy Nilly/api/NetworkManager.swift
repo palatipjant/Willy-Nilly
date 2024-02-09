@@ -186,8 +186,8 @@ final class NetworkManager {
         }
     }
     
-    func fetchMovieByGenre(genreID: String) async throws -> [Movie] {
-        guard let url = URL(string: "https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc&without_genres=\(genreID)") else {
+    func fetchMovieByGenre(genreID: String, page: Int) async throws -> [Movie] {
+        guard let url = URL(string: "https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=\(page)&sort_by=popularity.desc&with_genres=\(genreID)") else {
             throw APError.invalidURL
         }
         

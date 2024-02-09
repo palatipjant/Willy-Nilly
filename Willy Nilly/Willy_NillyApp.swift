@@ -13,7 +13,7 @@ struct Willy_NillyApp: App {
     var body: some Scene {
         WindowGroup {
             TabHome()
-                .environment(\.colorScheme, .dark)
+//                .environment(\.colorScheme, .dark)
                 .showOnboardingIfNeeded(using: .prod)
         }
     }

@@ -31,7 +31,7 @@ struct HomeView: View {
                         HorizonScrollView(titleView: "Top in Thailand", movie_api: viewModel.TrendThai)
                         CategoryView()
                     }
-                    .ignoresSafeArea()
+                    .ignoresSafeArea(edges: .top)
                     .scrollIndicators(.hidden)
                     .navigationBarTitleDisplayMode(.inline)
                     .toolbar {
@@ -64,7 +64,7 @@ struct HomeView: View {
 }
 
 #Preview {
-    HomeView(viewModel: apiViewModel())
+    HomeView()
 }
 
 
@@ -77,7 +77,7 @@ struct ScrollViewConfigurator: UIViewRepresentable {
         }
         return view
     }
-
+    
     func updateUIView(_ uiView: UIView, context: Context) {}
 }
 

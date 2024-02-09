@@ -31,6 +31,7 @@ struct SearchView: View {
                         viewModel.SearchMovie.removeAll()
                         viewModel.getSearch(query: searchText, page: 1)
                         viewModel.getSearch(query: searchText, page: 2)
+                        viewModel.getSearch(query: searchText, page: 3)
                     }
                     .focused($isFocus, equals: .search)
                     .textFieldStyle(.roundedBorder)
@@ -49,6 +50,7 @@ struct SearchView: View {
                                     ContextMenuMovieCell(movie: movie)
                                 }
                             }
+                            .buttonStyle(FlatLinkStyle())
                         }.padding(.vertical,10)
                     }
                 }

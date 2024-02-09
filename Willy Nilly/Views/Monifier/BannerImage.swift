@@ -13,7 +13,6 @@ struct BannerImage: ViewModifier{
             .frame(maxWidth: .infinity)
             .scaledToFill()
             .background(Color(.label))
-            .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
     }
 }
 
