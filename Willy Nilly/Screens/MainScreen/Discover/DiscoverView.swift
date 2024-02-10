@@ -11,11 +11,13 @@ import ConfettiSwiftUI
 struct DiscoverView: View {
     
     var body: some View {
-        ZStack{
-            Color(.yellow)
+        VStack {
+            Text("fee")
         }
     }
 }
+
+
 
 #Preview {
     DiscoverView()

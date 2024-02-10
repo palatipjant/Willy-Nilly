@@ -24,7 +24,7 @@ struct OverviewMovie: View {
                             .bannerImage()
                             .overlay(content: { LinearPoster() })
                             .background(ScrollViewConfigurator { $0?.bounces = false })
-
+                        
                         VStack(alignment: .leading, spacing: 20){
                             Text(viewModel.MovieDetail.title)
                                 .font(.largeTitle)
@@ -47,8 +47,12 @@ struct OverviewMovie: View {
                             .padding()
                             .multilineTextAlignment(.leading)
                             
-                            HorizonCastView(titleView: "Top Billed Cast", cast: viewModel.MovieCredits)
-                            HorizonScrollView(titleView: "Similar", movie_api: viewModel.MovieSimilar)
+                            if !viewModel.MovieCredits.isEmpty{
+                                HorizonCastView(titleView: "Top Billed Cast", cast: viewModel.MovieCredits)
+                            }
+                            if !viewModel.MovieSimilar.isEmpty{
+                                HorizonScrollView(titleView: "Similar", movie_api: viewModel.MovieSimilar)
+                            }
                         }
                         .frame(maxWidth: .infinity)
                         .offset(y: -150)
@@ -148,22 +152,6 @@ struct Detail: View {
                             .font(.system(size: 12))
                     }
             }
-//            HStack{
-//                ForEach(movieProvider) { provider in
-//                    Capsule()
-//                        .fill(.blendMode(.multiply))
-//                        .strokeBorder(.white, lineWidth: 1)
-//                        .frame(width: 95, height: 25)
-//                        .clipShape(RoundedRectangle(cornerRadius: 8))
-//                        .opacity(0.6)
-//                        .overlay {
-//                            Text("\(movieProvider.rent.count)")
-//                                .fontWeight(.medium)
-//                                .font(.system(size: 12))
-//                        }
-//                    
-//                }
-//            }
         }.padding(.leading)
     }
 }

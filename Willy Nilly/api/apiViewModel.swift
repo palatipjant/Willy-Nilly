@@ -13,27 +13,18 @@ import SwiftUI
     @Published var isLoading: Bool = false
     
     @Published var UpcomingMovie: [Movie] = []
-    
     @Published var Genre: [Genre] = []
-    
     @Published var TrendingMovie: [Movie] = []
-    
     @Published var TopRatedMovie: [Movie] = []
-    
     @Published var NowPlaying: [Movie] = []
-    
     @Published var SearchMovie: [Movie] = []
-    
     @Published var TrendThai: [Movie] = []
-    
     @Published var MovieByGenre: [Movie] = []
-    
     @Published var MovieDetail: MovieDetail = Mockdata.movieDetailsample
-    
     @Published var MovieSimilar: [Movie] = []
-    
     @Published var MovieCredits: [Cast] = []
-    
+    @Published var CastDetail: CastDetail = Mockdata.castDetailSample
+    @Published var CastImage: [CastImage] = []
     
     func getUpcomingMovie() {
         isLoading = true
@@ -177,5 +168,29 @@ import SwiftUI
         }
     }
     
+    func getCastDetail(cast: Int) {
+        isLoading = true
+        Task{
+            do{
+                CastDetail = try await NetworkManager.shared.fetchCastDetail(castID: cast)
+                isLoading = false
+            } catch {
+                alertItem = AlertContext.GeneralError
+                isLoading = false
+            }
+        }
+    }
     
+    func getCastImages(cast: Int) {
+        isLoading = true
+        Task{
+            do{
+                CastImage = try await NetworkManager.shared.fetchCastImages(castID: cast)
+                isLoading = false
+            } catch {
+                alertItem = AlertContext.GeneralError
+                isLoading = false
+            }
+        }
+    }
 }

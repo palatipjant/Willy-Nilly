@@ -13,8 +13,6 @@ struct TabHome: View {
             VStack{
                 HomeView()
             }.tabItem { Label("Home", systemImage: "film") }
-            
-            
             VStack{
                 DiscoverView()
             }.tabItem { Label("Discover", systemImage: "rectangle.portrait.on.rectangle.portrait.angled.fill") }
