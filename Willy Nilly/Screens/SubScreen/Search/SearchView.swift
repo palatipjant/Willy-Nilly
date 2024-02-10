@@ -39,7 +39,7 @@ struct SearchView: View {
                 ScrollView{
                     LazyVGrid(columns: columns) {
                         ForEach(viewModel.SearchMovie) {movie in
-                            NavigationLink(destination: OverviewMovie(Movie: movie)) {
+                            NavigationLink(destination: OverviewMovie(movie: movie)) {
                                 MovieRemoteImage(urlString:
                                                     "https://image.tmdb.org/t/p/w500\(movie.poster_path ?? "")" )
                                 .frame(width: 110, height: 162.91)

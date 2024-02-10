@@ -10,8 +10,8 @@ import Kingfisher
 
 struct HomeView: View {
     
+    @State private var works: [MovieDetail] = []
     @StateObject var viewModel = apiViewModel()
-    
     var body: some View {
         ZStack{
             NavigationStack{

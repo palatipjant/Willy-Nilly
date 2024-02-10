@@ -15,7 +15,7 @@ struct PopularBanner: View {
     var body: some View {
         VStack(alignment: .leading){
             if let url = viewModel.TrendingMovie.first?.posterURL {
-                NavigationLink(destination: OverviewMovie(Movie: viewModel.TrendingMovie.first!)) {
+                NavigationLink(destination: OverviewMovie(movie: viewModel.TrendingMovie.first!)) {
                     KFImage(url)
                         .resizable()
                         .bannerImage()

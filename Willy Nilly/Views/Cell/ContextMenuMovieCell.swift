@@ -12,13 +12,13 @@ struct ContextMenuMovieCell: View {
     var movie: Movie
     
     var body: some View {
-        NavigationLink(destination: OverviewMovie(Movie: movie)) {
+        NavigationLink(destination: OverviewMovie(movie: movie)) {
             Label("Overview", systemImage: "doc.plaintext.fill")
         }
-        NavigationLink(destination: OverviewMovie(Movie: movie)) {
+        NavigationLink(destination: OverviewMovie(movie: movie)) {
             Label("Like", systemImage: "heart.fill")
         }
-        NavigationLink(destination: OverviewMovie(Movie: movie)) {
+        NavigationLink(destination: OverviewMovie(movie: movie)) {
             Label("Mark as seen", systemImage: "eye.fill")
         }
     }

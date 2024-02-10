@@ -28,6 +28,13 @@ import SwiftUI
     
     @Published var MovieByGenre: [Movie] = []
     
+    @Published var MovieDetail: MovieDetail = Mockdata.movieDetailsample
+    
+    @Published var MovieSimilar: [Movie] = []
+    
+    @Published var MovieCredits: [Cast] = []
+    
+    
     func getUpcomingMovie() {
         isLoading = true
         Task{
@@ -41,6 +48,18 @@ import SwiftUI
         }
     }
     
+    func getMovieDetail(movieID: String) {
+        isLoading = true
+        Task{
+            do{
+                MovieDetail = try await NetworkManager.shared.fetchMovieDetail(movieID: movieID)
+                isLoading = false
+            } catch {
+                alertItem = AlertContext.GeneralError
+                isLoading = false
+            }
+        }
+    }
     func getGenre() {
         isLoading = true
         Task{
@@ -131,4 +150,32 @@ import SwiftUI
             }
         }
     }
+    
+    func getMovieSimilar(movieID: String) {
+        isLoading = true
+        Task{
+            do{
+                MovieSimilar = try await NetworkManager.shared.fetchMovieSimilar(movieID: movieID)
+                isLoading = false
+            } catch {
+                alertItem = AlertContext.GeneralError
+                isLoading = false
+            }
+        }
+    }
+    
+    func getMovieCredits(movieID: String) {
+        isLoading = true
+        Task{
+            do{
+                MovieCredits = try await NetworkManager.shared.fetchCredits(movieID: movieID)
+                isLoading = false
+            } catch {
+                alertItem = AlertContext.GeneralError
+                isLoading = false
+            }
+        }
+    }
+    
+    
 }

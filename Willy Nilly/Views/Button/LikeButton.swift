@@ -41,7 +41,6 @@ struct LikeEffectButtonStyle: ButtonStyle {
     
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
-            .padding(.trailing)
             .scaleEffect(configuration.isPressed ? 0.7 : 1.0)
             .opacity(configuration.isPressed ? 0.6 : 1.0)
             .animation(.easeInOut, value: configuration.isPressed)

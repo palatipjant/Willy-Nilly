@@ -33,7 +33,7 @@ struct HorizonScrollView: View {
             ScrollView(.horizontal) {
                 HStack{
                     ForEach(movie_api) {movie in
-                        NavigationLink(destination: OverviewMovie(Movie: movie)) {
+                        NavigationLink(destination: OverviewMovie(movie: movie)) {
                             MovieRemoteImage(urlString: "https://image.tmdb.org/t/p/w500\(movie.poster_path ?? "")" )
                                 .frame(width: 110, height: 162.91)
                                 .scaledToFit()
