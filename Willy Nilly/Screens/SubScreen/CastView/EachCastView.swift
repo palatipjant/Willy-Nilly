@@ -33,11 +33,13 @@ struct EachCastView: View{
                             CastBiograp(castDetail: viewModel.CastDetail)
                             
                             VStack(alignment: .leading, spacing: 3) {
-                                Text(viewModel.CastDetail.biography)
+                                Text(viewModel.CastDetail.biography ?? "")
                                     .multilineTextAlignment(.leading)
                                     .lineLimit(isRead ? 100 : 3)
-                                Button(isRead ? "Read Less" : "Read More" ) {
-                                    isRead.toggle()
+                                if viewModel.CastDetail.biography?.count ?? 0 > 140 {
+                                    Button(isRead ? "Read Less" : "Read More" ) {
+                                        isRead.toggle()
+                                    }
                                 }
                             }
                             .font(.system(size: 16, weight: .regular))
@@ -90,7 +92,6 @@ struct EachCastView: View{
             }
         }
         .task {
-            print(cast.id)
             viewModel.getCastDetail(cast: String(cast.id))
             viewModel.getCastImages(cast: cast.id)
         }
@@ -128,17 +129,19 @@ struct CastBiograp: View {
                                 .font(.system(size: 12))
                         }
                     }
-                Capsule()
-                    .fill(.blendMode(.multiply))
-                    .strokeBorder(.white, lineWidth: 1)
-                    .frame(width: 95, height: 25)
-                    .clipShape(RoundedRectangle(cornerRadius: 8))
-                    .opacity(0.6)
-                    .overlay {
-                        Text("\(castDetail.birthday)")
-                            .fontWeight(.medium)
-                            .font(.system(size: 12))
-                    }
+                if castDetail.birthday != nil {
+                    Capsule()
+                        .fill(.blendMode(.multiply))
+                        .strokeBorder(.white, lineWidth: 1)
+                        .frame(width: 95, height: 25)
+                        .clipShape(RoundedRectangle(cornerRadius: 8))
+                        .opacity(0.6)
+                        .overlay {
+                            Text("\(castDetail.birthday ?? "")")
+                                .fontWeight(.medium)
+                                .font(.system(size: 12))
+                        }
+                }
                 Capsule()
                     .fill(.blendMode(.multiply))
                     .strokeBorder(.white, lineWidth: 1)
@@ -151,18 +154,20 @@ struct CastBiograp: View {
                             .font(.system(size: 12))
                     }
             }
-            HStack{
-                Capsule()
-                    .fill(.blendMode(.multiply))
-                    .strokeBorder(.white, lineWidth: 1)
-                    .frame(width: 230, height: 25)
-                    .clipShape(RoundedRectangle(cornerRadius: 8))
-                    .opacity(0.6)
-                    .overlay {
-                        Text("\(castDetail.place_of_birth)")
-                            .fontWeight(.medium)
-                            .font(.system(size: 12))
-                    }
+            if castDetail.place_of_birth != nil {
+                HStack{
+                    Capsule()
+                        .fill(.blendMode(.multiply))
+                        .strokeBorder(.white, lineWidth: 1)
+                        .frame(width: 230, height: 25)
+                        .clipShape(RoundedRectangle(cornerRadius: 8))
+                        .opacity(0.6)
+                        .overlay {
+                            Text("\(castDetail.place_of_birth ?? "")")
+                                .fontWeight(.medium)
+                                .font(.system(size: 12))
+                        }
+                }
             }
         }.padding(.leading)
     }

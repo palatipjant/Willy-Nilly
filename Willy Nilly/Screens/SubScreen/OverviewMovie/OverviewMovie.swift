@@ -38,8 +38,10 @@ struct OverviewMovie: View {
                                 Text(viewModel.MovieDetail.overview!)
                                     .multilineTextAlignment(.leading)
                                     .lineLimit(isRead ? 20 : 3)
-                                Button(isRead ? "Read Less" : "Read More" ) {
-                                    isRead.toggle()
+                                if viewModel.CastDetail.biography?.count ?? 0 > 140 {
+                                    Button(isRead ? "Read Less" : "Read More" ) {
+                                        isRead.toggle()
+                                    }
                                 }
                             }
                             .font(.system(size: 16, weight: .regular))

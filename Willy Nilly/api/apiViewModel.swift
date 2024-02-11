@@ -173,14 +173,11 @@ import SwiftUI
         isLoading = true
         Task{
             do{
-                print("fee1")
                 CastDetail = try await NetworkManager.shared.fetchCastDetail(castID: cast)
-                print(CastDetail)
                 isLoading = false
             } catch {
                 alertItem = AlertContext.GeneralError
                 isLoading = false
-                print("fee2")
             }
         }
     }

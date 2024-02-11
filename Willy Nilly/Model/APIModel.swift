@@ -51,30 +51,17 @@ struct Mockdata {
                                                vote_average: 3775.726,
                                                poster_path: "/A7EByudX0eOzlkQ2FIbogzyazm2.jpg")
     
-    static let castDetailSample = CastDetail(id: 976,
-                                             name: "test",
-                                             biography: "testtest",
-                                             known_for_department: "test",
-                                             place_of_birth: "test, Derbyshire, England, UK",
-                                             popularity: 170.087,
+    static let castDetailSample = CastDetail(id: 0,
+                                             name: "NF",
+                                             biography: "NF",
+                                             known_for_department: "NF",
+                                             place_of_birth: "NF",
+                                             popularity: 0,
                                              birthday: "9999-07-26",
                                              also_known_as: [
-                                                "Джейсон Стейтем",
-                                                "Джейсон Стэйтем",
-                                                "جيسون ستاثام",
-                                                "ジェイソン・ステイサム",
-                                                "เจสัน สเตธัม",
-                                                "傑森·史塔森",
-                                                "Джейсън Стейтъм",
-                                                "ჯეისონ სტეტჰემი",
-                                                "Τζέισον Στέιθαμ",
-                                                "JS",
-                                                "杰森·斯坦森",
-                                                "제이슨 스타뎀",
-                                                "جیسون استاتهام",
-                                                "ג'ייסון סטיית'האם"
+                                                "NF"
                                               ],
-                                             profile_path: "/lldeQ91GwIVff43JBrpdbAAeYWj.jpg")
+                                             profile_path: "")
 }
 
 struct GenreListResponse: Codable {
@@ -132,18 +119,14 @@ struct Cast: Codable, Identifiable{
     }
 }
 
-struct CastDetailResponse: Codable {
-    let results: CastDetail
-}
-
 struct CastDetail: Codable, Identifiable {
     let id: Int
     let name: String
-    let biography: String
+    let biography: String?
     let known_for_department: String
-    let place_of_birth: String
+    let place_of_birth: String?
     let popularity: Double
-    let birthday: String
+    let birthday: String?
     let also_known_as: [String]
     
     let profile_path: String?
