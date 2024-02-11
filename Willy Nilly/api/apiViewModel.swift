@@ -25,6 +25,7 @@ import SwiftUI
     @Published var MovieCredits: [Cast] = []
     @Published var CastDetail: CastDetail = Mockdata.castDetailSample
     @Published var CastImage: [CastImage] = []
+    @Published var MovieReview: [MovieReview] = []
     
     func getUpcomingMovie() {
         isLoading = true
@@ -168,15 +169,18 @@ import SwiftUI
         }
     }
     
-    func getCastDetail(cast: Int) {
+    func getCastDetail(cast: String) {
         isLoading = true
         Task{
             do{
+                print("fee1")
                 CastDetail = try await NetworkManager.shared.fetchCastDetail(castID: cast)
+                print(CastDetail)
                 isLoading = false
             } catch {
                 alertItem = AlertContext.GeneralError
                 isLoading = false
+                print("fee2")
             }
         }
     }
@@ -186,6 +190,19 @@ import SwiftUI
         Task{
             do{
                 CastImage = try await NetworkManager.shared.fetchCastImages(castID: cast)
+                isLoading = false
+            } catch {
+                alertItem = AlertContext.GeneralError
+                isLoading = false
+            }
+        }
+    }
+    
+    func getMovieReview(movieID: String) {
+        isLoading = true
+        Task{
+            do{
+                MovieReview = try await NetworkManager.shared.fetchMovieReview(movieID: movieID)
                 isLoading = false
             } catch {
                 alertItem = AlertContext.GeneralError

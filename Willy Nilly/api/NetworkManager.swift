@@ -263,7 +263,7 @@ final class NetworkManager {
         }
     }
     
-    func fetchCastDetail(castID: Int) async throws -> CastDetail {
+    func fetchCastDetail(castID: String) async throws -> CastDetail {
         guard let url = URL(string: "https://api.themoviedb.org/3/person/\(castID)?language=en-US") else {
             throw APError.invalidURL
         }
@@ -276,7 +276,9 @@ final class NetworkManager {
             let (data, _) = try await URLSession.shared.data(for: request)
             
             let decoder = JSONDecoder()
-            return try decoder.decode(CastDetailResponse.self, from: data).results
+            let fee = try decoder.decode(CastDetailResponse.self, from: data).results
+            print("FEEEEEE test call \(fee)")
+            return fee
         } catch {
             throw APError.invalidData
         }
@@ -296,6 +298,25 @@ final class NetworkManager {
             
             let decoder = JSONDecoder()
             return try decoder.decode(CastImagesResponse.self, from: data).profiles
+        } catch {
+            throw APError.invalidData
+        }
+    }
+    
+    func fetchMovieReview(movieID: String) async throws -> [MovieReview] {
+        guard let url = URL(string: "https://api.themoviedb.org/3/movie/\(movieID)/reviews?language=en-US&page=1") else {
+            throw APError.invalidURL
+        }
+        
+        var request = URLRequest(url: url)
+        
+        request.addValue("Bearer \(authToken)", forHTTPHeaderField: "Authorization")
+        
+        do {
+            let (data, _) = try await URLSession.shared.data(for: request)
+            
+            let decoder = JSONDecoder()
+            return try decoder.decode(MovieReviewResponse.self, from: data).results
         } catch {
             throw APError.invalidData
         }

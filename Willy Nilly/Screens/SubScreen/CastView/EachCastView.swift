@@ -90,7 +90,8 @@ struct EachCastView: View{
             }
         }
         .task {
-            viewModel.getCastDetail(cast: cast.id)
+            print(cast.id)
+            viewModel.getCastDetail(cast: String(cast.id))
             viewModel.getCastImages(cast: cast.id)
         }
         .ignoresSafeArea(edges: .top)

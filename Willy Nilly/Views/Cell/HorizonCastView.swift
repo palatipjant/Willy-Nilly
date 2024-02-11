@@ -25,7 +25,6 @@ struct HorizonCastView: View {
                         .labelStyle(TrailingIconLabelStyle())
                         .font(.footnote)
                         .padding(.trailing, 20)
-                    //                        .padding(.bottom, 25)
                         .padding(.top, 10)
                 }
             }

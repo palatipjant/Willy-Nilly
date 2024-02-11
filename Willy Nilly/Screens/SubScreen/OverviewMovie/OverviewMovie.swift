@@ -50,6 +50,9 @@ struct OverviewMovie: View {
                             if !viewModel.MovieCredits.isEmpty{
                                 HorizonCastView(titleView: "Top Billed Cast", cast: viewModel.MovieCredits)
                             }
+                            if !viewModel.MovieReview.isEmpty{
+                                ReviewCard(movie_review: viewModel.MovieReview)
+                            }
                             if !viewModel.MovieSimilar.isEmpty{
                                 HorizonScrollView(titleView: "Similar", movie_api: viewModel.MovieSimilar)
                             }
@@ -85,6 +88,8 @@ struct OverviewMovie: View {
             viewModel.getMovieDetail(movieID: String(movie.id))
             viewModel.getMovieSimilar(movieID: String(movie.id))
             viewModel.getMovieCredits(movieID: String(movie.id))
+            viewModel.MovieReview.removeAll()
+            viewModel.getMovieReview(movieID: String(movie.id))
         }
         .ignoresSafeArea(edges: .top)
     }
