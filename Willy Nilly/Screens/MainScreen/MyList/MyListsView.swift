@@ -10,10 +10,18 @@ import CoreData
 
 struct MyListsView: View {
     
+    @StateObject var viewModel = apiViewModel()
+    
     var body: some View {
         ZStack{
             Color(.systemBackground)
-        }.ignoresSafeArea()
+        }
+        .ignoresSafeArea()
+        .alert(item: $viewModel.alertItem) { alert in
+            Alert(title: alert.title,
+                  message: alert.message,
+                  dismissButton: alert.dismissButton)
+        }
     }
 }
 

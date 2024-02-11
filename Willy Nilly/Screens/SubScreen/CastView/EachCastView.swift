@@ -95,6 +95,11 @@ struct EachCastView: View{
             viewModel.getCastImages(cast: cast.id)
         }
         .ignoresSafeArea(edges: .top)
+        .alert(item: $viewModel.alertItem) { alert in
+            Alert(title: alert.title,
+                  message: alert.message,
+                  dismissButton: alert.dismissButton)
+        }
     }
 }
 

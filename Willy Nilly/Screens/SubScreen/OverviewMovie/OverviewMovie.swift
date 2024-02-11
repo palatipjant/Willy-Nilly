@@ -92,6 +92,11 @@ struct OverviewMovie: View {
             viewModel.getMovieReview(movieID: String(movie.id))
         }
         .ignoresSafeArea(edges: .top)
+        .alert(item: $viewModel.alertItem) { alert in
+            Alert(title: alert.title,
+                  message: alert.message,
+                  dismissButton: alert.dismissButton)
+        }
     }
 }
 

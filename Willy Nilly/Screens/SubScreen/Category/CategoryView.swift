@@ -40,6 +40,11 @@ struct CategoryView: View {
         .task {
             viewModel.getGenre()
         }
+        .alert(item: $viewModel.alertItem) { alert in
+            Alert(title: alert.title,
+                  message: alert.message,
+                  dismissButton: alert.dismissButton)
+        }
     }
 }
 

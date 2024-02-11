@@ -60,6 +60,11 @@ struct SearchView: View {
             .onAppear(perform: {
                 isFocus = .search
             })
+            .alert(item: $viewModel.alertItem) { alert in
+                Alert(title: alert.title,
+                      message: alert.message,
+                      dismissButton: alert.dismissButton)
+            }
         
     }
 }

@@ -47,7 +47,7 @@ struct AlertContext {
                                         message: Text("Your Information save/retrieve process can't be done."),
                                         dismissButton: .default(Text("OK")))
     
-    static let GeneralError = AlertItem(title: Text("Appetizer"),
+    static let GeneralError = AlertItem(title: Text("Willy Nilly"),
                                         message: Text("Something wrong with the data.\nPlease contact support."),
                                         dismissButton: .default(Text("OK")))
 }
