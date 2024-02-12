@@ -2,60 +2,50 @@
 //  DataController.swift
 //  Willy Nilly
 //
-//  Created by Palatip Jantawong on 8/2/2567 BE.
+//  Created by Palatip Jantawong on 12/2/2567 BE.
 //
 
-import CoreData
 import Foundation
+import CoreData
 
 class DataController: ObservableObject {
+    // Responsible for preparing a model
+    let container = NSPersistentContainer(name: "FoodModel")
     
-    var context: NSPersistentContainer
-    @Published var movie: [MovieList] = []
-    
-    init(){
-        context = NSPersistentContainer(name: "Bookworm")
-        context.loadPersistentStores { description, error in
+    init() {
+        container.loadPersistentStores { description, error in
             if let error = error {
-                print("error loading: \(error)")
+                print("Failed to load data in DataController \(error.localizedDescription)")
             }
         }
     }
     
-    func fetchData() {
-        let request = NSFetchRequest<MovieList>(entityName: "Student")
+    func save(context: NSManagedObjectContext) {
         do {
-            movie = try context.viewContext.fetch(request)
-        } catch (let error) {
-            print("error fetching: \(error)")
+            try context.save()
+            print("Data saved successfully. WUHU!!!")
+        } catch {
+            // Handle errors in our database
+            let nsError = error as NSError
+            fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
         }
     }
     
-    func addData(movie: Movie) {
-        let newEmployee = MovieList(context: context.viewContext)
-        newEmployee.id = Int32(movie.id)
-        newEmployee.title = movie.title
-        newEmployee.overview = movie.overview
-        newEmployee.release_date = movie.release_date
-        newEmployee.original_language = movie.original_language
-        newEmployee.genre_ids = movie.genre_ids
-        newEmployee.poster_path = movie.poster_path
-        newEmployee.posterURL = movie.posterURL
-        self.saveData()
+    func addFood(name: String, calories: Double, context: NSManagedObjectContext) {
+        let food = Food(context: context)
+        food.id = UUID()
+        food.date = Date()
+        food.name = name
+        food.calories = calories
+        
+        save(context: context)
     }
     
-    func saveData() {
-        do {
-            try context.viewContext.save()
-        } catch (let error) {
-            print("error saving: \(error)")
-        }
-    }
-    
-    func deleteData(indexSet: IndexSet) {
-        guard let index = indexSet.first else { return }
-        let entity = movie[index]
-        context.viewContext.delete(entity)
-        self.saveData()
+    func editFood(food: Food, name: String, calories: Double, context: NSManagedObjectContext) {
+        food.date = Date()
+        food.name = name
+        food.calories = calories
+        
+        save(context: context)
     }
 }

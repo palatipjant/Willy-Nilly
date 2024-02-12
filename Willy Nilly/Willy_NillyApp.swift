@@ -10,7 +10,7 @@ import OnboardingKit
 
 @main
 struct Willy_NillyApp: App {
-    
+
     var body: some Scene {
         WindowGroup {
             TabHome()
