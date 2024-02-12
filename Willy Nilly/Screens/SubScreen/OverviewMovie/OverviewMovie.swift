@@ -75,7 +75,7 @@ struct OverviewMovie: View {
                     .opacity(0.8)
                     .overlay {
                         HStack(spacing: 16){
-                            LikeButton()
+                            LikeButton(movie: movie)
                             MarkAsSeenButton()
                         }
                     }

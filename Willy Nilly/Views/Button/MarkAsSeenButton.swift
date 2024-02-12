@@ -52,6 +52,3 @@ struct MarkAsSeenEffectButtonStyle: ButtonStyle {
 }
 
 
-#Preview {
-    LikeButton()
-}

@@ -10,12 +10,12 @@ import Kingfisher
 
 struct PopularBanner: View {
     
-    @StateObject var viewModel = apiViewModel()
+    var movie: Movie
     
     var body: some View {
         VStack(alignment: .leading){
-            if let url = viewModel.TrendingMovie.first?.posterURL {
-                NavigationLink(destination: OverviewMovie(movie: viewModel.TrendingMovie.first!)) {
+            if let url = movie.posterURL {
+                NavigationLink(destination: OverviewMovie(movie: movie)) {
                     KFImage(url)
                         .resizable()
                         .bannerImage()
@@ -23,12 +23,5 @@ struct PopularBanner: View {
             }
         }
         .ignoresSafeArea(edges: .top)
-        .task {
-            viewModel.getTrendingMovie()
-        }
     }
-}
-
-#Preview {
-    PopularBanner()
 }

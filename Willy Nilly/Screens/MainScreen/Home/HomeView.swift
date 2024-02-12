@@ -10,7 +10,6 @@ import Kingfisher
 
 struct HomeView: View {
     
-    @State private var works: [MovieDetail] = []
     @StateObject var viewModel = apiViewModel()
     
     var body: some View {
@@ -18,7 +17,7 @@ struct HomeView: View {
             NavigationStack{
                 GeometryReader{_ in
                     ScrollView{
-                        PopularBanner()
+                        PopularBanner(movie: viewModel.TrendingMovie.first ?? Mockdata.sampledata)
                             .overlay(content: {
                                 LinearPoster()
                             })

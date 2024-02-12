@@ -9,13 +9,13 @@ import SwiftUI
 
 struct CardView: View {
     
-    var person: Movie
+    var movie: Movie
     @State private var offset = CGSize.zero
     @State private var color: Color = .clear
     
     var body: some View {
         ZStack{
-            MovieRemoteImage(urlString: "https://image.tmdb.org/t/p/w500\(person.poster_path ?? "")" )
+            MovieRemoteImage(urlString: "https://image.tmdb.org/t/p/w500\(movie.poster_path ?? "")" )
                 .frame(width: 320, height: 460)
                 .scaledToFill()
                 .shadow(radius: 4)
@@ -33,13 +33,13 @@ struct CardView: View {
             DragGesture()
                 .onChanged { gesture in
                     offset = gesture.translation
-                    withAnimation {
-                        changeColor(width: offset.width)
-                    }
+//                    withAnimation {
+//                        changeColor(width: offset.width)
+//                    }
                 } .onEnded { _ in
                     withAnimation {
                         swipeCard(width: offset.width)
-                        changeColor(width: offset.width)
+//                        changeColor(width: offset.width)
                     }
                 }
         )
@@ -68,5 +68,5 @@ struct CardView: View {
 }
 
 #Preview {
-    CardView(person: Mockdata.sampledata)
+    CardView(movie: Mockdata.sampledata)
 }

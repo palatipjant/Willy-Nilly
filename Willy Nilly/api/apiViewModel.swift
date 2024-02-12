@@ -9,6 +9,9 @@ import SwiftUI
 
 @MainActor final class apiViewModel: ObservableObject {
     
+    
+    @Published var liekdListDummy = []
+    
     @Published var alertItem: AlertItem?
     @Published var isLoading: Bool = false
     

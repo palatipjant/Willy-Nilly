@@ -24,7 +24,7 @@ final class NetworkManager {
     private let trendThatED = baseURL + "/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&primary_release_year=2024&sort_by=popularity.desc&with_original_language=th"
     private let popularPerson = baseURL + "/person/popular?language=en-US&page=1"
     
-    let authToken = "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJlNzRjZDZhN2RlNGE3NTdhZDM3OGQzZjI0NmQ3M2JjMyIsInN1YiI6IjY1ODMxY2NhODU4Njc4NTUyZWY2ODQwMSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.IbiXRbuekxsTNA0DmI5rfLVipO0VZlxMylkzMPkmCuA"
+    let authToken = "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI4NmJjMGQzYWIwYjZmMGQxNzJmM2M0MDgyZjQwZWZmMSIsInN1YiI6IjY1ODMxY2NhODU4Njc4NTUyZWY2ODQwMSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.vqJ0i9h2drcrWWixFmPZ5ol5a8I9vk6yDzeeq1gbvMo"
     
     private init() {}
     
@@ -125,11 +125,31 @@ final class NetworkManager {
         request.addValue("Bearer \(authToken)", forHTTPHeaderField: "Authorization")
         
         do {
-            let (data, _) = try await URLSession.shared.data(for: request)
+            let (data, response) = try await URLSession.shared.data(for: request)
+            guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
+                throw APError.invalidResponse
+            }
             
             let decoder = JSONDecoder()
             return try decoder.decode(MovieResponse.self, from: data).results
+        } catch let error as APError {
+            switch error {
+            case .invalidURL:
+                print("Invalid URL: \(error.localizedDescription)")
+            case .invalidResponse:
+                print("Invalid response from the server")
+            case .invalidData:
+                print("Invalid data received from the server")
+                // Handle other cases as needed
+            case .unableToComplete:
+                print("unableToComplete")
+            case .authenticationError:
+                print("authenticationError")
+            }
+            throw error
         } catch {
+            // Handle other types of errors
+            print("An unexpected error occurred: \(error)")
             throw APError.invalidData
         }
     }
@@ -276,8 +296,8 @@ final class NetworkManager {
         
         do {
             let (data, _) = try await URLSession.shared.data(for: request)
-//            let json = try JSONSerialization.jsonObject(with: data, options: [])
-//            print(json)
+            //            let json = try JSONSerialization.jsonObject(with: data, options: [])
+            //            print(json)
             let decoder = JSONDecoder()
             return try decoder.decode(CastDetail.self, from: data)
         } catch {
@@ -355,12 +375,12 @@ final class NetworkManager {
         
         do {
             let (data, _) = try await URLSession.shared.data(for: request)
-//            let json = try JSONSerialization.jsonObject(with: data, options: [])
-//            print(json)
+            //            let json = try JSONSerialization.jsonObject(with: data, options: [])
+            //            print(json)
             let decoder = JSONDecoder()
             return try decoder.decode(PersonResponse.self, from: data).results
         } catch {
-//            print("Error converting JSON data to object: \(error)")
+            //            print("Error converting JSON data to object: \(error)")
             throw APError.invalidData
         }
     }

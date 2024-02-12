@@ -15,8 +15,11 @@ struct DiscoverView: View {
     var body: some View {
         NavigationStack{
                 ZStack{
-                    ForEach(viewModel.MovieDiscover) { people in
-                        CardView(person: people)
+                    ForEach(viewModel.MovieDiscover) { movie in
+                        NavigationLink(destination: OverviewMovie(movie: movie)){
+                            CardView(movie: movie)
+                        }
+                        .buttonStyle(FlatLinkStyle())
                     }
                 }
                 .padding(.vertical)
@@ -27,8 +30,8 @@ struct DiscoverView: View {
         }.task {
             viewModel.MovieDiscover.removeAll()
             viewModel.getMovieDiscover(page: 1)
-            viewModel.getMovieDiscover(page: 2)
-            viewModel.getMovieDiscover(page: 3)
+//            viewModel.getMovieDiscover(page: 2)
+//            viewModel.getMovieDiscover(page: 3)
         }
     }
 }

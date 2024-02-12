@@ -6,15 +6,29 @@
 //
 
 import SwiftUI
+import SwiftData
 import CoreData
 
 struct MyListsView: View {
     
+    @Environment(\.modelContext) var context
+    @Query private var likedMovie: [LikedMovie]
     @StateObject var viewModel = apiViewModel()
     
     var body: some View {
-        ZStack{
-            Color(.systemBackground)
+        NavigationStack{
+            ZStack{
+                List{
+                    ForEach(likedMovie) { movie in
+                        Text(movie.title)
+                    }.onDelete { indexSet in
+                        for index in indexSet{
+                            context.delete(likedMovie[index])
+                        }
+                    }
+                }
+            }
+            .navigationTitle("Lists")
         }
         .ignoresSafeArea()
         .alert(item: $viewModel.alertItem) { alert in
