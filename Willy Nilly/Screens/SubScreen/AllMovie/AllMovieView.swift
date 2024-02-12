@@ -31,6 +31,7 @@ struct AllMovieView: View {
                         .contextMenu {
                             ContextMenuMovieCell(movie: movie)
                         }
+                        
                     }
                     .buttonStyle(FlatLinkStyle())
                 }.padding(.vertical,10)

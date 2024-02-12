@@ -21,7 +21,7 @@ struct LikeButton: View{
             Circle()
                 .fill(.white)
                 .shadow(radius: 5)
-                .frame(width: 40, height: 40)
+                .frame(width: 50, height: 50)
                 .overlay {
                     Image(systemName: likeClick ? "heart.fill" : "heart")
                         .resizable()
@@ -31,13 +31,17 @@ struct LikeButton: View{
                 }
                 .tint(likeClick ? .red : .gray)
         })
-        .buttonStyle(LikeEffectButtonStyle(confetti: $confetti))
+        .buttonStyle(LikeEffectButtonStyle(confetti: $confetti, emoji1: "🎬", emoji2: "🍿", emoji3: "🍷", emoji4: "❤️"))
     }
 }
 
 struct LikeEffectButtonStyle: ButtonStyle {
     
     @Binding var confetti: Int
+    var emoji1: String
+    var emoji2: String
+    var emoji3: String
+    var emoji4: String
     
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
@@ -45,7 +49,7 @@ struct LikeEffectButtonStyle: ButtonStyle {
             .opacity(configuration.isPressed ? 0.6 : 1.0)
             .animation(.easeInOut, value: configuration.isPressed)
             .confettiCannon(counter: $confetti,
-                            confettis: [.text("🎬"), .text("🍿"), .text("🍷"), .text("❤️")],
+                            confettis: [.text(emoji1 ), .text(emoji2 ), .text(emoji3 ), .text(emoji4 )],
                             confettiSize: 20,
                             radius: 220)
     }

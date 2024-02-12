@@ -10,7 +10,9 @@ import SwiftUI
 struct EachCastView: View{
     
     @State var isRead = false
-    var cast: Cast
+    var cast: Int
+    var profile_path: String
+    
     @StateObject var viewModel = apiViewModel()
     
     var body: some View {
@@ -18,7 +20,7 @@ struct EachCastView: View{
             GeometryReader{_ in
                 ScrollView{
                     VStack{
-                        MovieRemoteImage(urlString: "https://image.tmdb.org/t/p/w500\(cast.profile_path ?? "")" )
+                        MovieRemoteImage(urlString: "https://image.tmdb.org/t/p/w500\(profile_path)" )
                             .bannerImage()
                             .overlay(content: { LinearPoster() })
                             .background(ScrollViewConfigurator { $0?.bounces = false })
@@ -81,6 +83,8 @@ struct EachCastView: View{
                             }
                             .offset(y: -150)
                         }
+                        CastMovieCreditsView(titleView: "Movie", person_id: cast)
+                            .offset(y: -150)
                     }
                     
                 }
@@ -92,8 +96,8 @@ struct EachCastView: View{
             }
         }
         .task {
-            viewModel.getCastDetail(cast: String(cast.id))
-            viewModel.getCastImages(cast: cast.id)
+            viewModel.getCastDetail(cast: String(cast))
+            viewModel.getCastImages(cast: cast)
         }
         .ignoresSafeArea(edges: .top)
         .alert(item: $viewModel.alertItem) { alert in
@@ -174,9 +178,5 @@ struct CastBiograp: View {
 }
 
 #Preview(body: {
-    EachCastView(cast: Cast(id: 976,
-                            name: "Jason Statham",
-                            original_name: "Jason Statham",
-                            character:  "Adam Clay",
-                            profile_path: "/lldeQ91GwIVff43JBrpdbAAeYWj.jpg"))
+    EachCastView(cast: 976, profile_path: "")
 })

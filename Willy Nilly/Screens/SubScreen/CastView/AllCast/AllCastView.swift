@@ -21,7 +21,7 @@ struct AllCastView: View{
         ScrollView{
             LazyVGrid(columns: columns) {
                 ForEach(cast) {cast in
-                    NavigationLink(destination: EachCastView(cast: cast)) {
+                    NavigationLink(destination: EachCastView(cast: cast.id, profile_path: cast.profile_path ?? "")) {
                         MovieRemoteImage(urlString: "https://image.tmdb.org/t/p/w500\(cast.profile_path ?? "")" )
                             .frame(width: 110, height: 162.91)
                             .scaledToFit()

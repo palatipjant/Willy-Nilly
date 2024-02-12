@@ -38,7 +38,7 @@ struct OverviewMovie: View {
                                 Text(viewModel.MovieDetail.overview!)
                                     .multilineTextAlignment(.leading)
                                     .lineLimit(isRead ? 20 : 3)
-                                if viewModel.CastDetail.biography?.count ?? 0 > 140 {
+                                if viewModel.CastDetail.biography?.count ?? 0 < 150 {
                                     Button(isRead ? "Read Less" : "Read More" ) {
                                         isRead.toggle()
                                     }
@@ -67,15 +67,14 @@ struct OverviewMovie: View {
                 .scrollIndicators(.hidden)
                 .toolbarBackground(.hidden, for: .navigationBar)
             }
-            HStack(spacing: 16){
+            HStack{
                 Capsule()
-                    .fill(Color.white)
-                    .frame(width: 120, height: 55)
+                    .fill(.ultraThinMaterial)
+                    .frame(width: 150, height: 70)
                     .clipShape(RoundedRectangle(cornerRadius: 8))
-                
-                    .opacity(0.5)
+                    .opacity(0.8)
                     .overlay {
-                        HStack{
+                        HStack(spacing: 16){
                             LikeButton()
                             MarkAsSeenButton()
                         }

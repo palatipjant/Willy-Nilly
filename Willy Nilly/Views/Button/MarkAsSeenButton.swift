@@ -21,7 +21,7 @@ struct MarkAsSeenButton: View{
             Circle()
                 .fill(.white)
                 .shadow(radius: 5)
-                .frame(width: 40, height: 40)
+                .frame(width: 50, height: 50)
                 .overlay {
                     Image(systemName: likeClick ? "eye.fill" : "eye")
                         .resizable()

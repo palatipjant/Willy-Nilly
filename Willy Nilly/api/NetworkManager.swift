@@ -22,6 +22,7 @@ final class NetworkManager {
     private let topRatedED = baseURL + "/movie/top_rated?language=en-US&page=1"
     private let nowPlayingED = baseURL + "/movie/now_playing?language=en-US&page=1"
     private let trendThatED = baseURL + "/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&primary_release_year=2024&sort_by=popularity.desc&with_original_language=th"
+    private let popularPerson = baseURL + "/person/popular?language=en-US&page=1"
     
     let authToken = "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJlNzRjZDZhN2RlNGE3NTdhZDM3OGQzZjI0NmQ3M2JjMyIsInN1YiI6IjY1ODMxY2NhODU4Njc4NTUyZWY2ODQwMSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.IbiXRbuekxsTNA0DmI5rfLVipO0VZlxMylkzMPkmCuA"
     
@@ -322,4 +323,66 @@ final class NetworkManager {
             throw APError.invalidData
         }
     }
+    
+    func fetchMovieDiscover(page: Int) async throws -> [Movie] {
+        
+        guard let url = URL(string: "https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=\(page)&primary_release_date.gte=2010-01-01&primary_release_date.lte=2024-01-31&sort_by=popularity.desc") else {
+            throw APError.invalidURL
+        }
+        
+        var request = URLRequest(url: url)
+        
+        request.addValue("Bearer \(authToken)", forHTTPHeaderField: "Authorization")
+        
+        do {
+            let (data, _) = try await URLSession.shared.data(for: request)
+            
+            let decoder = JSONDecoder()
+            return try decoder.decode(MovieResponse.self, from: data).results
+        } catch {
+            throw APError.invalidData
+        }
+    }
+    
+    func fetchPopularPerson() async throws -> [Person] {
+        guard let url = URL(string: popularPerson) else {
+            throw APError.invalidURL
+        }
+        
+        var request = URLRequest(url: url)
+        
+        request.addValue("Bearer \(authToken)", forHTTPHeaderField: "Authorization")
+        
+        do {
+            let (data, _) = try await URLSession.shared.data(for: request)
+//            let json = try JSONSerialization.jsonObject(with: data, options: [])
+//            print(json)
+            let decoder = JSONDecoder()
+            return try decoder.decode(PersonResponse.self, from: data).results
+        } catch {
+//            print("Error converting JSON data to object: \(error)")
+            throw APError.invalidData
+        }
+    }
+    
+    func fetchPersonMovieCredits(person_id: Int) async throws -> [Movie] {
+        
+        guard let url = URL(string: "https://api.themoviedb.org/3/person/\(person_id)/movie_credits?language=en-US") else {
+            throw APError.invalidURL
+        }
+        
+        var request = URLRequest(url: url)
+        
+        request.addValue("Bearer \(authToken)", forHTTPHeaderField: "Authorization")
+        
+        do {
+            let (data, _) = try await URLSession.shared.data(for: request)
+            
+            let decoder = JSONDecoder()
+            return try decoder.decode(PersonMovieCreditsResponse.self, from: data).cast
+        } catch {
+            throw APError.invalidData
+        }
+    }
+    
 }
