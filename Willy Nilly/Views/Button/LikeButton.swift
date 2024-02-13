@@ -13,7 +13,7 @@ struct LikeButton: View{
     
     @StateObject var viewModel = apiViewModel()
     @Environment(\.modelContext) var context
-    @Query private var likedMovie: [LikedMovie]
+    @State private var foundMovie: LikedMovie? = nil
     @State private var confetti = 0
     @State private var likeClick = false
     var movie: Movie
