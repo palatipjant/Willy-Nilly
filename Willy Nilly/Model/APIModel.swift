@@ -13,14 +13,14 @@ struct MovieResponse: Codable {
 }
 
 struct Movie: Codable, Identifiable, Hashable {
-    let id: Int
-    let title: String
-    let overview: String?
-    let release_date: String
-    let original_language: String
-    let genre_ids: [Int]
+    var id: Int
+    var title: String
+    var overview: String?
+    var release_date: String
+    var original_language: String
+    var genre_ids: [Int]
     
-    let poster_path: String?
+    var poster_path: String?
     var posterURL: URL? {
         if let poster = poster_path {
             return URL(string: "https://image.tmdb.org/t/p/w500" + poster)

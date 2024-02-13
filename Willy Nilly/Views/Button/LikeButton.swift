@@ -13,40 +13,57 @@ struct LikeButton: View{
     
     @StateObject var viewModel = apiViewModel()
     @Environment(\.modelContext) var context
-    @State private var foundMovie: LikedMovie? = nil
+    @Query private var likedMovie: [LikedMovie]
+    
     @State private var confetti = 0
     @State private var likeClick = false
+    @State private var already_like = false
+    
     var movie: Movie
     
     var body: some View {
         Button(action: {
-            likeClick.toggle()
-            confetti += 1
-            let LikedMovie = LikedMovie(id: movie.id,
-                                        title: movie.title,
-                                        overview: movie.overview,
-                                        release_date: movie.release_date,
-                                        original_language: movie.original_language,
-                                        genre_ids: movie.genre_ids,
-                                        poster_path: movie.poster_path,
-                                        posterURL: movie.posterURL)
-            context.insert(LikedMovie)
-            try! context.save()
+            if likedMovie.contains(where: { $0.id == movie.id }) {
+                if let likedMovieToDelete = likedMovie.first(where: { $0.id == movie.id }) {
+                    context.delete(likedMovieToDelete)
+                    try! context.save()
+                }
+                already_like = false
+            } else {
+                let LikedMovie = LikedMovie(id: movie.id,
+                                            title: movie.title,
+                                            overview: movie.overview,
+                                            release_date: movie.release_date,
+                                            original_language: movie.original_language,
+                                            genre_ids: movie.genre_ids,
+                                            poster_path: movie.poster_path,
+                                            posterURL: movie.posterURL)
+                context.insert(LikedMovie)
+                try! context.save()
+                already_like = true
+                confetti += 1
+            }
         }, label: {
             Circle()
                 .fill(.white)
                 .shadow(radius: 5)
                 .frame(width: 50, height: 50)
                 .overlay {
-                    Image(systemName: likeClick ? "heart.fill" : "heart")
+                    Image(systemName: already_like ? "heart.fill" : "heart")
                         .resizable()
                         .scaledToFit()
                         .frame(width: 20, height: 20)
-                        .foregroundStyle(likeClick ? .red : .black)
+                        .foregroundStyle(already_like ? .red : .black)
                 }
-                .tint(likeClick ? .red : .gray)
+                .tint(already_like ? .red : .gray)
         })
         .buttonStyle(LikeEffectButtonStyle(confetti: $confetti, emoji1: "🎬", emoji2: "🍿", emoji3: "🍷", emoji4: "❤️"))
+        .task {
+            if likedMovie.contains(where: { $0.id == movie.id }) {
+                already_like = true
+            }
+            
+        }
     }
 }
 

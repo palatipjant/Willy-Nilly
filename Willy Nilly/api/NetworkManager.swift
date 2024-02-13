@@ -21,7 +21,7 @@ final class NetworkManager {
     private let trendingED = baseURL + "/trending/movie/day?language=en-US"
     private let topRatedED = baseURL + "/movie/top_rated?language=en-US&page=1"
     private let nowPlayingED = baseURL + "/movie/now_playing?language=en-US&page=1"
-    private let trendThatED = baseURL + "/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&primary_release_year=2024&sort_by=popularity.desc&with_original_language=th"
+    private let trendThai = baseURL + "/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&primary_release_year=2024&sort_by=popularity.desc&with_original_language=th"
     private let popularPerson = baseURL + "/person/popular?language=en-US&page=1"
     
     let authToken = "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI4NmJjMGQzYWIwYjZmMGQxNzJmM2M0MDgyZjQwZWZmMSIsInN1YiI6IjY1ODMxY2NhODU4Njc4NTUyZWY2ODQwMSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.vqJ0i9h2drcrWWixFmPZ5ol5a8I9vk6yDzeeq1gbvMo"
@@ -211,7 +211,7 @@ final class NetworkManager {
     }
     
     func fetchTrendThai() async throws -> [Movie] {
-        guard let url = URL(string: trendThatED) else {
+        guard let url = URL(string: trendThai) else {
             throw APError.invalidURL
         }
         

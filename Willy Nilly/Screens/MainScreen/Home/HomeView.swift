@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import Kingfisher
 
 struct HomeView: View {
     
@@ -58,7 +57,7 @@ struct HomeView: View {
             viewModel.getTrendingMovie()
             viewModel.getTopRated()
             viewModel.getNowPlaying()
-            viewModel.getTrendThat()
+            viewModel.getTrendThai()
         }
         .alert(item: $viewModel.alertItem) { alert in
             Alert(title: alert.title,

@@ -32,6 +32,13 @@ import SwiftUI
     @Published var MovieDiscover: [Movie] = []
     @Published var PopularPerson: [Person] = []
     @Published var PersonMovieCredits: [Movie] = []
+    @Published var isMovieDiscoverLoaded = false
+    
+    func removeMovieFromDiscover(withId id: Int) {
+            if let index = MovieDiscover.firstIndex(where: { $0.id == id }) {
+                MovieDiscover.remove(at: index)
+            }
+        }
     
     func getUpcomingMovie() {
         isLoading = true
@@ -123,7 +130,7 @@ import SwiftUI
         }
     }
     
-    func getTrendThat() {
+    func getTrendThai() {
         isLoading = true
         Task{
             do{

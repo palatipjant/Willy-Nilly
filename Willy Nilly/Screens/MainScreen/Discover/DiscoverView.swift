@@ -6,36 +6,51 @@
 //
 
 import SwiftUI
+import SwiftData
 import ConfettiSwiftUI
 
 struct DiscoverView: View {
     
     @StateObject var viewModel = apiViewModel()
+    @Environment(\.modelContext) var context
+    @Query private var likedMovie: [LikedMovie]
     
     var body: some View {
         NavigationStack{
-                ZStack{
-                    ForEach(viewModel.MovieDiscover) { movie in
+            ZStack{
+                ForEach(viewModel.MovieDiscover.shuffled()) { movie in
+                    if !likedMovie.contains(where: { $0.id == movie.id }) {
                         NavigationLink(destination: OverviewMovie(movie: movie)){
                             CardView(movie: movie)
                         }
                         .buttonStyle(FlatLinkStyle())
                     }
+                    else {
+                        EmptyView()
+                            .onAppear{
+                                viewModel.removeMovieFromDiscover(withId: movie.id)
+                            }
+                    }
                 }
-                .padding(.vertical)
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
-                
-                DiscoverButton()
+            }
+            .padding(.vertical)
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .navigationTitle("Discover")
+            .toolbarBackground(.hidden, for: .navigationBar)
+            
+            DiscoverButton()
             
         }.task {
-            viewModel.MovieDiscover.removeAll()
-            viewModel.getMovieDiscover(page: 1)
-//            viewModel.getMovieDiscover(page: 2)
-//            viewModel.getMovieDiscover(page: 3)
+            if !viewModel.isMovieDiscoverLoaded {
+                viewModel.MovieDiscover.removeAll()
+                viewModel.getMovieDiscover(page: 1)
+                viewModel.getMovieDiscover(page: 2)
+                viewModel.getMovieDiscover(page: 3)
+                viewModel.isMovieDiscoverLoaded = true
+            }
         }
     }
 }
-
 
 #Preview {
     DiscoverView()
@@ -43,6 +58,7 @@ struct DiscoverView: View {
 
 struct DiscoverButton: View {
     
+    @StateObject var viewModel = apiViewModel()
     @State private var confetti = 0
     @State private var likeClick = false
     
@@ -86,25 +102,23 @@ struct DiscoverButton: View {
             .buttonStyle(LikeEffectButtonStyle(confetti: $confetti, emoji1: "❤️", emoji2: "🌹", emoji3: "🌙", emoji4: "✨"))
             
             Button(action: {
-                print("return")
+                //
             }, label: {
                 Circle()
                     .fill(.white)
                     .shadow(radius: 5)
                     .frame(width: 50, height: 50)
                     .overlay {
-                        Image(systemName: "arrow.uturn.backward")
+                        Image(systemName: "eye.fill")
                             .resizable()
                             .scaledToFit()
                             .frame(width: 20, height: 20)
-                            .foregroundStyle(.yellow)
+                            .foregroundStyle(.black)
                             .fontWeight(.black)
                     }
             })
         }
         .padding(.bottom,40)
-        .navigationTitle("Discover")
-        .toolbarBackground(.hidden, for: .navigationBar)
     }
 }
 
