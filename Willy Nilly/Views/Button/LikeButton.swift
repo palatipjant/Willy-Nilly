@@ -17,7 +17,7 @@ struct LikeButton: View{
     
     @State private var confetti = 0
     @State private var likeClick = false
-    @State private var already_like = false
+    @State public var already_like = false
     
     var movie: Movie
     

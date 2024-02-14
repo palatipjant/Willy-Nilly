@@ -7,15 +7,18 @@
 
 import SwiftUI
 import ConfettiSwiftUI
+import SwiftData
 
 struct MarkAsSeenButton: View{
     
     @State private var confetti = 0
     @State private var likeClick = false
+    @State private var already_like = false
+    var movie: Movie
     
     var body: some View {
         Button(action: {
-            likeClick.toggle()
+            already_like = true
             confetti += 1
         }, label: {
             Circle()

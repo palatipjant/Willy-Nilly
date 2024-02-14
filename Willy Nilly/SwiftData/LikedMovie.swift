@@ -31,3 +31,4 @@ final class LikedMovie: Identifiable {
         self.posterURL = posterURL
     }
 }
+

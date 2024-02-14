@@ -19,7 +19,6 @@ struct Willy_NillyApp: App {
         WindowGroup {
             TabHome()
                 .environment(\.colorScheme, .dark)
-//                .environmentObject(viewModel)
                 .modelContainer(for: [LikedMovie.self])
                 .showOnboardingIfNeeded(using: .prod)
         }
