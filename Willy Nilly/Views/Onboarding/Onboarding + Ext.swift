@@ -18,7 +18,7 @@ extension OnboardingConfiguration {
                                                  title: "Random Movies",
                                                  content: "Let MovieMingle surprise you with hidden gems and unexpected delights."),
                                            .init(image: Image(systemName: "list.bullet.rectangle.fill"),
-                                                 title: "CPersonalized Lists",
+                                                 title: "Personalized Lists",
                                                  content: "Create custom lists to track your favorites and mark what you've seen."),
                                            .init(image: Image(systemName: "person.text.rectangle.fill"),
                                                  title: "Your Favorite Cast",

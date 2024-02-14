@@ -38,7 +38,7 @@ struct DiscoverView: View {
             .navigationTitle("Discover")
             .toolbarBackground(.hidden, for: .navigationBar)
             
-//            DiscoverButton()
+            DiscoverButton()
             
         }.onAppear {
             viewModel.MovieDiscover.removeAll()
