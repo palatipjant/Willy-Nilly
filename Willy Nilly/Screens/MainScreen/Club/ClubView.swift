@@ -39,7 +39,7 @@ struct ClubView: View {
                 }.listStyle(.plain)
                     .padding(.top)
             }
-            .task {
+            .onAppear {
                 viewModel.getPopularPerson()
             }
             .alert(item: $viewModel.alertItem) { alert in

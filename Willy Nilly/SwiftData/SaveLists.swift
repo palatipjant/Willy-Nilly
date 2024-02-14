@@ -9,8 +9,8 @@ import Foundation
 import SwiftData
 
 @Model
-final class LikedMovie: Identifiable {
-    @Attribute(.unique) var id: Int
+public class SaveLists: Identifiable {
+    @Attribute(.unique) public var id: Int
     var title: String
     var overview: String?
     var release_date: String
@@ -20,7 +20,9 @@ final class LikedMovie: Identifiable {
     var poster_path: String?
     var posterURL: URL?
     
-    init(id: Int, title: String, overview: String? = nil, release_date: String, original_language: String, genre_ids: [Int], poster_path: String? = nil, posterURL: URL? = nil) {
+    var tag: String
+    
+    init(id: Int, title: String, overview: String? = nil, release_date: String, original_language: String, genre_ids: [Int], poster_path: String? = nil, posterURL: URL? = nil, tag: String) {
         self.id = id
         self.title = title
         self.overview = overview
@@ -29,6 +31,6 @@ final class LikedMovie: Identifiable {
         self.genre_ids = genre_ids
         self.poster_path = poster_path
         self.posterURL = posterURL
+        self.tag = tag
     }
 }
-

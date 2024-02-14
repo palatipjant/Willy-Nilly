@@ -13,26 +13,48 @@ struct MarkAsSeenButton: View{
     
     @State private var confetti = 0
     @State private var likeClick = false
-    @State private var already_like = false
+    @State private var already_seen = false
+    @Environment(\.modelContext) var context
+    @Query private var likedMovie: [SaveLists]
+    
     var movie: Movie
     
     var body: some View {
         Button(action: {
-            already_like = true
-            confetti += 1
+            if likedMovie.contains(where: { $0.id == movie.id }) {
+                if let likedMovieToDelete = likedMovie.first(where: { $0.id == movie.id }) {
+                    context.delete(likedMovieToDelete)
+                    try! context.save()
+                }
+                already_seen = false
+            } else {
+                let LikedMovie = SaveLists(id: movie.id,
+                                            title: movie.title,
+                                            overview: movie.overview,
+                                            release_date: movie.release_date,
+                                            original_language: movie.original_language,
+                                            genre_ids: movie.genre_ids,
+                                            poster_path: movie.poster_path,
+                                            posterURL: movie.posterURL,
+                                            tag: "Seen")
+                context.insert(LikedMovie)
+                try! context.save()
+                already_seen = true
+                confetti += 1
+            }
         }, label: {
             Circle()
                 .fill(.white)
                 .shadow(radius: 5)
                 .frame(width: 50, height: 50)
                 .overlay {
-                    Image(systemName: likeClick ? "eye.fill" : "eye")
+                    Image(systemName: already_seen ? "eye.fill" : "eye")
                         .resizable()
                         .scaledToFit()
                         .frame(width: 30, height: 30)
-                        .foregroundStyle(likeClick ? .black : .black)
+                        .foregroundStyle(already_seen ? .black : .black)
                 }
-                .tint(likeClick ? .red : .gray)
+                .tint(already_seen ? .black : .black)
         })
         .buttonStyle(MarkAsSeenEffectButtonStyle(confetti: $confetti))
     }

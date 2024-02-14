@@ -9,7 +9,8 @@ import SwiftUI
 
 @MainActor final class apiViewModel: ObservableObject {
     
-    
+    @Published var likedMovies: [SaveLists] = []
+    @Published var SeenMovies: [SaveLists] = []
     
     @Published var alertItem: AlertItem?
     @Published var isLoading: Bool = false
@@ -32,6 +33,14 @@ import SwiftUI
     @Published var PopularPerson: [Person] = []
     @Published var PersonMovieCredits: [Movie] = []
     @Published var isMovieDiscoverLoaded = false
+    
+    func getLikedMovies() -> [SaveLists] {
+            return likedMovies.filter { $0.tag == "Liked" }
+        }
+    
+    func getSeenMovies() -> [SaveLists] {
+            return SeenMovies.filter { $0.tag == "Seen" }
+        }
     
     func removeMovieFromDiscover(withId id: Int) {
             if let index = MovieDiscover.firstIndex(where: { $0.id == id }) {

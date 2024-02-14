@@ -19,7 +19,7 @@ struct TabHome: View {
 
             VStack{
                 ClubView()
-            }.tabItem { Label("Club", systemImage: "person.crop.rectangle.stack.fill") }
+            }.tabItem { Label("Cast", systemImage: "person.crop.rectangle.stack.fill") }
             
             VStack{
                 MyListsView()

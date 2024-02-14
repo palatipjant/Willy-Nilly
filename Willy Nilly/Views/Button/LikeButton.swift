@@ -13,11 +13,11 @@ struct LikeButton: View{
     
     @StateObject var viewModel = apiViewModel()
     @Environment(\.modelContext) var context
-    @Query private var likedMovie: [LikedMovie]
+    @Query private var likedMovie: [SaveLists]
     
     @State private var confetti = 0
     @State private var likeClick = false
-    @State public var already_like = false
+    @State private var already_like = false
     
     var movie: Movie
     
@@ -30,14 +30,15 @@ struct LikeButton: View{
                 }
                 already_like = false
             } else {
-                let LikedMovie = LikedMovie(id: movie.id,
+                let LikedMovie = SaveLists(id: movie.id,
                                             title: movie.title,
                                             overview: movie.overview,
                                             release_date: movie.release_date,
                                             original_language: movie.original_language,
                                             genre_ids: movie.genre_ids,
                                             poster_path: movie.poster_path,
-                                            posterURL: movie.posterURL)
+                                            posterURL: movie.posterURL,
+                                            tag: "Liked")
                 context.insert(LikedMovie)
                 try! context.save()
                 already_like = true

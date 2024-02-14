@@ -13,7 +13,7 @@ struct DiscoverView: View {
     
     @StateObject var viewModel = apiViewModel()
     @Environment(\.modelContext) var context
-    @Query private var likedMovie: [LikedMovie]
+    @Query private var likedMovie: [SaveLists]
     
     var body: some View {
         NavigationStack{
@@ -38,16 +38,14 @@ struct DiscoverView: View {
             .navigationTitle("Discover")
             .toolbarBackground(.hidden, for: .navigationBar)
             
-            DiscoverButton()
+//            DiscoverButton()
             
-        }.task {
-            if !viewModel.isMovieDiscoverLoaded {
-                viewModel.MovieDiscover.removeAll()
-                viewModel.getMovieDiscover(page: 1)
-                viewModel.getMovieDiscover(page: 2)
-                viewModel.getMovieDiscover(page: 3)
-                viewModel.isMovieDiscoverLoaded = true
-            }
+        }.onAppear {
+            viewModel.MovieDiscover.removeAll()
+            viewModel.getMovieDiscover(page: 1)
+            viewModel.getMovieDiscover(page: 2)
+            viewModel.getMovieDiscover(page: 3)
+            
         }
     }
 }

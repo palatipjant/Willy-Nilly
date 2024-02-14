@@ -6,10 +6,13 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct HomeView: View {
     
     @StateObject var viewModel = apiViewModel()
+    @Environment(\.modelContext) var context
+    @Query private var likedMovie: [SaveLists]
     
     var body: some View {
         ZStack{
@@ -52,7 +55,7 @@ struct HomeView: View {
                 LoadingView()
             }
         }
-        .task {
+        .onAppear {
             viewModel.getUpcomingMovie()
             viewModel.getTrendingMovie()
             viewModel.getTopRated()
