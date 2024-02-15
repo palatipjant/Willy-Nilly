@@ -20,10 +20,15 @@ struct DiscoverView: View {
             ZStack{
                 ForEach(viewModel.MovieDiscover.shuffled()) { movie in
                     if !likedMovie.contains(where: { $0.id == movie.id }) {
-                        NavigationLink(destination: OverviewMovie(movie: movie)){
-                            CardView(movie: movie)
+                        VStack{
+                            NavigationLink(destination: OverviewMovie(movie: movie)){
+                                CardView(movie: movie)
+                            }
+                            .buttonStyle(FlatLinkStyle())
+                            Spacer()
+                            
+                            DiscoverButton(movie: movie)
                         }
-                        .buttonStyle(FlatLinkStyle())
                     }
                     else {
                         EmptyView()
@@ -38,7 +43,7 @@ struct DiscoverView: View {
             .navigationTitle("Discover")
             .toolbarBackground(.hidden, for: .navigationBar)
             
-            DiscoverButton()
+            
             
         }.onAppear {
             viewModel.MovieDiscover.removeAll()
@@ -56,33 +61,46 @@ struct DiscoverView: View {
 
 struct DiscoverButton: View {
     
+    @Environment(\.modelContext) var context
+    @Query private var likedMovie: [SaveLists]
     @StateObject var viewModel = apiViewModel()
     @State private var confetti = 0
     @State private var likeClick = false
+    var movie: Movie
     
     var body: some View {
         HStack(spacing: 15) {
-            Button(action: {
-                print("remove")
-            }, label: {
-                Circle()
-                    .fill(.white)
-                    .shadow(radius: 5)
-                    .frame(width: 50, height: 50)
-                    .overlay {
-                        Image(systemName: "xmark")
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 20, height: 20)
-                            .foregroundStyle(.red)
-                            .fontWeight(.black)
-                    }
-            })
+//            Button(action: {
+//                viewModel.removeMovieFromDiscover(withId: movie.id)
+//            }, label: {
+//                Circle()
+//                    .fill(.white)
+//                    .shadow(radius: 5)
+//                    .frame(width: 50, height: 50)
+//                    .overlay {
+//                        Image(systemName: "xmark")
+//                            .resizable()
+//                            .scaledToFit()
+//                            .frame(width: 20, height: 20)
+//                            .foregroundStyle(.red)
+//                            .fontWeight(.black)
+//                    }
+//            })
             
             Button(action: {
                 likeClick.toggle()
                 confetti += 1
-                print("like")
+                let LikedMovie = SaveLists(id: movie.id,
+                                            title: movie.title,
+                                            overview: movie.overview,
+                                            release_date: movie.release_date,
+                                            original_language: movie.original_language,
+                                            genre_ids: movie.genre_ids,
+                                            poster_path: movie.poster_path,
+                                            posterURL: movie.posterURL,
+                                            tag: "Liked")
+                context.insert(LikedMovie)
+                try! context.save()
             }, label: {
                 Circle()
                     .fill(.white)
@@ -99,22 +117,22 @@ struct DiscoverButton: View {
             })
             .buttonStyle(LikeEffectButtonStyle(confetti: $confetti, emoji1: "❤️", emoji2: "🌹", emoji3: "🌙", emoji4: "✨"))
             
-            Button(action: {
-                //
-            }, label: {
-                Circle()
-                    .fill(.white)
-                    .shadow(radius: 5)
-                    .frame(width: 50, height: 50)
-                    .overlay {
-                        Image(systemName: "eye.fill")
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 20, height: 20)
-                            .foregroundStyle(.black)
-                            .fontWeight(.black)
-                    }
-            })
+//            Button(action: {
+//                //
+//            }, label: {
+//                Circle()
+//                    .fill(.white)
+//                    .shadow(radius: 5)
+//                    .frame(width: 50, height: 50)
+//                    .overlay {
+//                        Image(systemName: "eye.fill")
+//                            .resizable()
+//                            .scaledToFit()
+//                            .frame(width: 20, height: 20)
+//                            .foregroundStyle(.black)
+//                            .fontWeight(.black)
+//                    }
+//            })
         }
         .padding(.bottom,40)
     }

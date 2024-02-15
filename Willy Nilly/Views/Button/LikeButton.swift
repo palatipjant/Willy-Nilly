@@ -17,7 +17,7 @@ struct LikeButton: View{
     
     @State private var confetti = 0
     @State private var likeClick = false
-    @State private var already_like = false
+    @State public var already_like = false
     
     var movie: Movie
     
@@ -46,19 +46,19 @@ struct LikeButton: View{
             }
         }, label: {
             Circle()
-                .fill(.white)
-                .shadow(radius: 5)
-                .frame(width: 50, height: 50)
+                .fill( already_like ? .white : .clear)
+                .strokeBorder(.white, lineWidth: 1)
+                .frame(width: 30, height: 30)
                 .overlay {
                     Image(systemName: already_like ? "heart.fill" : "heart")
                         .resizable()
                         .scaledToFit()
-                        .frame(width: 20, height: 20)
-                        .foregroundStyle(already_like ? .red : .black)
+                        .frame(width: 15, height: 15)
+                        .foregroundStyle(already_like ? .red : .white)
                 }
                 .tint(already_like ? .red : .gray)
         })
-        .buttonStyle(LikeEffectButtonStyle(confetti: $confetti, emoji1: "🎬", emoji2: "🍿", emoji3: "🍷", emoji4: "❤️"))
+//        .buttonStyle(LikeEffectButtonStyle(confetti: $confetti, emoji1: "🎬", emoji2: "🍿", emoji3: "🍷", emoji4: "❤️"))
         .task {
             if likedMovie.contains(where: { $0.id == movie.id }) {
                 already_like = true

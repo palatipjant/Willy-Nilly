@@ -25,7 +25,6 @@ struct TabHome: View {
                 MyListsView()
             }.tabItem { Label("Lists", systemImage: "heart.circle") }
         }
-        
     }
 
     

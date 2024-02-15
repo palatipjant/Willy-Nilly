@@ -15,7 +15,7 @@ struct CardView: View {
     @Query private var likedMovie: [SaveLists]
     
     @StateObject private var viewModel = apiViewModel()
-    @State private var offset = CGSize.zero
+    @State public var offset = CGSize.zero
     @State private var color: Color = .clear
     
     var body: some View {

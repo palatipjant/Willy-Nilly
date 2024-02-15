@@ -29,7 +29,9 @@ import SwiftUI
     @Published var CastDetail: CastDetail = Mockdata.castDetailSample
     @Published var CastImage: [CastImage] = []
     @Published var MovieReview: [MovieReview] = []
+    
     @Published var MovieDiscover: [Movie] = []
+    
     @Published var PopularPerson: [Person] = []
     @Published var PersonMovieCredits: [Movie] = []
     @Published var isMovieDiscoverLoaded = false
@@ -43,8 +45,11 @@ import SwiftUI
         }
     
     func removeMovieFromDiscover(withId id: Int) {
+        print("Enter")
             if let index = MovieDiscover.firstIndex(where: { $0.id == id }) {
                 MovieDiscover.remove(at: index)
+                print(MovieDiscover)
+                print("Leave")
             }
         }
     
