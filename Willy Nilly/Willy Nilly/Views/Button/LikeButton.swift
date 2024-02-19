@@ -11,7 +11,7 @@ import ConfettiSwiftUI
 
 struct LikeButton: View{
     
-    @StateObject var viewModel = apiViewModel()
+    @EnvironmentObject var viewModel: apiViewModel
     @Environment(\.modelContext) var context
     @Query private var likedMovie: [SaveLists]
     

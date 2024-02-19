@@ -12,13 +12,14 @@ import SwiftData
 @main
 struct Willy_NillyApp: App {
 
-//    @StateObject var viewModel = apiViewModel()
+    @StateObject var viewModel = apiViewModel()
     
     
     var body: some Scene {
         WindowGroup {
             TabHome()
                 .environment(\.colorScheme, .dark)
+                .environmentObject(viewModel)
                 .modelContainer(for: [SaveLists.self])
                 .showOnboardingIfNeeded(using: .prod)
         }

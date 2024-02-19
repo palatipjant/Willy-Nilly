@@ -14,15 +14,14 @@ struct CardView: View {
     @Environment(\.modelContext) var context
     @Query private var likedMovie: [SaveLists]
     
-    @StateObject private var viewModel = apiViewModel()
+    @EnvironmentObject var viewModel: apiViewModel
     @State public var offset = CGSize.zero
     @State private var color: Color = .clear
     
     var body: some View {
-        ZStack{
             VStack{
                 MovieRemoteImage(urlString: "https://image.tmdb.org/t/p/w500\(movie.poster_path ?? "")" )
-                    .frame(width: 320, height: 460)
+                    .frame(width: 400, height: 600)
                     .scaledToFill()
                     .shadow(radius: 4)
                     .overlay(content: {
@@ -45,7 +44,6 @@ struct CardView: View {
                             }
                     )
             }
-        }
     }
     func swipeCard(width: CGFloat) {
         switch width{
@@ -70,16 +68,6 @@ struct CardView: View {
         }
     }
     
-//    func changeColor(width: CGFloat) {
-//        switch width{
-//        case -500...(-140):
-//            color = .red
-//        case 130...500:
-//            color = .green
-//        default:
-//            color = .clear
-//        }
-//    }
 }
 
 #Preview {

@@ -14,8 +14,8 @@ struct MyListsView: View {
     @Environment(\.modelContext) var context
     @Query private var likedMovie: [SaveLists]
     @Query private var seenMovie: [SaveLists]
-     
-    @StateObject var viewModel = apiViewModel()
+    
+    @EnvironmentObject var viewModel: apiViewModel
     //    @State private var selectedCategory: String? = "Liked"
     //    let categories = ["Liked", "Seen"]
     

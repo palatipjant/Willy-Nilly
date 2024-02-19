@@ -13,7 +13,7 @@ struct EachCastView: View{
     var cast: Int
     var profile_path: String
     
-    @StateObject var viewModel = apiViewModel()
+    @EnvironmentObject var viewModel: apiViewModel
     
     var body: some View {
         ZStack(alignment: .bottom){

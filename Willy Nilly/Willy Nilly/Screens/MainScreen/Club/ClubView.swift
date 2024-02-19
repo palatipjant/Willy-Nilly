@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ClubView: View {
     
-    @StateObject var viewModel = apiViewModel()
+    @EnvironmentObject var viewModel: apiViewModel
     
     var body: some View {
         NavigationStack{

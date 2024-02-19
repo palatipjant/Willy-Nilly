@@ -11,7 +11,7 @@ struct CastMovieCreditsView: View {
     
     var titleView: String
     var person_id: Int
-    @StateObject var viewModel = apiViewModel()
+    @EnvironmentObject var viewModel: apiViewModel
     
     var body: some View {
         VStack(alignment: .leading){

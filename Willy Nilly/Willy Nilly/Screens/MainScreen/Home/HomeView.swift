@@ -10,7 +10,7 @@ import SwiftData
 
 struct HomeView: View {
     
-    @StateObject var viewModel = apiViewModel()
+    @EnvironmentObject var viewModel: apiViewModel
     @Environment(\.modelContext) var context
     @Query private var likedMovie: [SaveLists]
     

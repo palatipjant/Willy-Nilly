@@ -14,7 +14,7 @@ struct SearchView: View {
             case search
         }
     
-    @StateObject var viewModel = apiViewModel()
+    @EnvironmentObject var viewModel: apiViewModel
     @State var searchText = ""
     @FocusState var isFocus: FocusedField?
     

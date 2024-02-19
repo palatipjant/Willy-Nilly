@@ -9,7 +9,7 @@ import SwiftUI
 
 struct CategoryListView: View {
     
-    @StateObject var viewModel = apiViewModel()
+    @EnvironmentObject var viewModel: apiViewModel
     var genre: Genre
     let columns: [GridItem] = [
         GridItem(.flexible()),

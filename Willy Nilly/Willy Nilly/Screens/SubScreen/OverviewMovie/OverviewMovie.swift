@@ -11,7 +11,7 @@ import ConfettiSwiftUI
 
 struct OverviewMovie: View {
     
-    @StateObject var viewModel = apiViewModel()
+    @EnvironmentObject var viewModel: apiViewModel
     @State var isRead = false
     var movie: Movie
     
