@@ -13,7 +13,7 @@
 * **Libraries:** Confetti, KingFisher, OnboardingKit
 
 ## Screens
-<img src="/asset/Screen/home.PNG" alt="screen-01" width="256" hspace="3"/><img src="/asset/Screen/overview.PNG" alt="screen-02" width="256" hspace="3"/><img src="/asset/Screen/cast.PNG" alt="screen-03" width="256" hspace="3"/><img src="/asset/Screen/lists.PNG" alt="screen-04" width="256" hspace="3"/><img src="/asset/Screen/pop_cast.PNG" alt="screen-05" width="256" hspace="3"/><img src="/asset/Screen/discover.PNG" alt="screen-07" width="256" hspace="3"/>
+<img src="/asset/Screen/home.PNG" alt="screen-01" width="256" hspace="3"/><img src="/asset/Screen/overview.PNG" alt="screen-02" width="256" hspace="3"/><img src="/asset/Screen/cast.PNG" alt="screen-03" width="256" hspace="3"/><img src="/asset/Screen/lists.PNG" alt="screen-04" width="256" hspace="3"/><img src="/asset/Screen/pop_cast.PNG" alt="screen-05" width="256" hspace="3"/><img src="/asset/Screen/discover.jpeg" alt="screen-07" width="256" hspace="3"/>
 
 ## Getting Started
 ### Prerequisites
