@@ -63,6 +63,7 @@ struct CardView: View {
                                         tag: "Liked")
             context.insert(LikedMovie)
             try! context.save()
+            viewModel.removeMovieFromDiscover(withId: movie.id)
         default:
             offset = CGSize.zero
         }

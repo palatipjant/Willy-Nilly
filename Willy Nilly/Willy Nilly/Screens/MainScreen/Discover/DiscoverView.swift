@@ -14,36 +14,43 @@ struct DiscoverView: View {
     @EnvironmentObject var viewModel: apiViewModel
     @Environment(\.modelContext) var context
     @Query private var likedMovie: [SaveLists]
-    
     var body: some View {
         NavigationStack{
             ZStack{
-                ForEach(viewModel.MovieDiscover.shuffled()) { movie in
-                    if !likedMovie.contains(where: { $0.id == movie.id }) {
-                        ZStack{
-                            VStack{
-                                NavigationLink(destination: OverviewMovie(movie: movie)){
-                                    CardView(movie: movie)
-                                        .ignoresSafeArea(edges: .bottom)
+                ForEach(viewModel.MovieDiscover.shuffled().prefix(1)) { movie in
+                        if !likedMovie.contains(where: { $0.id == movie.id }) {
+                            ZStack{
+                                VStack{
+                                    NavigationLink(destination: OverviewMovie(movie: movie)){
+                                        CardView(movie: movie)
+                                            .ignoresSafeArea(edges: .bottom)
+                                    }
+                                    .buttonStyle(FlatLinkStyle())
+                                    .overlay(content: {
+                                        VStack{
+                                            LinearGradient(colors: [.clear, .black], startPoint: .bottom, endPoint: .top)
+                                                .frame(maxWidth: .infinity, maxHeight: 140)
+                                                .offset(y: -20)
+                                            Spacer()
+                                            LinearGradient(colors: [.clear, .black], startPoint: .top, endPoint: .bottom)
+                                                .frame(maxWidth: .infinity, maxHeight: 190)
+                                                .offset(y: 20)
+                                        }
+                                    })
                                 }
-                                .buttonStyle(FlatLinkStyle())
-                                .overlay(content: {
-                                    LinearPoster()
-                                })
-                            }
-                            VStack{
-                                Spacer()
-                                DiscoverButton(movie: movie)
+                                VStack{
+                                    Spacer()
+                                    DiscoverButton(movie: movie)
+                                }
                             }
                         }
+                        else {
+                            EmptyView()
+                                .onAppear{
+                                    viewModel.removeMovieFromDiscover(withId: movie.id)
+                                }
+                        }
                     }
-                    else {
-                        EmptyView()
-                            .onAppear{
-                                viewModel.removeMovieFromDiscover(withId: movie.id)
-                            }
-                    }
-                }
             }
             .padding(.vertical)
             .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -56,7 +63,8 @@ struct DiscoverView: View {
             viewModel.MovieDiscover.removeAll()
             viewModel.getMovieDiscover(page: 1)
             viewModel.getMovieDiscover(page: 2)
-//            viewModel.getMovieDiscover(page: 3)
+            viewModel.getMovieDiscover(page: 3)
+            viewModel.getMovieDiscover(page: 4)
             
         }
     }
@@ -81,16 +89,17 @@ struct DiscoverButton: View {
                 likeClick.toggle()
                 confetti += 1
                 let LikedMovie = SaveLists(id: movie.id,
-                                            title: movie.title,
-                                            overview: movie.overview,
-                                            release_date: movie.release_date,
-                                            original_language: movie.original_language,
-                                            genre_ids: movie.genre_ids,
-                                            poster_path: movie.poster_path,
-                                            posterURL: movie.posterURL,
-                                            tag: "Liked")
+                                           title: movie.title,
+                                           overview: movie.overview,
+                                           release_date: movie.release_date,
+                                           original_language: movie.original_language,
+                                           genre_ids: movie.genre_ids,
+                                           poster_path: movie.poster_path,
+                                           posterURL: movie.posterURL,
+                                           tag: "Liked")
                 context.insert(LikedMovie)
                 try! context.save()
+                viewModel.removeMovieFromDiscover(withId: movie.id)
             }, label: {
                 Circle()
                     .fill(.clear)

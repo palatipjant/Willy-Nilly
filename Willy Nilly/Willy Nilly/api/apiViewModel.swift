@@ -45,11 +45,8 @@ import SwiftUI
         }
     
     func removeMovieFromDiscover(withId id: Int) {
-        print("Enter")
             if let index = MovieDiscover.firstIndex(where: { $0.id == id }) {
                 MovieDiscover.remove(at: index)
-                print(MovieDiscover)
-                print("Leave")
             }
         }
     
