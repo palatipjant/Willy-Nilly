@@ -1,7 +1,7 @@
 # Willy Nilly
 
 ### Click Banner to watch demo screen record.
-[![Watch the video](https://github.com/palatipjant/Willy-Nilly/blob/palatipjant/asset/willy%20nill%20summary%20slide.png)(https://youtu.be/AG7IA2KwyXU)
+[![Watch the video](https://github.com/palatipjant/Willy-Nilly/blob/palatipjant/asset/willy%20nill%20summary%20slide.png)](https://youtu.be/AG7IA2KwyXU)
 
 ## Project Description
 *TMDB All around the world*
