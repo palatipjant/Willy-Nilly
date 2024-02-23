@@ -31,7 +31,7 @@ struct HorizonScrollView: View {
                 }
             }
             ScrollView(.horizontal) {
-                HStack{
+                LazyHStack{
                     ForEach(movie_api) {movie in
                         NavigationLink(destination: OverviewMovie(movie: movie)) {
                             MovieRemoteImage(urlString: "https://image.tmdb.org/t/p/w500\(movie.poster_path ?? "")" )
@@ -51,8 +51,11 @@ struct HorizonScrollView: View {
                     .padding(.leading,15)
                 }
                 .frame(height: 180)
+                .scrollTargetLayout()
             }
             .padding(.top, -10)
+            .scrollTargetBehavior(.viewAligned)
+            .safeAreaPadding(.horizontal, 20)
         }
     }
 }

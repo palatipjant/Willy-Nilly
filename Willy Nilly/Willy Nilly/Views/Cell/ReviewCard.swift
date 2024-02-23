@@ -22,7 +22,7 @@ struct ReviewCard: View{
                 Spacer()
             }
             ScrollView(.horizontal) {
-                HStack{
+                LazyHStack{
                     ForEach(movie_review, id:\.author) { review in
                         VStack(alignment: .leading){
                             HStack{
@@ -60,7 +60,9 @@ struct ReviewCard: View{
                         }
                     }
                 }.padding(.leading)
-            }
+                    .scrollTargetLayout()
+            }.scrollTargetBehavior(.viewAligned)
+                .safeAreaPadding(.horizontal, 20)
         }
     }
 }

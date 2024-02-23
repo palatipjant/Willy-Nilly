@@ -65,6 +65,7 @@ struct DiscoverView: View {
             viewModel.getMovieDiscover(page: 2)
             viewModel.getMovieDiscover(page: 3)
             viewModel.getMovieDiscover(page: 4)
+            viewModel.getMovieDiscover(page: 5)
             
         }
     }

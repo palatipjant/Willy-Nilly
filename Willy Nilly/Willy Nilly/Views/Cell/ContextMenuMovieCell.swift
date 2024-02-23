@@ -15,11 +15,6 @@ struct ContextMenuMovieCell: View {
         NavigationLink(destination: OverviewMovie(movie: movie)) {
             Label("Overview", systemImage: "doc.plaintext.fill")
         }
-        NavigationLink(destination: OverviewMovie(movie: movie)) {
-            Label("Like", systemImage: "heart.fill")
-        }
-        NavigationLink(destination: OverviewMovie(movie: movie)) {
-            Label("Mark as seen", systemImage: "eye.fill")
-        }
+
     }
 }
