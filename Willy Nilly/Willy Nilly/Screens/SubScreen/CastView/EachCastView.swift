@@ -63,7 +63,7 @@ struct EachCastView: View{
                                     Spacer()
                                 }
                                 ScrollView(.horizontal) {
-                                    HStack{
+                                    LazyHStack{
                                         ForEach(viewModel.CastImage, id: \.file_path) {image in
                                             MovieRemoteImage(urlString: "https://image.tmdb.org/t/p/w500\(image.file_path ?? "")" )
                                                 .frame(width: 110, height: 162.91)
@@ -78,8 +78,11 @@ struct EachCastView: View{
                                         .padding(.leading,15)
                                     }
                                     .frame(height: 180)
+                                    .scrollTargetLayout()
                                 }
                                 .padding(.top, -10)
+                                .scrollTargetBehavior(.viewAligned)
+                                .safeAreaPadding(.horizontal, 10)
                             }
                             .offset(y: -150)
                         }

@@ -46,7 +46,8 @@ struct HorizonScrollView: View {
                                 .contextMenu {
                                     ContextMenuMovieCell(movie: movie)
                                 }
-                        }.buttonStyle(FlatLinkStyle())
+                        }
+                        .buttonStyle(FlatLinkStyle())
                     }
                     .padding(.leading,15)
                 }
@@ -55,7 +56,7 @@ struct HorizonScrollView: View {
             }
             .padding(.top, -10)
             .scrollTargetBehavior(.viewAligned)
-            .safeAreaPadding(.horizontal, 20)
+            .safeAreaPadding(.horizontal, 10)
         }
     }
 }

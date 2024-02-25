@@ -62,7 +62,7 @@ struct ReviewCard: View{
                 }.padding(.leading)
                     .scrollTargetLayout()
             }.scrollTargetBehavior(.viewAligned)
-                .safeAreaPadding(.horizontal, 20)
+                .safeAreaPadding(.horizontal, 10)
         }
     }
 }

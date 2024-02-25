@@ -29,29 +29,32 @@ struct HorizonCastView: View {
                 }
             }
             ScrollView(.horizontal) {
-                HStack{
+                LazyHStack{
                     ForEach(cast) {cast in
                         NavigationLink(destination: EachCastView(cast: cast.id, profile_path: cast.profile_path ?? "")) {
                             MovieRemoteImage(urlString: "https://image.tmdb.org/t/p/w500\(cast.profile_path ?? "")" )
                                 .frame(width: 110, height: 162.91)
                                 .scaledToFit()
                                 .clipShape(RoundedRectangle(cornerRadius: 8))
+                                .overlay {
+                                    OverlayCast(cast: cast)
+                                }
                                 .scrollTransition { content, phase in
                                     content
                                         .scaleEffect(phase.isIdentity ? 1 : 0.45)
                                         .blur(radius: phase.isIdentity ? 0 : 5)
                                 }
-                                .overlay {
-                                    OverlayCast(cast: cast)
-                                }
                         }
-                        .padding(.leading,15)
                         .buttonStyle(FlatLinkStyle())
                     }
+                    .padding(.leading,15)
                 }
                 .frame(height: 180)
+                .scrollTargetLayout()
             }
             .padding(.top, -10)
+            .scrollTargetBehavior(.viewAligned)
+            .safeAreaPadding(.horizontal, 10)
         }
     }
 }

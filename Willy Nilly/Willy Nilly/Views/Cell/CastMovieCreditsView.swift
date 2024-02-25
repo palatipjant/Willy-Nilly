@@ -30,7 +30,7 @@ struct CastMovieCreditsView: View {
                 }
             }
             ScrollView(.horizontal) {
-                HStack{
+                LazyHStack{
                     ForEach(viewModel.PersonMovieCredits) {movie in
                         NavigationLink(destination: OverviewMovie(movie: movie)) {
                             MovieRemoteImage(urlString: "https://image.tmdb.org/t/p/w500\(movie.poster_path ?? "")" )
@@ -50,8 +50,11 @@ struct CastMovieCreditsView: View {
                     .padding(.leading,15)
                 }
                 .frame(height: 180)
+                .scrollTargetLayout()
             }
             .padding(.top, -10)
+            .scrollTargetBehavior(.viewAligned)
+            .safeAreaPadding(.horizontal, 10)
         }
         .task {
             viewModel.getPersonMovieCredits(person_id: person_id)
