@@ -56,9 +56,9 @@ struct DiscoverView: View {
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .navigationTitle("Discover")
             .toolbarBackground(.hidden, for: .navigationBar)
-            
-            
-            
+            if viewModel.isLoading {
+                LoadingView()
+            }
         }.onAppear {
             viewModel.MovieDiscover.removeAll()
             viewModel.getMovieDiscover(page: 1)
