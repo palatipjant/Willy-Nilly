@@ -7,13 +7,13 @@
 
 import SwiftUI
 import SwiftData
-import ConfettiSwiftUI
 
 struct DiscoverView: View {
     
     @EnvironmentObject var viewModel: apiViewModel
     @Environment(\.modelContext) var context
     @Query private var likedMovie: [SaveLists]
+    
     var body: some View {
         NavigationStack{
             ZStack{
@@ -80,7 +80,6 @@ struct DiscoverButton: View {
     @Environment(\.modelContext) var context
     @Query private var likedMovie: [SaveLists]
     @EnvironmentObject var viewModel: apiViewModel
-    @State private var confetti = 0
     @State private var likeClick = false
     var movie: Movie
     
@@ -88,7 +87,6 @@ struct DiscoverButton: View {
         HStack(spacing: 15) {
             Button(action: {
                 likeClick.toggle()
-                confetti += 1
                 let LikedMovie = SaveLists(id: movie.id,
                                            title: movie.title,
                                            overview: movie.overview,
@@ -116,7 +114,7 @@ struct DiscoverButton: View {
                             .fontWeight(.black)
                     }
             })
-            .buttonStyle(LikeEffectButtonStyle(confetti: $confetti, emoji1: "❤️", emoji2: "🌹", emoji3: "🌙", emoji4: "✨"))
+            .buttonStyle(LikeEffectButtonStyle())
         }
         .padding(.bottom,40)
     }

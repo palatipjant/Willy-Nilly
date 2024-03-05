@@ -16,31 +16,9 @@ struct MyListsView: View {
     @Query private var seenMovie: [SaveLists]
     
     @EnvironmentObject var viewModel: apiViewModel
-    //    @State private var selectedCategory: String? = "Liked"
-    //    let categories = ["Liked", "Seen"]
     
     var body: some View {
         NavigationStack{
-            //            HStack{
-            //                LazyVGrid(columns: [
-            //                    GridItem(.flexible(), spacing: 16),
-            //                    GridItem(.flexible(), spacing: 16)
-            //                ], spacing: 16) {
-            //                    ForEach(categories[0...1], id:\.self) {category in
-            //                        Button {
-            //                            selectedCategory = category
-            //                        } label: {
-            //                            Text(category)
-            //                                .foregroundStyle(selectedCategory == category ? .white : .black)
-            //                                .bold()
-            //                                .frame(maxWidth: .infinity, minHeight: 25)
-            //                                .background(selectedCategory == category ? .accent : .white)
-            //                                .clipShape(RoundedRectangle(cornerRadius: 10))
-            //                        }
-            //
-            //                    }
-            //                }.padding()
-            //            }
             List {
                 ForEach(likedMovie.filter{ $0.tag == "Liked" }) { movie in
                     NavigationLink(destination: OverviewMovie(movie: Movie(id: movie.id,

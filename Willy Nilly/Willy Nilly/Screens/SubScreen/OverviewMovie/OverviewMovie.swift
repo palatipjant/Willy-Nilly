@@ -7,7 +7,6 @@
 
 import SwiftUI
 import Kingfisher
-import ConfettiSwiftUI
 
 struct OverviewMovie: View {
     
@@ -67,19 +66,6 @@ struct OverviewMovie: View {
                 .scrollIndicators(.hidden)
                 .toolbarBackground(.hidden, for: .navigationBar)
             }
-//            HStack{
-//                Capsule()
-//                    .fill(.ultraThinMaterial)
-//                    .frame(width: 150, height: 70)
-//                    .clipShape(RoundedRectangle(cornerRadius: 8))
-//                    .opacity(0.8)
-//                    .overlay {
-//                        HStack(spacing: 16){
-//                            LikeButton(movie: movie)
-//                            MarkAsSeenButton(movie: movie)
-//                        }
-//                    }
-//            }.padding(.bottom,15)
             if viewModel.isLoading {
                 LoadingView()
             }
