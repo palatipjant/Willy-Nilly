@@ -19,7 +19,7 @@ extension OnboardingConfiguration {
                                                  content: "Let MovieMingle surprise you with hidden gems and unexpected delights."),
                                            .init(image: Image(systemName: "list.bullet.rectangle.fill"),
                                                  title: "Personalized Lists",
-                                                 content: "Create custom lists to track your favorites and mark what you've seen."),
+                                                 content: "Create liked lists to track your favorites."),
                                            .init(image: Image(systemName: "person.text.rectangle.fill"),
                                                  title: "Your Favorite Cast",
                                                  content: "Follow actors and actresses from around the world for the latest news and projects.")])
