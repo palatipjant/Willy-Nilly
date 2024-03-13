@@ -17,48 +17,48 @@ struct DiscoverView: View {
     var body: some View {
         NavigationStack{
             ZStack{
+                if viewModel.isLoading {
+                    LoadingView()
+                }
                 ForEach(viewModel.MovieDiscover.shuffled().prefix(1)) { movie in
-                        if !likedMovie.contains(where: { $0.id == movie.id }) {
-                            ZStack{
-                                VStack{
-                                    NavigationLink(destination: OverviewMovie(movie: movie)){
-                                        CardView(movie: movie)
-                                            .ignoresSafeArea(edges: .bottom)
+                    if !likedMovie.contains(where: { $0.id == movie.id }) {
+                        ZStack{
+                            VStack{
+                                NavigationLink(destination: OverviewMovie(movie: movie)){
+                                    CardView(movie: movie)
+                                        .ignoresSafeArea(edges: .bottom)
+                                }
+                                .buttonStyle(FlatLinkStyle())
+                                .overlay(content: {
+                                    VStack{
+                                        LinearGradient(colors: [.clear, .black], startPoint: .bottom, endPoint: .top)
+                                            .frame(maxWidth: .infinity, maxHeight: 140)
+                                            .offset(y: -20)
+                                        Spacer()
+                                        LinearGradient(colors: [.clear, .black], startPoint: .top, endPoint: .bottom)
+                                            .frame(maxWidth: .infinity, maxHeight: 190)
+                                            .offset(y: 20)
                                     }
-                                    .buttonStyle(FlatLinkStyle())
-                                    .overlay(content: {
-                                        VStack{
-                                            LinearGradient(colors: [.clear, .black], startPoint: .bottom, endPoint: .top)
-                                                .frame(maxWidth: .infinity, maxHeight: 140)
-                                                .offset(y: -20)
-                                            Spacer()
-                                            LinearGradient(colors: [.clear, .black], startPoint: .top, endPoint: .bottom)
-                                                .frame(maxWidth: .infinity, maxHeight: 190)
-                                                .offset(y: 20)
-                                        }
-                                    })
-                                }
-                                VStack{
-                                    Spacer()
-                                    DiscoverButton(movie: movie)
-                                }
+                                })
+                            }
+                            VStack{
+                                Spacer()
+                                DiscoverButton(movie: movie)
                             }
                         }
-                        else {
-                            EmptyView()
-                                .onAppear{
-                                    viewModel.removeMovieFromDiscover(withId: movie.id)
-                                }
-                        }
                     }
+                    else {
+                        EmptyView()
+                            .onAppear{
+                                viewModel.removeMovieFromDiscover(withId: movie.id)
+                            }
+                    }
+                }
             }
             .padding(.vertical)
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .navigationTitle("Discover")
             .toolbarBackground(.hidden, for: .navigationBar)
-            if viewModel.isLoading {
-                LoadingView()
-            }
         }.onAppear {
             viewModel.MovieDiscover.removeAll()
             viewModel.getMovieDiscover(page: 1)
@@ -73,6 +73,8 @@ struct DiscoverView: View {
 
 #Preview {
     DiscoverView()
+        .environment(apiViewModel())
+        .preferredColorScheme(.dark)
 }
 
 struct DiscoverButton: View {

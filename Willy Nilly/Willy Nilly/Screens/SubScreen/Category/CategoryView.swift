@@ -50,4 +50,6 @@ struct CategoryView: View {
 
 #Preview {
     CategoryView()
+        .environment(apiViewModel())
+        .preferredColorScheme(.dark)
 }

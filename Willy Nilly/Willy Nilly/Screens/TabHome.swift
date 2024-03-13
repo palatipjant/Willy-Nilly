@@ -18,7 +18,7 @@ struct TabHome: View {
             }.tabItem { Label("Discover", systemImage: "rectangle.portrait.on.rectangle.portrait.angled.fill") }
 
             VStack{
-                ClubView()
+                PersonView()
             }.tabItem { Label("Cast", systemImage: "person.crop.rectangle.stack.fill") }
             
             VStack{
@@ -26,11 +26,4 @@ struct TabHome: View {
             }.tabItem { Label("Lists", systemImage: "heart.circle") }
         }
     }
-
-    
-    
-}
-
-#Preview {
-    TabHome()
 }

@@ -11,11 +11,12 @@ import SwiftData
 struct HomeView: View {
     
     @EnvironmentObject var viewModel: apiViewModel
-    @Environment(\.modelContext) var context
-    @Query private var likedMovie: [SaveLists]
     
     var body: some View {
         ZStack{
+            if viewModel.isLoading {
+                LoadingView()
+            }
             NavigationStack{
                 GeometryReader{_ in
                     ScrollView{
@@ -51,16 +52,13 @@ struct HomeView: View {
                     .toolbarBackground(.hidden, for: .navigationBar)
                 }
             }
-            if viewModel.isLoading {
-                LoadingView()
-            }
         }
-        .onAppear {
-            viewModel.getUpcomingMovie()
-            viewModel.getTrendingMovie()
-            viewModel.getTopRated()
-            viewModel.getNowPlaying()
-            viewModel.getTrendThai()
+        .task {
+                viewModel.getUpcomingMovie()
+                viewModel.getTrendingMovie()
+                viewModel.getTopRated()
+                viewModel.getNowPlaying()
+                viewModel.getTrendThai()
         }
         .alert(item: $viewModel.alertItem) { alert in
             Alert(title: alert.title,
@@ -69,11 +67,6 @@ struct HomeView: View {
         }
     }
 }
-
-#Preview {
-    HomeView()
-}
-
 
 struct ScrollViewConfigurator: UIViewRepresentable {
     let configure: (UIScrollView?) -> ()
@@ -99,4 +92,11 @@ extension UIView {
         } while next != nil
         return nil
     }
+}
+
+
+#Preview {
+    HomeView()
+        .environment(apiViewModel())
+        .preferredColorScheme(.dark)
 }

@@ -64,4 +64,6 @@ struct CastMovieCreditsView: View {
 
 #Preview {
     CastMovieCreditsView(titleView: "testse", person_id: 12799)
+        .environment(apiViewModel())
+        .preferredColorScheme(.dark)
 }

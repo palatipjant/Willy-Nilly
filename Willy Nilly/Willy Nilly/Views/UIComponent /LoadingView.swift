@@ -24,10 +24,14 @@ struct ActivityIndicator: UIViewRepresentable {
 struct LoadingView: View{
     var body: some View{
         ZStack {
-            Color(.systemBackground)
+            Color(.black)
                 .ignoresSafeArea(.all)
             
             ActivityIndicator()
         }
     }
+}
+
+#Preview {
+    LoadingView()
 }

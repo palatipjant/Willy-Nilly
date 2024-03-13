@@ -66,4 +66,6 @@ struct MyListsView: View {
 
 #Preview {
     MyListsView()
+        .environment(apiViewModel())
+        .preferredColorScheme(.dark)
 }

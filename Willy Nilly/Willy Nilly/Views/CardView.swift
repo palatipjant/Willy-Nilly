@@ -73,4 +73,6 @@ struct CardView: View {
 
 #Preview {
     CardView(movie: Mockdata.sampledata)
+        .environment(apiViewModel())
+        .preferredColorScheme(.dark)
 }

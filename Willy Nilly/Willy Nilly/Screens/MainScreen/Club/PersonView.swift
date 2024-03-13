@@ -7,12 +7,15 @@
 
 import SwiftUI
 
-struct ClubView: View {
+struct PersonView: View {
     
     @EnvironmentObject var viewModel: apiViewModel
     
     var body: some View {
         NavigationStack{
+            if viewModel.isLoading {
+                LoadingView()
+            }
             ZStack{
                 List {
                     ForEach(viewModel.PopularPerson) { cast in
@@ -53,5 +56,7 @@ struct ClubView: View {
 }
 
 #Preview {
-    ClubView()
+    PersonView()
+        .environment(apiViewModel())
+        .preferredColorScheme(.dark)
 }

@@ -7,7 +7,8 @@
 
 import SwiftUI
 
-@MainActor final class apiViewModel: ObservableObject {
+@MainActor 
+final class apiViewModel: ObservableObject, Observable {
     
     @Published var likedMovies: [SaveLists] = []
     @Published var SeenMovies: [SaveLists] = []

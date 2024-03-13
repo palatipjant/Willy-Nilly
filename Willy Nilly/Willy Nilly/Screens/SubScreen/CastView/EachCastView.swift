@@ -17,6 +17,9 @@ struct EachCastView: View{
     
     var body: some View {
         ZStack(alignment: .bottom){
+            if viewModel.isLoading {
+                LoadingView()
+            }
             GeometryReader{_ in
                 ScrollView{
                     VStack{
@@ -93,9 +96,6 @@ struct EachCastView: View{
                 }
                 .scrollIndicators(.hidden)
                 .toolbarBackground(.hidden, for: .navigationBar)
-            }
-            if viewModel.isLoading {
-                LoadingView()
             }
         }
         .task {
@@ -182,4 +182,6 @@ struct CastBiograp: View {
 
 #Preview(body: {
     EachCastView(cast: 976, profile_path: "")
+        .environment(apiViewModel())
+        .preferredColorScheme(.dark)
 })

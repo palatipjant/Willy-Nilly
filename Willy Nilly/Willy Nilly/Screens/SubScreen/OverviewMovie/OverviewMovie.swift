@@ -15,6 +15,10 @@ struct OverviewMovie: View {
     
     var body: some View {
         ZStack(alignment: .bottom){
+            
+            if viewModel.isLoading {
+                LoadingView()
+            }
             GeometryReader{_ in
                 ScrollView{
                     VStack{
@@ -65,9 +69,6 @@ struct OverviewMovie: View {
                 .scrollIndicators(.hidden)
                 .toolbarBackground(.hidden, for: .navigationBar)
             }
-            if viewModel.isLoading {
-                LoadingView()
-            }
         }
         .task {
             viewModel.getMovieDetail(movieID: String(movie.id))
@@ -92,6 +93,8 @@ struct OverviewMovie: View {
 
 #Preview {
     OverviewMovie(movie: Mockdata.sampledata)
+        .environment(apiViewModel())
+        .preferredColorScheme(.dark)
 }
 
 struct Detail: View {
