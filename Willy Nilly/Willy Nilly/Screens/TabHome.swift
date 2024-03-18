@@ -10,20 +10,26 @@ import SwiftUI
 struct TabHome: View {
     var body: some View {
         TabView{
-            VStack{
+//            VStack{
                 HomeView()
-            }.tabItem { Label("Home", systemImage: "film") }
-            VStack{
+            .tabItem { Label("Home", systemImage: "film") }
+//            VStack{
                 DiscoverView()
-            }.tabItem { Label("Discover", systemImage: "rectangle.portrait.on.rectangle.portrait.angled.fill") }
+            .tabItem { Label("Discover", systemImage: "rectangle.portrait.on.rectangle.portrait.angled.fill") }
 
-            VStack{
+//            VStack{
                 PersonView()
-            }.tabItem { Label("Cast", systemImage: "person.crop.rectangle.stack.fill") }
+            .tabItem { Label("Cast", systemImage: "person.crop.rectangle.stack.fill") }
             
-            VStack{
+//            VStack{
                 MyListsView()
-            }.tabItem { Label("Lists", systemImage: "heart.circle") }
+            .tabItem { Label("Lists", systemImage: "heart.circle") }
         }
     }
+}
+
+#Preview {
+    TabHome()
+        .environmentObject(apiViewModel())
+        .preferredColorScheme(.dark)
 }

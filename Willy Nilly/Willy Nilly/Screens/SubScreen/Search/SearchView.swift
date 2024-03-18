@@ -57,6 +57,7 @@ struct SearchView: View {
             }
             .navigationTitle("Search")
             .onAppear(perform: {
+                viewModel.SearchMovie.removeAll()
                 isFocus = .search
             })
             .alert(item: $viewModel.alertItem) { alert in
