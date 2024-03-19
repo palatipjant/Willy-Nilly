@@ -25,6 +25,7 @@ final class NetworkManager {
     private let popularPerson = baseURL + "/person/popular?language=en-US&page=1"
     
     let authToken = ""
+
     
     private init() {}
     
