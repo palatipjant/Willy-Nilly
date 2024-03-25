@@ -8,9 +8,12 @@
 import SwiftUI
 
 struct SearchButtonView: View {
+    
+    @Binding var isinSearch: Bool
+    
     var body: some View {
         HStack {
-            NavigationLink(destination: SearchView()) {
+            NavigationLink(destination: SearchView(isinSearch: $isinSearch)) {
                 HStack{
                     Capsule()
                         .fill(.blendMode(.multiply))

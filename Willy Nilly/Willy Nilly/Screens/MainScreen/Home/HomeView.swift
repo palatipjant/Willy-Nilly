@@ -11,6 +11,7 @@ import SwiftData
 struct HomeView: View {
     
     @EnvironmentObject var viewModel: apiViewModel
+    @State var isinSearch = false
     
     var body: some View {
         ZStack{
@@ -39,8 +40,11 @@ struct HomeView: View {
                     .navigationBarTitleDisplayMode(.inline)
                     .toolbar {
                         ToolbarItem(placement: .topBarTrailing) {
-                            SearchButtonView()
+                            SearchButtonView(isinSearch: $isinSearch)
                                 .opacity(0.7)
+                                .onTapGesture {
+                                    isinSearch = true
+                                }
                         }
                         ToolbarItem(placement: .topBarLeading) {
                             Text("Home")
