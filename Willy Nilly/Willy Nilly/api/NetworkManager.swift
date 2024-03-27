@@ -26,7 +26,6 @@ final class NetworkManager {
     
     let authToken = ""
 
-    
     private init() {}
     
     func downloadImage(fromURLString urlString: String, completed: @escaping (UIImage?) -> Void) {
