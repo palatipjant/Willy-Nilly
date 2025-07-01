@@ -47,12 +47,12 @@ struct HomeView: View {
                                     viewModel.SearchMovie.removeAll()
                                 }
                         }
-                        ToolbarItem(placement: .topBarLeading) {
-                            Text("Home")
-                                .font(.title)
-                                .foregroundStyle(.white)
-                                .bold()
-                        }
+//                        ToolbarItem(placement: .topBarLeading) {
+//                            Text("Home")
+//                                .font(.title)
+//                                .foregroundStyle(.white)
+//                                .bold()
+//                        }
                     }
                     .toolbarBackground(.hidden, for: .navigationBar)
                 }

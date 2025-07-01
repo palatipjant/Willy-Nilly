@@ -40,7 +40,7 @@ struct PersonView: View {
                         }
                     }
                 }.listStyle(.plain)
-                    .padding(.top)
+//                    .padding(.top)
             }
             .onAppear {
                 viewModel.getPopularPerson()

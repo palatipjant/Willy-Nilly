@@ -15,18 +15,23 @@ struct SearchButtonView: View {
         HStack {
             NavigationLink(destination: SearchView(isinSearch: $isinSearch)) {
                 HStack{
-                    Capsule()
-                        .fill(.blendMode(.multiply))
-                        .strokeBorder(.white, lineWidth: 2)
-                        .frame(width: 90, height: 35)
-                        .foregroundStyle(.gray)
-                        .overlay {
-                            Text("Search")
-                                .foregroundStyle(.white)
-                        }
+                    Text("Search")
+                        .foregroundStyle(.white)
+//                    Capsule()
+//                        .fill(.blendMode(.multiply))
+//                        .strokeBorder(.white, lineWidth: 2)
+//                        .frame(width: 90, height: 35)
+//                        .foregroundStyle(.gray)
+//                        .overlay {
+//                            Text("Search")
+//                                .foregroundStyle(.white)
+//                        }
                 }
             }
         }
     }
 }
 
+#Preview {
+    SearchButtonView(isinSearch: Binding.constant(false))
+}
