@@ -24,7 +24,7 @@ final class NetworkManager {
     private let trendThai = baseURL + "/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&primary_release_year=2024&sort_by=popularity.desc&with_original_language=th"
     private let popularPerson = baseURL + "/person/popular?language=en-US&page=1"
     
-    let authToken = "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI4NmJjMGQzYWIwYjZmMGQxNzJmM2M0MDgyZjQwZWZmMSIsInN1YiI6IjY1ODMxY2NhODU4Njc4NTUyZWY2ODQwMSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.vqJ0i9h2drcrWWixFmPZ5ol5a8I9vk6yDzeeq1gbvMo"
+    let authToken = ""
 
     
     private init() {}
