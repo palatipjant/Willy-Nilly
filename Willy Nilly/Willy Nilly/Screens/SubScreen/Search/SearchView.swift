@@ -64,12 +64,14 @@ struct SearchView: View {
                             .padding()
                         Spacer()
                     }
+                    .opacity(0.7)
                     .padding(.top, 100)
                 }
             }
         }
         .navigationTitle("Search")
         .onAppear(perform: {
+            viewModel.SearchMovie.removeAll()
             isFocus = .search
         })
         .alert(item: $viewModel.alertItem) { alert in
